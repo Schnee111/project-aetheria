@@ -1,8 +1,7 @@
 # Project Aetheria
 
-> Web visual novel tentang Aeterna, seorang magitech engineer pemalas yang ternyata adalah Prime Deity, dan Lysthea, Grand Saintess yang telah menjaga dunia selama 10.000 tahun.
+> A browser-based visual novel set in a cozy magitech fantasy world.
 
-**Working title:** The Prime Deity Just Wants to Slack Off  
 **Genre:** Isekai, urban fantasy, cozy fantasy, slice of life, comedy, light romance  
 **Platform:** Web browser
 
@@ -10,21 +9,23 @@
 
 ## Overview
 
-Project Aetheria adalah game visual novel berbasis React yang menggabungkan dialog bercabang, eksplorasi lokasi, evidence board, autosave, audio, dan transisi sinematik. Chapter 1 mengikuti kehidupan baru Aeterna sebagai teknisi artefak sihir biasa sampai kedatangan Lysthea membongkar identitas kosmisnya.
+Project Aetheria is a React-powered visual novel prototype with branching dialogue, scene-based progression, exploration screens, evidence-style information tracking, autosave, audio playback, and cinematic transitions.
 
-Repo ini berisi implementasi game, data Chapter 1, aset visual/audio, dokumentasi worldbuilding, persona karakter, style guide, serta skrip bantu untuk membuat/mengolah aset.
+This repository contains the game implementation, Chapter 1 content data, visual/audio assets, worldbuilding notes, character references, style documentation, and helper scripts for asset production.
+
+The README is intentionally spoiler-safe. Story-specific reveals and character details live in the internal documents under `docs/`.
 
 ---
 
 ## Current Features
 
-- Visual novel flow dengan dialog typewriter, pilihan, sprite karakter, background, BGM, dan SFX.
-- Multi-screen game loop: landing, story, visual novel, hub, exploration, board, inspection, confrontation, decision, reflection, dan isekai transition.
-- Chapter data berbasis TypeScript untuk scenes, evidences, rules, dan editorial outcomes.
-- State management dengan Zustand untuk game progress, dialog, evidence, board, dan settings.
-- Autosave/load berbasis localforage, termasuk penyimpanan posisi scene dan board state.
-- Evidence inventory, evidence toast, dan detective board untuk menghubungkan informasi.
-- Unit tests untuk engine dan validasi data.
+- Visual novel flow with typewriter dialogue, choices, character sprites, backgrounds, BGM, and SFX.
+- Multi-screen game loop covering landing, story, visual novel, hub, exploration, board, inspection, confrontation, decision, reflection, and transition screens.
+- Chapter content stored as TypeScript data for scenes, evidence entries, board rules, and outcomes.
+- Zustand stores for game progress, dialogue state, evidence state, board state, and settings.
+- Autosave/load through localforage, including current scene and board state.
+- Evidence inventory, unlock notifications, and a board interface for connecting collected information.
+- Unit tests for core engines and data validation.
 
 ---
 
@@ -59,7 +60,7 @@ npm install
 npm run dev
 ```
 
-Vite runs with `--host`, so the dev server can be opened from the local machine or LAN address printed in the terminal.
+Vite runs with `--host`, so the development server can be opened from the local machine or a LAN address printed in the terminal.
 
 ### Build
 
@@ -86,13 +87,13 @@ npm run test:watch
 
 | Command | Purpose |
 | --- | --- |
-| `npm run dev` | Start Vite development server |
+| `npm run dev` | Start the Vite development server |
 | `npm run build` | Type-check with `tsc -b` and build production assets |
-| `npm run preview` | Preview production build |
+| `npm run preview` | Preview the production build |
 | `npm test` | Run Vitest once |
 | `npm run test:watch` | Run Vitest in watch mode |
 | `npm run lint` | Run ESLint |
-| `npm run format` | Format repository with Prettier |
+| `npm run format` | Format the repository with Prettier |
 
 ---
 
@@ -100,24 +101,24 @@ npm run test:watch
 
 ```text
 aetheria/
-|-- docs/                         Project docs, GDD, style guide, personas
+|-- docs/                         Internal design docs, style guide, references
 |-- public/
 |   `-- assets/
 |       |-- backgrounds/           Scene backgrounds and CG images
 |       |-- characters/            Character sprites by character/expression
-|       `-- audio/                 BGM, SFX, and dialog voice files
+|       `-- audio/                 BGM, SFX, and dialogue voice files
 |-- scripts/                       Asset generation and image/audio helpers
 |-- src/
 |   |-- App.tsx                    Main screen router and game loop
 |   |-- components/
 |   |   |-- screens/               Full-screen game states
-|   |   |-- visual-novel/          Dialog, background, sprite, choices
+|   |   |-- visual-novel/          Dialogue, background, sprite, choices
 |   |   |-- evidence/              Evidence inventory/card UI
-|   |   |-- board/                 Evidence board nodes and edges
+|   |   |-- board/                 Information board nodes and edges
 |   |   `-- smartphone/            In-game phone/social overlay
 |   |-- data/chapter-1/            Chapter 1 scenes, evidence, rules, outcomes
 |   |-- engines/                   Pure game logic and persistence helpers
-|   |-- hooks/                     Dialog, audio, typewriter hooks
+|   |-- hooks/                     Dialogue, audio, and typewriter hooks
 |   |-- schemas/                   Zod schemas for content validation
 |   |-- stores/                    Zustand stores
 |   |-- tests/                     Engine tests and test setup
@@ -131,9 +132,9 @@ aetheria/
 ## Runtime Flow
 
 1. `src/App.tsx` loads `chapter1` from `src/data/chapter-1`.
-2. `useGameStore`, `useEvidenceStore`, and `useDialogStore` hold current screen, scene progress, collected evidence, board edges, and dialog index.
+2. `useGameStore`, `useEvidenceStore`, and `useDialogStore` hold current screen, scene progress, collected evidence, board edges, and dialogue index.
 3. `advanceScene()` in `src/engines/storyEngine.ts` applies scene unlocks, choices, ticker changes, visited scenes, and next-scene routing.
-4. The active scene mode maps to a screen component, for example `visual_novel`, `hub`, `exploration`, `board`, or `reflection`.
+4. The active scene mode maps to a screen component, such as `visual_novel`, `hub`, `exploration`, `board`, or `reflection`.
 5. `saveGame()` in `src/engines/saveEngine.ts` persists progress to localforage after gameplay changes.
 
 ---
@@ -145,8 +146,8 @@ Most story changes happen in `src/data/chapter-1/`.
 | File | Use |
 | --- | --- |
 | `scenes.ts` | Scene order, dialogue lines, choices, backgrounds, characters, unlocks |
-| `evidences.ts` | Collectible evidence metadata and learning points |
-| `rules.ts` | Evidence relationship rules for the board |
+| `evidences.ts` | Collectible information metadata and learning points |
+| `rules.ts` | Relationship rules for board connections |
 | `editorials.ts` | Final decisions and reflection outcomes |
 | `index.ts` | Chapter manifest exported to the app |
 
@@ -154,8 +155,8 @@ When adding a new scene:
 
 1. Add the scene object to `scenes.ts`.
 2. Set `id`, `mode`, `background`, `characters`, `dialogues`, and `nextSceneId`.
-3. Add any new evidence to `evidences.ts`.
-4. Put required assets under `public/assets`.
+3. Add any new collectible information to `evidences.ts`.
+4. Place required assets under `public/assets`.
 5. Run `npm test` and `npm run build`.
 
 ---
@@ -172,7 +173,7 @@ Common paths:
 | Character sprites | `public/assets/characters/{character_id}/` |
 | BGM | `public/assets/audio/bgm/` |
 | SFX | `public/assets/audio/sfx/` |
-| Dialog voice | `public/assets/audio/dialog/` |
+| Dialogue voice | `public/assets/audio/dialog/` |
 
 Character sprites are referenced by character id and expression, for example `aeterna_lazy.png` or `lysthea_shocked.png`.
 
@@ -180,14 +181,16 @@ Character sprites are referenced by character id and expression, for example `ae
 
 ## Documentation
 
+Some documents may contain story spoilers. Open them only if you are working on narrative, content, or asset production.
+
 | Document | Description |
 | --- | --- |
-| [docs/GDD_Project_Aetheria.md](docs/GDD_Project_Aetheria.md) | Core premise, genre, and character profiles |
-| [docs/Chapter_1_Outline.md](docs/Chapter_1_Outline.md) | Chapter 1 story outline |
+| [docs/GDD_Project_Aetheria.md](docs/GDD_Project_Aetheria.md) | Internal game design reference |
+| [docs/Chapter_1_Outline.md](docs/Chapter_1_Outline.md) | Chapter 1 planning outline |
 | [docs/Script_Chapter_1.md](docs/Script_Chapter_1.md) | Chapter 1 script draft |
 | [docs/Worldbuilding_Aetheria.md](docs/Worldbuilding_Aetheria.md) | Worldbuilding notes |
-| [docs/Persona_Aeterna.md](docs/Persona_Aeterna.md) | Aeterna character reference |
-| [docs/Persona_Lysthea.md](docs/Persona_Lysthea.md) | Lysthea character reference |
+| [docs/Persona_Aeterna.md](docs/Persona_Aeterna.md) | Character reference |
+| [docs/Persona_Lysthea.md](docs/Persona_Lysthea.md) | Character reference |
 | [docs/Character_Visuals.md](docs/Character_Visuals.md) | Character visual direction |
 | [docs/Character_Voices.md](docs/Character_Voices.md) | Voice direction |
 | [docs/ASSET_CHECKLIST.md](docs/ASSET_CHECKLIST.md) | Asset production checklist |
@@ -195,12 +198,12 @@ Character sprites are referenced by character id and expression, for example `ae
 
 ---
 
-## Analysis Notes
+## Maintenance Notes
 
-- The current game content and docs are Project Aetheria, while a few legacy identifiers still use `sebelum-viral`, including the npm package name and localforage save key.
-- Several type fields still reflect an older investigation/literacy prototype, such as rumor, evidence quality, and relationship names. They are still used by the engine/UI and can be renamed later in a focused refactor.
+- Some legacy identifiers still use `sebelum-viral`, including the npm package name and localforage save key.
+- Several type fields still reflect an earlier investigation prototype. They are still used by the engine/UI and can be renamed later in a focused refactor.
 - `claimRules` is currently empty in Chapter 1, so the inspection flow exists but has limited active content.
-- `dist/` and `node_modules/` are present locally; generated folders usually should not be edited by hand.
+- `dist/` and `node_modules/` may exist locally but are ignored by Git and should not be edited by hand.
 
 ---
 
