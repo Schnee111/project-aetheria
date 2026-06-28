@@ -1,37 +1,43 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import {
+  getCharacterImageOffsetClass,
+  getCharacterImageSizeClass,
+} from './characterSizing';
 
 interface CharacterSpriteProps {
   characterId: string;
   expression: string;
   position: 'left' | 'center' | 'right';
-  isActive?: boolean;
 }
 
 const POSITION_MAP = {
-  left: 'left-[10%] md:left-[15%]',
-  center: 'left-1/2 -translate-x-1/2',
-  right: 'right-[10%] md:right-[15%]',
+  left: 'left-0 justify-center md:justify-start md:pl-[15%]',
+  center: 'left-0 justify-center',
+  right: 'left-0 justify-center md:justify-end md:pr-[15%]',
 } as const;
 
 export function CharacterSprite({
   characterId,
   expression,
   position,
-  isActive = true,
 }: CharacterSpriteProps) {
   const src = `/assets/characters/${characterId}/${characterId}_${expression}.png`;
+  const imageSizeClass = getCharacterImageSizeClass(characterId);
+  const imageOffsetClass = getCharacterImageOffsetClass(characterId);
 
   return (
-    <div className={`absolute bottom-0 z-10 ${POSITION_MAP[position]} pointer-events-none`}>
+    <div
+      className={`absolute bottom-[5.75rem] sm:bottom-[6.25rem] md:bottom-0 z-10 flex w-full items-end ${POSITION_MAP[position]} pointer-events-none`}
+    >
       <AnimatePresence mode="wait">
         <motion.div
           key={`${characterId}-${expression}`}
           className="pointer-events-none origin-bottom"
           initial={{ opacity: 0, y: 20 }}
           animate={{
-            opacity: isActive ? 1 : 0.5,
+            opacity: 1,
             y: 0,
-            filter: isActive ? 'brightness(1)' : 'brightness(0.6)',
+            filter: 'brightness(1)',
           }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
@@ -39,10 +45,10 @@ export function CharacterSprite({
           <img
             src={src}
             alt=""
-            className="h-[95vh] max-h-[950px] w-auto object-contain object-bottom translate-y-[12%] drop-shadow-2xl"
+            className={`${imageSizeClass} max-w-none object-contain object-bottom ${imageOffsetClass} drop-shadow-2xl`}
             style={{
-              maskImage: 'linear-gradient(to bottom, black 78%, transparent 95%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, black 78%, transparent 95%)',
+              maskImage: 'linear-gradient(to bottom, black 82%, transparent 98%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 82%, transparent 98%)',
             }}
             draggable={false}
             onError={(e) => {

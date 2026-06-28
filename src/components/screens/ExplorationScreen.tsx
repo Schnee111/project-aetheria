@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Search, Zap, ArrowLeft, ChevronRight, X } from 'lucide-react';
 import { Background } from '../visual-novel/Background';
+import {
+  getCharacterImageOffsetClass,
+  getCharacterImageSizeClass,
+} from '../visual-novel/characterSizing';
 import type { Scene, Evidence } from '../../types';
 
 interface ExplorationScreenProps {
@@ -19,6 +23,8 @@ export function ExplorationScreen({ scene, inventory, visitedSceneIds, onAction,
   if (!exp) return null;
 
   const charSprite = `/assets/characters/${exp.characterId}/${exp.characterId}_neutral.png`; // Fallback simple sprite logic
+  const imageSizeClass = getCharacterImageSizeClass(exp.characterId);
+  const imageOffsetClass = getCharacterImageOffsetClass(exp.characterId);
 
   return (
     <div className="absolute inset-0 bg-[#09090B] flex flex-col font-body text-[#FAFAFA] overflow-hidden">
@@ -40,18 +46,23 @@ export function ExplorationScreen({ scene, inventory, visitedSceneIds, onAction,
       </div>
 
       {/* Character Sprite */}
-      <div className="absolute inset-0 z-10 flex items-end justify-center pointer-events-none">
-        <motion.img
-          src={charSprite}
-          alt={exp.characterId}
-          className="h-[75vh] object-contain drop-shadow-2xl"
+      <div className="absolute inset-0 z-10 flex items-end justify-center pb-24 sm:pb-28 md:pb-0 pointer-events-none">
+        <motion.div
+          className="pointer-events-none"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          onError={(e) => {
-            e.currentTarget.style.display = 'none';
-          }}
-        />
+        >
+          <img
+            src={charSprite}
+            alt={exp.characterId}
+            className={`${imageSizeClass} max-w-none ${imageOffsetClass} object-contain drop-shadow-2xl`}
+            draggable={false}
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        </motion.div>
       </div>
 
       {/* Action Dashboard */}

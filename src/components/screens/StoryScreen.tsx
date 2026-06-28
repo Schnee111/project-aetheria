@@ -66,6 +66,14 @@ export function StoryScreen({
 
       {/* Characters */}
       {scene.characters.map((char) => {
+        const shouldShowCharacter =
+          currentLine &&
+          currentLine.speaker !== 'narrator' &&
+          currentLine.speaker !== 'system' &&
+          currentLine.speaker === char.characterId;
+
+        if (!shouldShowCharacter) return null;
+
         const expr = charStates[char.characterId] || char.initialExpression;
         if (expr === 'leave' || expr === 'none' || expr === 'exit') return null;
 
@@ -75,7 +83,6 @@ export function StoryScreen({
             characterId={char.characterId}
             expression={expr}
             position={char.position}
-            isActive={currentLine?.speaker === char.characterId || !currentLine}
           />
         );
       })}
