@@ -1,0 +1,97 @@
+import { useState, useEffect } from 'react';
+import { Background } from '../visual-novel/Background';
+import { CharacterSprite } from '../visual-novel/CharacterSprite';
+import { DialogBox } from '../visual-novel/DialogBox';
+import { ChoicePanel } from '../visual-novel/ChoicePanel';
+import { useBgm } from '../../hooks';
+import type { Scene, DialogueLine, Evidence } from '../../types';
+
+interface StoryScreenProps {
+  scene: Scene;
+  currentLine: DialogueLine | null;
+  inventory: Evidence[];
+  onChoose: (choiceId: string) => void;
+  onTapDialog: () => void;
+  isDialogComplete: boolean;
+}
+
+export function StoryScreen({
+  scene,
+  currentLine,
+  onChoose,
+  onTapDialog,
+  isDialogComplete,
+}: StoryScreenProps) {
+  const showChoices = isDialogComplete && scene.choices && scene.choices.length > 0;
+  const { play: playBgm } = useBgm();
+  const [charStates, setCharStates] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (scene.bgm) {
+      playBgm(scene.bgm);
+    }
+    const initial: Record<string, string> = {};
+    scene.characters.forEach((c) => {
+      initial[c.characterId] = c.initialExpression;
+    });
+    setCharStates(initial);
+  }, [scene.id, scene.bgm, scene.characters, playBgm]);
+
+  useEffect(() => {
+    if (currentLine) {
+      setCharStates((prev) => {
+        const next = { ...prev };
+        if (currentLine.speaker && currentLine.speaker !== 'narrator' && currentLine.speaker !== 'system') {
+          next[currentLine.speaker] = currentLine.expression;
+        }
+        if (currentLine.characterOverrides) {
+          Object.assign(next, currentLine.characterOverrides);
+        }
+        return next;
+      });
+    }
+  }, [currentLine]);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden font-body">
+      {/* Background */}
+      {(() => {
+        const bg = currentLine?.backgroundOverride || scene.background;
+        const hasExt = bg.endsWith('.png') || bg.endsWith('.jpg') || bg.endsWith('.webp');
+        const src = hasExt
+          ? `/assets/backgrounds/${bg}`
+          : `/assets/backgrounds/${bg}.jpg`;
+        return <Background src={src} />;
+      })()}
+
+      {/* Characters */}
+      {scene.characters.map((char) => {
+        const expr = charStates[char.characterId] || char.initialExpression;
+        if (expr === 'leave' || expr === 'none' || expr === 'exit') return null;
+
+        return (
+          <CharacterSprite
+            key={char.characterId}
+            characterId={char.characterId}
+            expression={expr}
+            position={char.position}
+            isActive={currentLine?.speaker === char.characterId || !currentLine}
+          />
+        );
+      })}
+
+      {/* Dialog */}
+      {currentLine && !isDialogComplete && (
+        <DialogBox line={currentLine} onTap={onTapDialog} />
+      )}
+
+      {/* Choices */}
+      {showChoices && (
+        <ChoicePanel
+          choices={scene.choices!}
+          onSelect={onChoose}
+        />
+      )}
+    </div>
+  );
+}
