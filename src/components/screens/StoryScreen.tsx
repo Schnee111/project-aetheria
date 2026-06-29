@@ -58,9 +58,12 @@ export function StoryScreen({
       {(() => {
         const bg = currentLine?.backgroundOverride || scene.background;
         const hasExt = bg.endsWith('.png') || bg.endsWith('.jpg') || bg.endsWith('.webp');
+        // Jika nama file mengandung 'cg_', kita arahkan ke folder cgs
+        const isCg = bg.includes('cg_');
+        const basePath = isCg ? '/assets/cgs' : '/assets/backgrounds';
         const src = hasExt
-          ? `/assets/backgrounds/${bg}`
-          : `/assets/backgrounds/${bg}.jpg`;
+          ? `${basePath}/${bg}`
+          : `${basePath}/${bg}.jpg`;
         return <Background src={src} />;
       })()}
 
