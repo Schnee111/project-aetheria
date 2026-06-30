@@ -63,7 +63,7 @@ export function StoryScreen({
         const basePath = isCg ? '/assets/cgs' : '/assets/backgrounds';
         const src = hasExt
           ? `${basePath}/${bg}`
-          : `${basePath}/${bg}.jpg`;
+          : `${basePath}/${bg}.webp`;
         return <Background src={src} />;
       })()}
 

@@ -21,7 +21,7 @@ export function CharacterSprite({
   expression,
   position,
 }: CharacterSpriteProps) {
-  const src = `/assets/characters/${characterId}/${characterId}_${expression}.png`;
+  const src = `/assets/characters/${characterId}/${characterId}_${expression}.webp`;
   const imageSizeClass = getCharacterImageSizeClass(characterId);
   const imageOffsetClass = getCharacterImageOffsetClass(characterId);
 
@@ -53,8 +53,8 @@ export function CharacterSprite({
             draggable={false}
             onError={(e) => {
               const target = e.currentTarget;
-              if (!target.src.endsWith('_neutral.png')) {
-                target.src = `/assets/characters/${characterId}/${characterId}_neutral.png`;
+              if (!target.src.endsWith('_neutral.webp')) {
+                target.src = `/assets/characters/${characterId}/${characterId}_neutral.webp`;
               } else {
                 target.style.display = 'none';
               }

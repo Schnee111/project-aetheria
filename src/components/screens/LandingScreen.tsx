@@ -96,12 +96,12 @@ export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenPro
   const { play: playSfx } = useSfx();
 
   const handleStart = () => {
-    playSfx('/assets/audio/sfx/sfx_click.wav');
+    playSfx('/assets/audio/sfx/sfx_click.ogg');
     onStart();
   };
 
   const handleContinue = () => {
-    playSfx('/assets/audio/sfx/sfx_click.wav');
+    playSfx('/assets/audio/sfx/sfx_click.ogg');
     onContinue();
   };
 

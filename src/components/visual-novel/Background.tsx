@@ -6,21 +6,12 @@ interface BackgroundProps {
 }
 
 export function Background({ src, alt = 'Background' }: BackgroundProps) {
-  let finalSrc = src;
-  if (src.endsWith('.png.jpg')) {
-    finalSrc = src.slice(0, -4);
-  } else if (src.endsWith('.webp.jpg')) {
-    finalSrc = src.slice(0, -4);
-  } else if (src.endsWith('.jpg.jpg')) {
-    finalSrc = src.slice(0, -4);
-  }
-
-  const isVideo = finalSrc.endsWith('.mp4') || finalSrc.endsWith('.webm');
+  const isVideo = src.endsWith('.mp4') || src.endsWith('.webm');
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        key={finalSrc}
+        key={src}
         className="absolute inset-0 z-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -29,19 +20,21 @@ export function Background({ src, alt = 'Background' }: BackgroundProps) {
       >
         {isVideo ? (
           <video
-            src={finalSrc}
+            src={src}
             className="w-full h-full object-cover"
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
           />
         ) : (
           <img
-            src={finalSrc}
+            src={src}
             alt={alt}
             className="w-full h-full object-cover"
             draggable={false}
+            loading="eager"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-navy-900/30" />

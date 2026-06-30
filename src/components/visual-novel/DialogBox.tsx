@@ -19,9 +19,9 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
   const sfxVolume = useSettingsStore((s) => s.sfxVolume);
 
   const blip = useMemo(() => {
-    let src = '/assets/audio/sfx/blip_mid.wav';
-    if (line.speaker === 'lysthea') src = '/assets/audio/sfx/blip_high.wav';
-    if (line.speaker === 'narrator' || line.speaker === 'system') src = '/assets/audio/sfx/blip_deep.wav';
+    let src = '/assets/audio/sfx/blip_mid.ogg';
+    if (line.speaker === 'lysthea') src = '/assets/audio/sfx/blip_high.ogg';
+    if (line.speaker === 'narrator' || line.speaker === 'system') src = '/assets/audio/sfx/blip_deep.ogg';
     
     return new Howl({
       src: [src],
@@ -54,7 +54,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
     if (!isComplete) {
       skip();
     } else {
-      playSfx('/assets/audio/sfx/sfx_click.wav');
+      playSfx('/assets/audio/sfx/sfx_click.ogg');
       onTap();
     }
   }, [isComplete, skip, onTap, playSfx]);

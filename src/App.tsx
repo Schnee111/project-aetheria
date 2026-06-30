@@ -23,6 +23,7 @@ import { loadGame, saveGame } from './engines/saveEngine';
 import { useGameStore } from './stores/gameStore';
 import { useEvidenceStore } from './stores/evidenceStore';
 import { useDialog } from './hooks/useDialog';
+import { useScenePreloader } from './hooks/useScenePreloader';
 import { useDialogStore } from './stores/dialogStore';
 import type { Screen, BoardEdge, Scene, Evidence } from './types';
 
@@ -63,6 +64,9 @@ function App() {
   const currentScene: Scene | undefined = chapter1.scenes.find(
     (s) => s.id === progress.currentSceneId,
   );
+
+  // Prefetch assets for the next scene(s) in the background
+  useScenePreloader(currentScene ?? null, chapter1, screen === 'visual_novel' || screen === 'story');
 
   // Trigger toast when evidence is added
   useEffect(() => {
@@ -281,7 +285,7 @@ function App() {
     activeScreenComponent = (
       <div className="absolute inset-0 overflow-hidden">
         {currentScene?.background && (
-          <Background src={`/assets/backgrounds/${currentScene.background}.jpg`} />
+          <Background src={`/assets/backgrounds/${currentScene.background}.webp`} />
         )}
         <SmartphoneOverlay
           dialogues={currentScene?.dialogues ?? []}
