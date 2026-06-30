@@ -4,6 +4,7 @@ import { ChevronRight } from 'lucide-react';
 import { useTypewriter } from '../../hooks/useTypewriter';
 import { useSfx } from '../../hooks';
 import { useSettingsStore } from '../../stores';
+import { useLocalization } from '../../hooks/useLocalization';
 import type { DialogueLine } from '../../types';
 import { Howl } from 'howler';
 import { useMemo, useEffect } from 'react';
@@ -14,7 +15,9 @@ interface DialogBoxProps {
 }
 
 export function DialogBox({ line, onTap }: DialogBoxProps) {
-  const { displayedText, isComplete, skip } = useTypewriter(line.text);
+  const { getDialogueText, getSpeakerName, t } = useLocalization();
+  const localizedText = getDialogueText(line);
+  const { displayedText, isComplete, skip } = useTypewriter(localizedText);
   const { play: playSfx } = useSfx();
   const sfxVolume = useSettingsStore((s) => s.sfxVolume);
 
@@ -63,7 +66,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
   
   const speakerName = isNarrator || line.speaker === 'system'
     ? ''
-    : line.speaker.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+    : getSpeakerName(line.speaker);
 
   // ── CINEMATIC NARRATOR LAYOUT ──
   if (isNarrator) {
@@ -96,7 +99,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                Klik untuk lanjut
+                {t('common.clickToContinue')}
               </motion.div>
             )}
           </AnimatePresence>
@@ -132,7 +135,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               </motion.div>
             )}
           </AnimatePresence>
-   
+    
           {/* Dialog Text */}
           <div className="relative z-10">
             <p className="text-base leading-relaxed font-body font-medium text-gray-100 min-h-[56px] drop-shadow-md md:min-h-[72px] md:text-2xl">
@@ -151,7 +154,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                <span>Lanjut</span>
+                <span>{t('common.continue')}</span>
                 <motion.div
                   animate={{ x: [0, 6, 0] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -162,7 +165,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
             )}
           </AnimatePresence>
           
-          {/* Subtle subtle edge highlight */}
+          {/* Subtle edge highlight */}
           <div className="absolute inset-0 rounded-xl pointer-events-none border-t border-white/5 z-0" />
         </div>
       </motion.div>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocalization } from '../../hooks/useLocalization';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Evidence, ClaimInspectionRule } from '../../types';
 import { ArrowLeft, FileText, CheckCircle2, XCircle, AlertTriangle, HelpCircle, Search } from 'lucide-react';
@@ -25,6 +26,7 @@ export function InspectionScreen({
   onEvaluate,
   onBack,
 }: InspectionScreenProps) {
+    const { t } = useLocalization();
   const [selectedEvidence, setSelectedEvidence] = useState<string | null>(null);
   const [evaluationResult, setEvaluationResult] = useState<{
     verdict: string;
@@ -53,7 +55,7 @@ export function InspectionScreen({
     } else {
       setEvaluationResult({
         verdict: 'needs_context',
-        feedback: 'Bukti ini belum cukup untuk memeriksa klaim tersebut.',
+        feedback: t('investigation.evidenceNotEnough'),
       });
     }
   };
@@ -170,7 +172,7 @@ export function InspectionScreen({
               : 'bg-[#18181B] text-[#71717A] cursor-not-allowed border border-[#27272A]'
           }`}
         >
-          {selectedEvidence ? 'Evaluasi Bukti' : 'Pilih Berkas'}
+          {selectedEvidence ? t('investigation.evaluateEvidence') : t('investigation.selectEvidence')}
         </button>
       </div>
     </div>

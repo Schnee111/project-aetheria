@@ -14,6 +14,7 @@ export interface DialogueLine {
   speaker: string;
   expression: string;
   text: string;
+  textEn?: string; // English translation (if omitted, falls back to `text`)
   audioSrc?: string;
   autoAdvance?: boolean;
   autoAdvanceDelay?: number;
@@ -67,7 +68,9 @@ export interface Scene {
   id: string;
   chapterId: string;
   title: string;
+  titleEn?: string;
   location: string;
+  locationEn?: string;
   mode: SceneMode;
   background: string;
   bgm?: string;

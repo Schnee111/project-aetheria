@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Type, Gauge, Home } from 'lucide-react';
-import { useSettingsStore, TEXT_SPEED_MS } from '../../stores/settingsStore';
+import { X, Type, Gauge, Home, Globe } from 'lucide-react';
+import { useSettingsStore, TEXT_SPEED_MS, type Language } from '../../stores/settingsStore';
+import { useLocalization } from '../../hooks/useLocalization';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -8,15 +9,19 @@ interface SettingsModalProps {
   onGoHome: () => void;
 }
 
-const textSpeedLabels: Record<string, string> = {
-  slow: 'Lambat',
-  normal: 'Normal',
-  fast: 'Cepat',
-  instant: 'Instan',
+const textSpeedLabels: Record<Language, Record<string, string>> = {
+  en: { slow: 'Slow', normal: 'Normal', fast: 'Fast', instant: 'Instant' },
+  id: { slow: 'Lambat', normal: 'Normal', fast: 'Cepat', instant: 'Instan' },
 };
 
+const languageLabels: { value: Language; label: string }[] = [
+  { value: 'en', label: 'English' },
+  { value: 'id', label: 'Indonesia' },
+];
+
 export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps) {
-  const { textSpeed, setTextSpeed } = useSettingsStore();
+  const { textSpeed, setTextSpeed, language, setLanguage } = useSettingsStore();
+  const { t } = useLocalization();
 
   const speeds = Object.keys(TEXT_SPEED_MS) as Array<keyof typeof TEXT_SPEED_MS>;
 
@@ -49,7 +54,7 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
             >
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-navy-700 bg-navy-900/50">
-                <h3 className="font-heading text-lg font-bold text-navy-100">Pengaturan</h3>
+                <h3 className="font-heading text-lg font-bold text-navy-100">{t('settings.title')}</h3>
                 <button
                   onClick={onClose}
                   className="p-1.5 rounded-lg hover:bg-navy-700 text-navy-400 hover:text-navy-100 transition-colors"
@@ -60,11 +65,34 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
 
               {/* Body */}
               <div className="p-5 space-y-6">
+                {/* Language */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-navy-300 uppercase tracking-wider">
+                    <Globe size={16} className="text-game-accent" />
+                    <span>{t('settings.language')}</span>
+                  </div>
+                  <div className="flex gap-2 bg-navy-900/50 p-1 rounded-xl border border-navy-700">
+                    {languageLabels.map((lang) => (
+                      <button
+                        key={lang.value}
+                        onClick={() => setLanguage(lang.value)}
+                        className={`flex-1 py-2.5 px-2 rounded-lg text-xs font-bold transition-all duration-300 uppercase tracking-wider ${
+                          language === lang.value
+                            ? 'bg-game-accent text-white shadow-lg shadow-game-accent/20'
+                            : 'bg-transparent text-navy-500 hover:text-navy-300 hover:bg-navy-700/50'
+                        }`}
+                      >
+                        {lang.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Text Speed */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-sm font-semibold text-navy-300 uppercase tracking-wider">
                     <Gauge size={16} className="text-game-accent" />
-                    <span>Kecepatan Teks</span>
+                    <span>{t('settings.textSpeed')}</span>
                   </div>
                   <div className="flex gap-2 bg-navy-900/50 p-1 rounded-xl border border-navy-700">
                     {speeds.map((speed) => (
@@ -77,7 +105,7 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
                             : 'bg-transparent text-navy-500 hover:text-navy-300 hover:bg-navy-700/50'
                         }`}
                       >
-                        {textSpeedLabels[speed]}
+                        {textSpeedLabels[language][speed]}
                       </button>
                     ))}
                   </div>
@@ -86,7 +114,7 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
                 {/* Info */}
                 <div className="flex items-start gap-3 p-4 bg-navy-900/50 border border-navy-700 rounded-xl text-xs text-navy-400 leading-relaxed font-medium">
                   <Type size={14} className="mt-0.5 flex-shrink-0 text-navy-500" />
-                  <span>Pengaturan tersimpan otomatis. Klik di mana saja pada layar cerita untuk melanjutkan dialog.</span>
+                  <span>{t('settings.info')}</span>
                 </div>
               </div>
 
@@ -97,7 +125,7 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
                   className="w-full py-3.5 px-4 rounded-xl bg-navy-700 hover:bg-game-contradiction hover:text-white border border-navy-600 hover:border-game-contradiction/50 text-navy-300 text-sm font-bold tracking-wide uppercase transition-all flex items-center justify-center gap-2"
                 >
                   <Home size={16} />
-                  Kembali ke Menu Utama
+                  {t('settings.backToMenu')}
                 </button>
               </div>
             </motion.div>
