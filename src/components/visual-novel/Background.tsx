@@ -15,6 +15,8 @@ export function Background({ src, alt = 'Background' }: BackgroundProps) {
     finalSrc = src.slice(0, -4);
   }
 
+  const isVideo = finalSrc.endsWith('.mp4') || finalSrc.endsWith('.webm');
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -25,12 +27,23 @@ export function Background({ src, alt = 'Background' }: BackgroundProps) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <img
-          src={finalSrc}
-          alt={alt}
-          className="w-full h-full object-cover"
-          draggable={false}
-        />
+        {isVideo ? (
+          <video
+            src={finalSrc}
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        ) : (
+          <img
+            src={finalSrc}
+            alt={alt}
+            className="w-full h-full object-cover"
+            draggable={false}
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-navy-900/30" />
       </motion.div>
     </AnimatePresence>

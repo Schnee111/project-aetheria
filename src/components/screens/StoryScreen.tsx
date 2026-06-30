@@ -57,7 +57,7 @@ export function StoryScreen({
       {/* Background */}
       {(() => {
         const bg = currentLine?.backgroundOverride || scene.background;
-        const hasExt = bg.endsWith('.png') || bg.endsWith('.jpg') || bg.endsWith('.webp');
+        const hasExt = bg.endsWith('.png') || bg.endsWith('.jpg') || bg.endsWith('.webp') || bg.endsWith('.mp4') || bg.endsWith('.webm');
         // Jika nama file mengandung 'cg_', kita arahkan ke folder cgs
         const isCg = bg.includes('cg_');
         const basePath = isCg ? '/assets/cgs' : '/assets/backgrounds';
