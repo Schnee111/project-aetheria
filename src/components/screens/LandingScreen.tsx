@@ -108,7 +108,7 @@ export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenPro
   return (
     <div className="absolute inset-0 select-none overflow-hidden bg-[#06050A] font-body text-[#F8F4FF] antialiased">
       <motion.img
-        src="/assets/backgrounds/bg_landing_aetheria_workshop.png"
+        src="/assets/backgrounds/ch1/bg_landing_aetheria_workshop.png"
         alt=""
         className="absolute inset-0 z-0 h-full w-full object-cover object-center"
         draggable={false}
