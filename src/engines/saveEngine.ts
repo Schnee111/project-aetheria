@@ -2,7 +2,7 @@ import localforage from 'localforage';
 import type { SaveData, Screen, GameProgress, BoardState } from '../types';
 import { DEFAULT_PROGRESS } from '../types';
 
-const SAVE_KEY = 'sebelum-viral-save';
+const SAVE_KEY = 'aetheria-save';
 const SAVE_VERSION = '1.0.0';
 
 interface SavePayload {
