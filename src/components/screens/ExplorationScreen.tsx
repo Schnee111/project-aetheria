@@ -1,4 +1,5 @@
 1|import { useState } from 'react';
+const { t } = useLocalization();
 import { useLocalization } from '../../hooks/useLocalization';
 2|import { motion, AnimatePresence } from 'framer-motion';
 3|import { MessageSquare, Search, Zap, ArrowLeft, ChevronRight, X } from 'lucide-react';
@@ -38,7 +39,7 @@ import { useLocalization } from '../../hooks/useLocalization';
 37|          className="pointer-events-auto flex items-center gap-2 text-sm font-semibold hover:text-white transition-colors text-[#A1A1AA] bg-black/40 px-4 py-2 rounded-full backdrop-blur-md border border-white/10"
 38|        >
 39|          <ArrowLeft size={16} />
-40|          <span>Kembali ke Hub</span>
+40|          <span>{t('investigation.backToHub')}</span>
 41|        </button>
 42|        <div className="text-right">
 43|          <div className="text-xl font-bold tracking-tight text-white drop-shadow-md">{scene.title}</div>

@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
+import { useLocalization } from '../../hooks/useLocalization';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   evaluateConnection,
@@ -375,7 +376,7 @@ export function BoardCanvas({
             style={{ color: '#9CA3AF' }}
           >
             <FileText size={32} strokeWidth={1.5} />
-            <div className="text-sm font-medium">Belum ada bukti</div>
+            <div className="text-sm font-medium">{t('investigation.noEvidence')}</div>
             <div className="text-xs">Kumpulkan bukti dari cerita terlebih dahulu</div>
           </div>
         )}
