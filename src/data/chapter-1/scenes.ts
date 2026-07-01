@@ -250,6 +250,9 @@ export const scenes: Scene[] = [
   // SCENE 5: THE GENESIS
   {
     id: 'CH1_S05',
+    chapterId: '1',
+    title: 'Flashback - The Genesis',
+    location: 'The Void',
     mode: 'cinematic',
     bgm: '',
     background: 'black',
