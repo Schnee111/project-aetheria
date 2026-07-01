@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { TEXT_SPEED_MS, useSettingsStore } from '../stores';
 
-export function useTypewriter(text: string, onComplete?: () => void) {
+export function useTypewriter(text: string, onComplete?: () => void, instant = false) {
   const [displayedText, setDisplayedText] = useState('');
   const [isComplete, setIsComplete] = useState(false);
   const textSpeed = useSettingsStore((s) => s.textSpeed);
@@ -22,6 +22,14 @@ export function useTypewriter(text: string, onComplete?: () => void) {
     setIsComplete(false);
     indexRef.current = 0;
 
+    // Instant mode: show full text immediately
+    if (instant) {
+      setDisplayedText(text);
+      setIsComplete(true);
+      onCompleteRef.current?.();
+      return;
+    }
+
     const speed = TEXT_SPEED_MS[textSpeed];
 
     intervalRef.current = setInterval(() => {
@@ -39,7 +47,7 @@ export function useTypewriter(text: string, onComplete?: () => void) {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [text, textSpeed]);
+  }, [text, textSpeed, instant]);
 
   return { displayedText, isComplete, skip };
 }

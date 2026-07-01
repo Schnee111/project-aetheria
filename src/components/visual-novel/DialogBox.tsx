@@ -17,7 +17,8 @@ interface DialogBoxProps {
 export function DialogBox({ line, onTap }: DialogBoxProps) {
   const { getDialogueText, getSpeakerName, t } = useLocalization();
   const localizedText = getDialogueText(line);
-  const { displayedText, isComplete, skip } = useTypewriter(localizedText);
+  const isInstant = line.speaker === 'system' || line.speaker === 'narrator';
+  const { displayedText, isComplete, skip } = useTypewriter(localizedText, undefined, isInstant);
   const { play: playSfx } = useSfx();
   const sfxVolume = useSettingsStore((s) => s.sfxVolume);
 
