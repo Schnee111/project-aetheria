@@ -14,7 +14,6 @@ interface HubScreenProps {
   canInspect: boolean;
 }
 
-const { t } = useLocalization();
 const LOCATION_DETAILS: Record<string, { title: string, desc: string }> = {
   'kantin': { title: 'Kantin Sekolah', desc: 'Tempat Rendra biasa nongkrong. Tanya soal chat awal.' },
   'uks': { title: 'Ruang UKS', desc: 'Aldi masih di sini. Cari tahu soal chat "markup nilai".' },
@@ -24,6 +23,7 @@ const LOCATION_DETAILS: Record<string, { title: string, desc: string }> = {
 };
 
 export function HubScreen({
+  const { t } = useLocalization();
   inventory,
   foundInsightIds,
   currentHoaxWave,
