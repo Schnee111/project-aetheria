@@ -444,7 +444,7 @@ function App() {
     activeScreenComponent = (
       <>
         <StoryScreen
-          scene={currentScene}
+          scene={currentScene!}
           currentLine={currentLine}
           inventory={collectedEvidenceData}
           onChoose={handleChoiceSelect}

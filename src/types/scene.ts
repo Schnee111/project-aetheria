@@ -7,6 +7,7 @@ export type SceneMode =
   | 'decision'
   | 'reflection'
   | 'confrontation'
+  | 'cinematic'
   | 'exploration';
 
 export interface DialogueLine {
