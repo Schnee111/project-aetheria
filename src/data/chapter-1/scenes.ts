@@ -101,15 +101,15 @@ export const scenes: Scene[] = [
     characters: [],
     dialogues: [
       // Phase 1: Black screen — ethereal chime, title fade in
-      { id: 'CH1_S01D_D001', speaker: 'narrator', expression: 'neutral', text: 'Aetheria.', textEn: 'Aetheria.', audioSrc: '/assets/audio/sfx/ethereal_chime.ogg', autoAdvance: true, autoAdvanceDelay: 2000 },
+      { id: 'CH1_S01D_D001', speaker: 'narrator', expression: 'neutral', text: 'Aetheria.', textEn: 'Aetheria.', audioSrc: '/assets/audio/sfx/ethereal_chime.ogg', autoAdvance: true, unskippable: true, autoAdvanceDelay: 2000 },
       // Phase 2: World reveal — planet video, soft whoosh
-      { id: 'CH1_S01D_D002', speaker: 'narrator', expression: 'neutral', text: 'Sebuah dunia di mana sihir adalah teknologi, dan kristal mana adalah sumber kehidupan.', textEn: 'A world where magic is technology, and mana crystals are the source of all life.', backgroundOverride: 'ch1/cg_aetheria_planet.mp4', audioSrc: '/assets/audio/sfx/soft_whoosh.ogg', autoAdvance: true, autoAdvanceDelay: 3500 },
+      { id: 'CH1_S01D_D002', speaker: 'narrator', expression: 'neutral', text: 'Sebuah dunia di mana sihir adalah teknologi, dan kristal mana adalah sumber kehidupan.', textEn: 'A world where magic is technology, and mana crystals are the source of all life.', backgroundOverride: 'ch1/cg_aetheria_planet.mp4', audioSrc: '/assets/audio/sfx/soft_whoosh.ogg', autoAdvance: true, unskippable: true, autoAdvanceDelay: 3500 },
       // Phase 3: City montage
-      { id: 'CH1_S01D_D003', speaker: 'narrator', expression: 'neutral', text: 'Peradaban yang megah. Sirkuit siber dan rune kuno berpadu dalam harmoni.', textEn: 'A magnificent civilization. Cyber circuits and ancient runes in harmony.', backgroundOverride: 'ch1/cg_aetheria_metropolis.mp4', autoAdvance: true, autoAdvanceDelay: 3000 },
+      { id: 'CH1_S01D_D003', speaker: 'narrator', expression: 'neutral', text: 'Peradaban yang megah. Sirkuit siber dan rune kuno berpadu dalam harmoni.', textEn: 'A magnificent civilization. Cyber circuits and ancient runes in harmony.', backgroundOverride: 'ch1/cg_aetheria_metropolis.mp4', autoAdvance: true, unskippable: true, autoAdvanceDelay: 3000 },
       // Phase 4: Reincarnation — Aeterna's voice begins
-      { id: 'CH1_S01D_D004', speaker: 'narrator', expression: 'neutral', text: 'Dan di sanalah... jiwaku menemukan tubuh barunya.', textEn: 'And there... my soul found its new body.', backgroundOverride: 'ch1/cg_isekai_baby.mp4', autoAdvance: true, autoAdvanceDelay: 3000 },
-      // Phase 5: Growing up — click to continue
-      { id: 'CH1_S01D_D005', speaker: 'aeterna', expression: 'neutral', text: '23 tahun kemudian. Bengkel kecil, hari-hari tenang, tanpa lembur.', textEn: 'Twenty-three years later. A small workshop, quiet days, no overtime.', backgroundOverride: 'ch1/bg_magitech_learning.webp' }
+      { id: 'CH1_S01D_D004', speaker: 'narrator', expression: 'neutral', text: 'Dan di sanalah... jiwaku menemukan tubuh barunya.', textEn: 'And there... my soul found its new body.', backgroundOverride: 'ch1/cg_isekai_baby.mp4', autoAdvance: true, unskippable: true, autoAdvanceDelay: 3000 },
+      // Phase 5: Growing up — auto advance
+      { id: 'CH1_S01D_D005', speaker: 'aeterna', expression: 'neutral', text: '23 tahun kemudian. Bengkel kecil, hari-hari tenang, tanpa lembur.', textEn: 'Twenty-three years later. A small workshop, quiet days, no overtime.', backgroundOverride: 'ch1/bg_magitech_learning.webp', autoAdvance: true, autoAdvanceDelay: 4000, unskippable: true }
     ],
     unlockEvidenceIds: [],
     nextSceneId: 'CH1_S02A',

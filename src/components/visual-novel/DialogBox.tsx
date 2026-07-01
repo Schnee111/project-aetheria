@@ -53,8 +53,20 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
     }
   }, [line.id, line.audioSrc, playSfx]);
 
+  // Auto-advance: when typewriter completes and line has autoAdvance, advance after delay
+  useEffect(() => {
+    if (isComplete && line.autoAdvance) {
+      const delay = line.autoAdvanceDelay || 1500;
+      const timer = setTimeout(() => {
+        onTap();
+      }, delay);
+      return () => clearTimeout(timer);
+    }
+  }, [isComplete, line.autoAdvance, line.autoAdvanceDelay, onTap]);
+
 
   const handleClick = useCallback(() => {
+    if (line.unskippable) return;
     if (!isComplete) {
       skip();
     } else {
@@ -105,7 +117,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               </p>
               
               <AnimatePresence>
-                {isComplete && (
+                {isComplete && !line.unskippable && !line.autoAdvance && (
                   <motion.div
                     className="mt-12 text-xs font-bold text-gray-300 tracking-[0.3em] uppercase drop-shadow-md"
                     initial={{ opacity: 0 }}
@@ -156,7 +168,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
 
                 {/* Next Indicator */}
                 <AnimatePresence>
-                  {isComplete && (
+                  {isComplete && !line.unskippable && !line.autoAdvance && (
                     <motion.div
                       className="absolute bottom-4 right-5 flex items-center gap-2 text-[10px] font-semibold text-gray-400 tracking-[0.2em] uppercase z-20 md:bottom-6 md:right-8 md:text-xs"
                       initial={{ opacity: 0 }}

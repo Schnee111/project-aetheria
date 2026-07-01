@@ -17,6 +17,7 @@ export interface DialogueLine {
   textEn?: string; // English translation (if omitted, falls back to `text`)
   audioSrc?: string;
   autoAdvance?: boolean;
+  unskippable?: boolean;
   autoAdvanceDelay?: number;
   backgroundOverride?: string;
   characterOverrides?: Record<string, string>;
