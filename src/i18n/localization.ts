@@ -43,6 +43,7 @@ const uiStrings: Record<string, Record<Language, string>> = {
   'investigation.unknown': { en: 'Unknown', id: 'Belum Diketahui' },
   'investigation.unknownDesc': { en: 'Not yet analyzed', id: 'Belum dianalisis' },
   'investigation.noEvidence': { en: 'No evidence yet', id: 'Belum ada bukti' },
+  'investigation.correlationLegend': { en: 'Correlation Legend', id: 'Legenda Korelasi' },
   'investigation.backToHub': { en: 'Back to Hub', id: 'Kembali ke Hub' },
   'investigation.presentEvidence': { en: 'Present Evidence', id: 'Sodorkan Bukti' },
   'investigation.notAvailable': { en: 'Not available here', id: 'Tidak tersedia di sini' },

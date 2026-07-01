@@ -12,6 +12,7 @@ interface InspectionScreenProps {
   onBack: () => void;
 }
 
+const { t } = useLocalization();
 const VERDICT_CONFIG = {
   supports: { icon: CheckCircle2, color: 'text-[#10B981]', label: 'MENDUKUNG' },
   contradicts: { icon: XCircle, color: 'text-[#E11D48]', label: 'BERTENTANGAN' },
@@ -26,7 +27,6 @@ export function InspectionScreen({
   onEvaluate,
   onBack,
 }: InspectionScreenProps) {
-    const { t } = useLocalization();
   const [selectedEvidence, setSelectedEvidence] = useState<string | null>(null);
   const [evaluationResult, setEvaluationResult] = useState<{
     verdict: string;
