@@ -12,6 +12,7 @@ interface StoryScreenProps {
   inventory: Evidence[];
   onChoose: (choiceId: string) => void;
   onTapDialog: () => void;
+  onTypewriterComplete: () => void;
   isDialogComplete: boolean;
 }
 
@@ -20,6 +21,7 @@ export function StoryScreen({
   currentLine,
   onChoose,
   onTapDialog,
+  onTypewriterComplete,
   isDialogComplete,
 }: StoryScreenProps) {
   const showChoices = isDialogComplete && scene.choices && scene.choices.length > 0;
@@ -92,7 +94,8 @@ export function StoryScreen({
 
       {/* Dialog */}
       {currentLine && !isDialogComplete && (
-        <DialogBox line={currentLine} onTap={onTapDialog} />
+        <DialogBox line={currentLine} onTap={onTapDialog}
+          onTypewriterComplete={onTypewriterComplete} />
       )}
 
       {/* Choices */}

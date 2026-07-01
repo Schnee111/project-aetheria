@@ -12,9 +12,10 @@ import { useMemo, useEffect } from 'react';
 interface DialogBoxProps {
   line: DialogueLine;
   onTap: () => void;
+  onTypewriterComplete?: () => void;
 }
 
-export function DialogBox({ line, onTap }: DialogBoxProps) {
+export function DialogBox({ line, onTap, onTypewriterComplete }: DialogBoxProps) {
   const { getDialogueText, getSpeakerName, t } = useLocalization();
   const localizedText = getDialogueText(line);
   const isInstant = line.speaker === 'system' || line.speaker === 'narrator';
@@ -56,6 +57,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
   // Auto-advance: when typewriter completes and line has autoAdvance, advance after delay
   useEffect(() => {
     if (isComplete && line.autoAdvance) {
+      onTypewriterComplete?.();
       const delay = line.autoAdvanceDelay || 1500;
       const timer = setTimeout(() => {
         onTap();

@@ -86,7 +86,7 @@ function App() {
     () => ((screen === 'story' || screen === 'visual_novel' || screen === 'phone') ? currentScene?.dialogues ?? [] : []),
     [screen, currentScene]
   );
-  const { currentLine, isComplete, handleTap, reset: resetDialog, advanceLine, previousLine } = useDialog(dialogues);
+  const { currentLine, isComplete, handleTap, handleTypewriterComplete, reset: resetDialog, advanceLine, previousLine } = useDialog(dialogues);
   const dialogIdx = useDialogStore((state) => state.currentIndex);
 
   // Scene mode navigation helper
@@ -444,6 +444,7 @@ function App() {
           inventory={collectedEvidenceData}
           onChoose={handleChoiceSelect}
           onTapDialog={handleTap}
+          onTypewriterComplete={handleTypewriterComplete}
           isDialogComplete={isComplete}
         />
       </>
