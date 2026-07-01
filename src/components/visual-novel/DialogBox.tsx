@@ -7,19 +7,30 @@ import { useSettingsStore } from '../../stores';
 import { useLocalization } from '../../hooks/useLocalization';
 import type { DialogueLine } from '../../types';
 import { Howl } from 'howler';
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, useRef } from 'react';
 
 interface DialogBoxProps {
   line: DialogueLine;
   onTap: () => void;
-  onTypewriterComplete?: () => void;
 }
 
-export function DialogBox({ line, onTap, onTypewriterComplete }: DialogBoxProps) {
+export function DialogBox({ line, onTap }: DialogBoxProps) {
   const { getDialogueText, getSpeakerName, t } = useLocalization();
   const localizedText = getDialogueText(line);
   const isInstant = line.speaker === 'system' || line.speaker === 'narrator';
-  const { displayedText, isComplete, skip } = useTypewriter(localizedText, undefined, isInstant);
+  const onTapRef = useRef(onTap);
+onTapRef.current = onTap;
+
+  const { displayedText, isComplete, skip } = useTypewriter(
+    localizedText,
+    line.autoAdvance
+      ? () => {
+          const delay = line.autoAdvanceDelay || 1500;
+          setTimeout(() => onTapRef.current(), delay);
+        }
+      : undefined,
+    isInstant
+  );
   const { play: playSfx } = useSfx();
   const sfxVolume = useSettingsStore((s) => s.sfxVolume);
 
@@ -54,17 +65,6 @@ export function DialogBox({ line, onTap, onTypewriterComplete }: DialogBoxProps)
     }
   }, [line.id, line.audioSrc, playSfx]);
 
-  // Auto-advance: when typewriter completes and line has autoAdvance, advance after delay
-  useEffect(() => {
-    if (isComplete && line.autoAdvance) {
-      onTypewriterComplete?.();
-      const delay = line.autoAdvanceDelay || 1500;
-      const timer = setTimeout(() => {
-        onTap();
-      }, delay);
-      return () => clearTimeout(timer);
-    }
-  }, [isComplete, line.autoAdvance, line.autoAdvanceDelay, onTap]);
 
 
   const handleClick = useCallback(() => {
