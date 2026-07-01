@@ -70,7 +70,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
     : getSpeakerName(line.speaker);
 
   // Key changes when layout mode changes — triggers AnimatePresence crossfade
-  const layoutKey = isNarrator ? 'narrator' : `char-${line.speaker}`;
+  const layoutKey = isNarrator ? 'narrator' : 'dialog';
 
   return (
     <AnimatePresence mode="wait">
