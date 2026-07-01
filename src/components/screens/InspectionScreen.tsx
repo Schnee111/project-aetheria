@@ -47,7 +47,7 @@ export function InspectionScreen({
         verdict: requirementsMet ? rule.verdict : 'needs_context',
         feedback: requirementsMet
           ? rule.feedback
-          : 'Hubungkan bukti terkait di detective board sebelum memakai bukti ini untuk konfrontasi.',
+          : t('investigation.connectBeforeConfront'),
       });
       if (requirementsMet) {
         onEvaluate(selectedEvidence);
@@ -70,7 +70,7 @@ export function InspectionScreen({
           className="flex items-center gap-2 text-[10px] font-bold text-[#A1A1AA] hover:text-[#FAFAFA] uppercase tracking-widest transition-colors"
         >
           <ArrowLeft size={14} />
-          Kembali
+          {t('investigation.back')}
         </button>
         <div className="text-[10px] font-bold text-[#E11D48] tracking-widest uppercase">
           Cross-Check
@@ -91,7 +91,7 @@ export function InspectionScreen({
         </div>
 
         <div className="text-[10px] font-bold text-[#71717A] tracking-widest uppercase mb-4">
-          Pilih Berkas Referensi
+          {t('investigation.selectReference')}
         </div>
 
         {/* Evidence List */}

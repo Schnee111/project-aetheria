@@ -18,6 +18,7 @@ interface ExplorationScreenProps {
 }
 
 export function ExplorationScreen({ scene, inventory, visitedSceneIds, onAction, onBack }: ExplorationScreenProps) {
+  const { t } = useLocalization();
   const [activeMenu, setActiveMenu] = useState<'main' | 'interrogate' | 'present'>('main');
 
   const exp = scene.exploration;
@@ -38,7 +39,7 @@ export function ExplorationScreen({ scene, inventory, visitedSceneIds, onAction,
           className="pointer-events-auto flex items-center gap-2 text-sm font-semibold hover:text-white transition-colors text-[#A1A1AA] bg-black/40 px-4 py-2 rounded-full backdrop-blur-md border border-white/10"
         >
           <ArrowLeft size={16} />
-          <span{t('investigation.backToHub')}/span>
+          <span>{t('investigation.backToHub')}</span>
         </button>
         <div className="text-right">
           <div className="text-xl font-bold tracking-tight text-white drop-shadow-md">{scene.title}</div>
@@ -118,13 +119,13 @@ export function ExplorationScreen({ scene, inventory, visitedSceneIds, onAction,
                 className="flex flex-col gap-4"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-sm font-bold text-[#E11D48] tracking-widest uppercase"{t('investigation.presentEvidence')}/div>
+                  <div className="text-sm font-bold text-[#E11D48] tracking-widest uppercase">{t('investigation.presentEvidence')}</div>
                   <button onClick={() => setActiveMenu('main')} className="p-2 text-zinc-400 hover:text-white"><X size={20}/></button>
                 </div>
                 
                 {inventory.length === 0 ? (
                   <div className="p-8 text-center text-zinc-500 italic border border-zinc-800 rounded-2xl bg-zinc-900/50">
-                    Belum ada bukti di Case File.
+                    {t('investigation.noEvidenceInCaseFile')}
                   </div>
                 ) : (
                   <div className="flex gap-4 overflow-x-auto pb-4 snap-x">

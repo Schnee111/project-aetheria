@@ -119,7 +119,7 @@ export function HubScreen({
                     <Search size={16} className="text-[#FAFAFA]" />
                     <span className="text-sm font-bold">Papan Detektif</span>
                   </div>
-                  <div className="text-xs text-[#71717A] ml-7">Hubungkan bukti & cari pola</div>
+                  <div className="text-xs text-[#71717A] ml-7">{t('investigation.connectAndFindPatterns')}</div>
                 </div>
                 <ChevronRight size={18} className="text-[#3F3F46] group-hover:text-[#FAFAFA] transition-colors" />
               </motion.button>

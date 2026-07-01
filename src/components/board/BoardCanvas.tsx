@@ -327,7 +327,7 @@ export function BoardCanvas({
           style={{ color: '#A1A1AA' }}
         >
           <ArrowLeft size={18} />
-          <span>Kembali</span>
+          <span>{t('investigation.back')}</span>
         </button>
 
         <div className="text-center">
@@ -338,7 +338,7 @@ export function BoardCanvas({
             Papan Investigasi
           </div>
           <div className="text-[10px] font-medium tracking-widest uppercase mt-0.5" style={{ color: '#71717A' }}>
-            Hubungkan Bukti
+            {t('investigation.connectEvidence')}
           </div>
         </div>
 
@@ -374,7 +374,7 @@ export function BoardCanvas({
             style={{ color: '#9CA3AF' }}
           >
             <FileText size={32} strokeWidth={1.5} />
-            <div className="text-sm font-medium"{t('investigation.noEvidence')}/div>
+            <div className="text-sm font-medium">{t('investigation.noEvidence')}</div>
             <div className="text-xs">Kumpulkan bukti dari cerita terlebih dahulu</div>
           </div>
         )}
@@ -699,7 +699,7 @@ export function BoardCanvas({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 15 }}
               >
-                Pilih bukti kedua untuk menghubungkan
+                {t('investigation.selectSecondEvidence')}
               </motion.div>
           )}
         </AnimatePresence>

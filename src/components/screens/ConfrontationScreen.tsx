@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useLocalization } from '../../hooks/useLocalization';
 import { Background } from '../visual-novel/Background';
 
 interface ConfrontationScreenProps {
@@ -8,6 +9,7 @@ interface ConfrontationScreenProps {
 }
 
 export function ConfrontationScreen({ dialogue, onContinue, background }: ConfrontationScreenProps) {
+  const { t } = useLocalization();
   return (
     <div className="absolute inset-0 bg-[#09090B] flex flex-col font-body text-[#FAFAFA] overflow-hidden">
       {background && <Background src={`/assets/backgrounds/${background}.jpg`} />}
@@ -62,11 +64,10 @@ export function ConfrontationScreen({ dialogue, onContinue, background }: Confro
           onClick={onContinue}
           className="px-8 py-3 bg-[#FAFAFA] text-[#09090B] font-bold text-sm tracking-wide rounded-full hover:bg-[#E4E4E7] hover:scale-105 active:scale-95 transition-all"
         >
-          Lanjutkan
+          {t('common.continue')}
         </button>
       </div>
       </div>
     </div>
   );
 }
-import { useLocalization } from '../../hooks/useLocalization';
