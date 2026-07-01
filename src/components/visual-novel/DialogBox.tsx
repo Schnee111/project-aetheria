@@ -89,7 +89,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
           >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
               className="max-w-4xl px-8 text-center"
             >
@@ -121,9 +121,9 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
           <div className="absolute inset-0 cursor-pointer" onClick={handleClick}>
             <motion.div
               className="absolute bottom-4 left-0 right-0 mx-auto w-[92%] max-w-5xl md:bottom-8 md:w-[90%]"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="relative w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-xl p-4 pt-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)] min-h-[124px] md:min-h-[160px] md:p-8 md:pt-6">
                 
