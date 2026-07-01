@@ -13,6 +13,7 @@ import {
   ExplorationScreen,
   SettingsModal,
   IsekaiTransitionScreen,
+  ChapterCompleteScreen,
 } from './components/screens';
 import { SmartphoneOverlay } from './components/smartphone';
 import { Background } from './components/visual-novel/Background';
@@ -95,7 +96,7 @@ function App() {
       if (scene) {
         setScreen(MODE_TO_SCREEN[scene.mode] ?? 'story');
       } else {
-        setScreen('reflection');
+        setScreen('chapter_complete');
       }
     },
     [setScreen],
@@ -409,7 +410,7 @@ function App() {
         }}
       />
     );
-  } else if (!currentScene) {
+  } else if (!currentScene && screen !== 'chapter_complete') {
     activeScreenComponent = (
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#09090B] text-white space-y-4">
         <p className="text-red-500 font-bold text-xl">Scene tidak ditemukan</p>
@@ -434,6 +435,10 @@ function App() {
           setScreen('visual_novel');
         }}
       />
+    );
+  } else if (screen === 'chapter_complete') {
+    activeScreenComponent = (
+      <ChapterCompleteScreen />
     );
   } else {
     activeScreenComponent = (

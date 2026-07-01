@@ -27,15 +27,16 @@ export function StoryScreen({
   const [charStates, setCharStates] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    if (scene.bgm) {
-      playBgm(scene.bgm);
+    const currentBgm = currentLine?.bgmOverride || scene.bgm;
+    if (currentBgm) {
+      playBgm(currentBgm);
     }
     const initial: Record<string, string> = {};
     scene.characters.forEach((c) => {
       initial[c.characterId] = c.initialExpression;
     });
     setCharStates(initial);
-  }, [scene.id, scene.bgm, scene.characters, playBgm]);
+  }, [scene.id, scene.bgm, currentLine?.bgmOverride, scene.characters, playBgm]);
 
   useEffect(() => {
     if (currentLine) {

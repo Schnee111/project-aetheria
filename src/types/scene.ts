@@ -20,6 +20,7 @@ export interface DialogueLine {
   unskippable?: boolean;
   autoAdvanceDelay?: number;
   backgroundOverride?: string;
+  bgmOverride?: string;
   characterOverrides?: Record<string, string>;
 }
 

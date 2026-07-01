@@ -31,20 +31,24 @@ export function useTypewriter(text: string, onComplete?: () => void, instant = f
     }
 
     const speed = TEXT_SPEED_MS[textSpeed];
+    const initialDelay = 150;
 
-    intervalRef.current = setInterval(() => {
-      indexRef.current++;
-      if (indexRef.current >= text.length) {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-        setDisplayedText(text);
-        setIsComplete(true);
-        onCompleteRef.current?.();
-      } else {
-        setDisplayedText(text.slice(0, indexRef.current));
-      }
-    }, speed);
+    const timeout = setTimeout(() => {
+      intervalRef.current = setInterval(() => {
+        indexRef.current++;
+        if (indexRef.current >= text.length) {
+          if (intervalRef.current) clearInterval(intervalRef.current);
+          setDisplayedText(text);
+          setIsComplete(true);
+          onCompleteRef.current?.();
+        } else {
+          setDisplayedText(text.slice(0, indexRef.current));
+        }
+      }, speed);
+    }, initialDelay);
 
     return () => {
+      clearTimeout(timeout);
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, [text, textSpeed, instant]);

@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { useDialogStore } from '../stores';
 import type { DialogueLine } from '../types';
 
-export function useDialog(lines: DialogueLine[]) {
+export function useDialog(lines: DialogueLine[], onSceneComplete?: () => void) {
   const {
     currentLine,
     isTyping,
@@ -17,12 +17,18 @@ export function useDialog(lines: DialogueLine[]) {
     if (lines.length > 0) {
       setDialogQueue(lines);
     }
-    return () => reset();
-  }, [lines, setDialogQueue, reset]);
+  }, [lines, setDialogQueue]);
 
   const handleTap = useCallback(() => {
-    advanceLine();
-  }, [advanceLine]);
+    const state = useDialogStore.getState();
+    const isLastLine = state.currentIndex >= state.dialogQueue.length - 1;
+
+    if (isLastLine && onSceneComplete) {
+      onSceneComplete();
+    } else {
+      advanceLine();
+    }
+  }, [advanceLine, onSceneComplete]);
 
   return {
     currentLine,

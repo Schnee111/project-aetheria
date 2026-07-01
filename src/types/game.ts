@@ -14,7 +14,8 @@ export type Screen =
   | 'confrontation'
   | 'decision'
   | 'reflection'
-  | 'isekai_transition';
+  | 'isekai_transition'
+  | 'chapter_complete';
 
 export interface PlayerState {
   curiosityScore: number;

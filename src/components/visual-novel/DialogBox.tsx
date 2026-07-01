@@ -18,34 +18,47 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
   const { getDialogueText, getSpeakerName, t } = useLocalization();
   const localizedText = getDialogueText(line);
   const isInstant = line.speaker === 'system' || line.speaker === 'narrator';
-  const onTapRef = useRef(onTap);
-onTapRef.current = onTap;
-
-  const { displayedText, isComplete, skip } = useTypewriter(
-    localizedText,
-    line.autoAdvance
-      ? () => {
-          const delay = line.autoAdvanceDelay || 1500;
-          setTimeout(() => onTapRef.current(), delay);
-        }
-      : undefined,
-    isInstant
-  );
   const { play: playSfx } = useSfx();
   const sfxVolume = useSettingsStore((s) => s.sfxVolume);
 
+  // ── Auto-advance timer management ──
+  const autoTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const onTapRef = useRef(onTap);
+  onTapRef.current = onTap;
+
+  // Cancel pending auto-advance when line changes
+  useEffect(() => {
+    return () => {
+      if (autoTimerRef.current) {
+        clearTimeout(autoTimerRef.current);
+        autoTimerRef.current = undefined;
+      }
+    };
+  }, [line.id]);
+
+  const handleTypewriterComplete = useCallback(() => {
+    if (line.autoAdvance) {
+      const delay = line.autoAdvanceDelay || 1500;
+      autoTimerRef.current = setTimeout(() => {
+        onTapRef.current();
+      }, delay);
+    }
+  }, [line.autoAdvance, line.autoAdvanceDelay]);
+
+  const { displayedText, isComplete, skip } = useTypewriter(
+    localizedText,
+    handleTypewriterComplete,
+    isInstant,
+  );
+
+  // ── Audio ──
   const blip = useMemo(() => {
     let src = '/assets/audio/sfx/blip_mid.ogg';
     if (line.speaker === 'lysthea') src = '/assets/audio/sfx/blip_high.ogg';
     if (line.speaker === 'narrator' || line.speaker === 'system') src = '/assets/audio/sfx/blip_deep.ogg';
-    
-    return new Howl({
-      src: [src],
-      volume: sfxVolume * 0.7,
-    });
+    return new Howl({ src: [src], volume: sfxVolume * 0.7 });
   }, [line.speaker, sfxVolume]);
 
-  // Play blip occasionally during typing
   useEffect(() => {
     if (!isComplete && displayedText.length > 0) {
       const lastChar = displayedText[displayedText.length - 1];
@@ -55,18 +68,14 @@ onTapRef.current = onTap;
     }
   }, [displayedText, isComplete, blip]);
 
-  // Play dialogue-specific SFX when the line starts
   useEffect(() => {
     if (line.audioSrc) {
       const sfx = playSfx(line.audioSrc);
-      return () => {
-        sfx?.stop();
-      };
+      return () => { sfx?.stop(); };
     }
   }, [line.id, line.audioSrc, playSfx]);
 
-
-
+  // ── Interaction ──
   const handleClick = useCallback(() => {
     if (line.unskippable) return;
     if (!isComplete) {
@@ -75,40 +84,35 @@ onTapRef.current = onTap;
       playSfx('/assets/audio/sfx/sfx_click.ogg');
       onTap();
     }
-  }, [isComplete, skip, onTap, playSfx]);
+  }, [line.unskippable, isComplete, skip, onTap, playSfx]);
 
   const isNarrator = line.speaker === 'narrator';
-  
   const speakerName = isNarrator || line.speaker === 'system'
     ? ''
     : getSpeakerName(line.speaker);
 
-  // Key changes when layout mode changes — triggers AnimatePresence crossfade
-  const layoutKey = isNarrator ? 'narrator' : 'dialog';
-
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={layoutKey}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.25 }}
-        style={{ position: 'absolute', inset: 0, zIndex: 30 }}
-      >
+    <div style={{ position: 'absolute', inset: 0, zIndex: 30 }}>
+      <AnimatePresence mode="wait">
         {isNarrator ? (
-          // ── CINEMATIC NARRATOR LAYOUT ──
-          <div 
-            className="absolute inset-0 flex items-end justify-center pb-[15vh] md:pb-[20vh] cursor-pointer bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+          // ── NARRATOR LAYOUT ──
+          <motion.div
+            key="narrator"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 flex items-end justify-center pb-[10vh] md:pb-[12vh] cursor-pointer bg-gradient-to-t from-black/80 via-black/20 to-transparent"
             onClick={handleClick}
           >
             <motion.div
-              initial={{ y: 10 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
               className="max-w-4xl px-8 text-center"
             >
-              <p 
+              <p
                 className="text-2xl md:text-3xl leading-relaxed font-body font-medium text-white tracking-wide"
                 style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.9), 0px 8px 24px rgba(0,0,0,1)' }}
               >
@@ -117,7 +121,6 @@ onTapRef.current = onTap;
                   <span className="inline-block w-[3px] h-[1em] bg-white ml-2 align-text-bottom animate-pulse-slow drop-shadow-lg" />
                 )}
               </p>
-              
               <AnimatePresence>
                 {isComplete && !line.unskippable && !line.autoAdvance && (
                   <motion.div
@@ -130,19 +133,18 @@ onTapRef.current = onTap;
                 )}
               </AnimatePresence>
             </motion.div>
-          </div>
+          </motion.div>
         ) : (
           // ── CHARACTER DIALOGUE LAYOUT ──
-          <div className="absolute inset-0 cursor-pointer" onClick={handleClick}>
+          <motion.div key="dialog" className="absolute inset-0 cursor-pointer" onClick={handleClick}>
             <motion.div
-              className="absolute bottom-4 left-0 right-0 mx-auto w-[92%] max-w-5xl md:bottom-8 md:w-[90%]"
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 10, opacity: 0 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="absolute bottom-4 left-0 right-0 mx-auto w-[92%] max-w-5xl md:bottom-8 md:w-[90%] transform-gpu"
             >
-              <div className="relative w-full bg-black/40 backdrop-blur-xl border border-white/10 rounded-xl p-4 pt-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)] min-h-[124px] md:min-h-[160px] md:p-8 md:pt-6">
-                
-                {/* Speaker Name Tag */}
+              <div className="relative w-full bg-black/30 backdrop-blur-md border border-white/5 rounded-xl p-4 pt-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)] min-h-[124px] md:min-h-[160px] md:p-8 md:pt-6">
                 <AnimatePresence>
                   {speakerName && (
                     <motion.div
@@ -157,8 +159,6 @@ onTapRef.current = onTap;
                     </motion.div>
                   )}
                 </AnimatePresence>
-          
-                {/* Dialog Text */}
                 <div className="relative z-10">
                   <p className="text-base leading-relaxed font-body font-medium text-gray-100 min-h-[56px] drop-shadow-md md:min-h-[72px] md:text-2xl">
                     {displayedText}
@@ -167,8 +167,6 @@ onTapRef.current = onTap;
                     )}
                   </p>
                 </div>
-
-                {/* Next Indicator */}
                 <AnimatePresence>
                   {isComplete && !line.unskippable && !line.autoAdvance && (
                     <motion.div
@@ -186,14 +184,12 @@ onTapRef.current = onTap;
                     </motion.div>
                   )}
                 </AnimatePresence>
-                
-                {/* Subtle edge highlight */}
                 <div className="absolute inset-0 rounded-xl pointer-events-none border-t border-white/5 z-0" />
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         )}
-      </motion.div>
-    </AnimatePresence>
+      </AnimatePresence>
+    </div>
   );
 }

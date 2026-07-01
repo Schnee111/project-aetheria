@@ -29,12 +29,15 @@ export function Background({ src, alt = 'Background' }: BackgroundProps) {
             preload="auto"
           />
         ) : (
-          <img
+          <motion.img
             src={src}
             alt={alt}
             className="w-full h-full object-cover"
             draggable={false}
             loading="eager"
+            initial={{ scale: 1 }}
+            animate={{ scale: 1.05 }}
+            transition={{ duration: 15, ease: 'linear' }}
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-navy-900/30" />
