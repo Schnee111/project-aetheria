@@ -92,7 +92,7 @@ export function StoryScreen({
 
       {/* Dialog */}
       {currentLine && !isDialogComplete && (
-        <DialogBox line={currentLine} onTap={onTapDialog}
+        <DialogBox line={currentLine} onTap={onTapDialog} />
       )}
 
       {/* Choices */}
