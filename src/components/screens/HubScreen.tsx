@@ -23,7 +23,6 @@ const LOCATION_DETAILS: Record<string, { title: string, desc: string }> = {
 };
 
 export function HubScreen({
-  const { t } = useLocalization();
   inventory,
   foundInsightIds,
   currentHoaxWave,
@@ -33,6 +32,7 @@ export function HubScreen({
   onOpenInspection,
   canInspect,
 }: HubScreenProps) {
+  const { t } = useLocalization();
   return (
     <div className="absolute inset-0 bg-[#09090B] flex flex-col font-body text-[#FAFAFA] overflow-hidden">
       

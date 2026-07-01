@@ -20,13 +20,13 @@ const VERDICT_CONFIG = {
 };
 
 export function InspectionScreen({
-  const { t } = useLocalization();
   evidences,
   claimRules,
   foundInsightIds,
   onEvaluate,
   onBack,
 }: InspectionScreenProps) {
+  const { t } = useLocalization();
   const [selectedEvidence, setSelectedEvidence] = useState<string | null>(null);
   const [evaluationResult, setEvaluationResult] = useState<{
     verdict: string;
