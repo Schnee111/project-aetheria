@@ -88,7 +88,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
             onClick={handleClick}
           >
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ y: 10 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
               className="max-w-4xl px-8 text-center"
