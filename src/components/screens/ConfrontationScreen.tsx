@@ -12,7 +12,7 @@ export function ConfrontationScreen({ dialogue, onContinue, background }: Confro
   const { t } = useLocalization();
   return (
     <div className="absolute inset-0 bg-[#09090B] flex flex-col font-body text-[#FAFAFA] overflow-hidden">
-      {background && <Background src={`/assets/backgrounds/${background}.jpg`} />}
+      {background && <Background src={`/assets/backgrounds/${background}.webp`} />}
       
       <div className="absolute inset-0 bg-black/60 z-0" /> {/* Dark overlay for readability */}
       

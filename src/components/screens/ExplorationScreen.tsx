@@ -24,13 +24,13 @@ export function ExplorationScreen({ scene, inventory, visitedSceneIds, onAction,
   const exp = scene.exploration;
   if (!exp) return null;
 
-  const charSprite = `/assets/characters/${exp.characterId}/${exp.characterId}_neutral.png`; // Fallback simple sprite logic
+  const charSprite = `/assets/characters/${exp.characterId}/${exp.characterId}_neutral.webp`; // Fallback simple sprite logic
   const imageSizeClass = getCharacterImageSizeClass(exp.characterId);
   const imageOffsetClass = getCharacterImageOffsetClass(exp.characterId);
 
   return (
     <div className="absolute inset-0 bg-[#09090B] flex flex-col font-body text-[#FAFAFA] overflow-hidden">
-      <Background src={`/assets/backgrounds/${scene.background}.jpg`} />
+      <Background src={`/assets/backgrounds/${scene.background}.webp`} />
       
       {/* Top Bar */}
       <div className="absolute top-0 inset-x-0 py-6 pl-6 pr-16 z-20 flex justify-between items-start bg-gradient-to-b from-black/80 to-transparent pointer-events-none">

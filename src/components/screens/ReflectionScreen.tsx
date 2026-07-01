@@ -31,7 +31,7 @@ export function ReflectionScreen({
 
   return (
     <div className="absolute inset-0 bg-[#09090B] flex flex-col font-body text-[#FAFAFA] overflow-y-auto">
-      {background && <Background src={`/assets/backgrounds/${background}.jpg`} />}
+      {background && <Background src={`/assets/backgrounds/${background}.webp`} />}
       
       <div className="absolute inset-0 bg-black/70 z-0" /> {/* Dark overlay for readability */}
       
