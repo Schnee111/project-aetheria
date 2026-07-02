@@ -1,96 +1,9 @@
 import type { Scene } from '../../types';
 
 export const scenes: Scene[] = [
-  // SCENE 0: EARTH (Office)
+  // SCENE 0: AETHERIA (Prologue Cinematic)
   {
     id: 'CH1_S00',
-    chapterId: 'CH1',
-    title: 'Kehidupan sebagai Engineer',
-    titleEn: 'Life as an Engineer',
-    location: 'Bumi - Kantor IT',
-    locationEn: 'Earth - IT Office',
-    mode: 'visual_novel',
-    background: 'ch1/bg_earth_office.webp',
-    characters: [],
-    dialogues: [
-      { id: 'CH1_S00_D001', speaker: 'system', expression: 'neutral', text: '*TAP TAP TAP TAP TAP...*', textEn: '*TAP TAP TAP TAP TAP...*', autoAdvance: true, autoAdvanceDelay: 1200, audioSrc: '/assets/audio/sfx/keyboard_typing.mp3' },
-      { id: 'CH1_S00_D002', speaker: 'aeterna', expression: 'neutral', text: 'Kenapa production server-nya crash? Padahal di local environment semuanya berjalan mulus...', textEn: 'Why is the production server crashing? Everything ran perfectly in the local environment...' },
-      { id: 'CH1_S00_D003', speaker: 'aeterna', expression: 'neutral', text: 'Ah. Ada typo di baris 402... null pointer exception. Pantas saja pipeline CI/CD di monitor ini merah membara.', textEn: 'Ah. A typo on line 402... null pointer exception. No wonder the CI/CD pipeline on this monitor is burning red.' },
-      { id: 'CH1_S00_D004', speaker: 'system', expression: 'neutral', text: '*TAP!*', textEn: '*TAP!*', autoAdvance: true, autoAdvanceDelay: 800, audioSrc: '/assets/audio/sfx/keyboard_press.mp3' },
-      { id: 'CH1_S00_D005', speaker: 'aeterna', expression: 'neutral', text: 'Commit, push, lalu merge pull request ke main branch... Oke, status deploy di server berubah hijau. Selesai juga tugas sprint minggu ini.', textEn: 'Commit, push, merge the pull request to main... Okay, deploy status just went green. That wraps up this week\'s sprint.' },
-      { id: 'CH1_S00_D006', speaker: 'aeterna', expression: 'neutral', text: 'Sudah jam 6 sore. Waktunya pulang, mampir ke minimarket untuk membeli matcha latte dingin kesukaanku.', textEn: 'It\'s already 6 PM. Time to head home — maybe swing by the convenience store for an iced matcha latte.' }
-    ],
-    unlockEvidenceIds: [],
-    nextSceneId: 'CH1_S01A',
-  },
-
-  // SCENE 1A: EARTH (Normal Life)
-  {
-    id: 'CH1_S01A',
-    chapterId: 'CH1',
-    title: 'Kehidupan yang Terlalu Normal',
-    titleEn: 'A Life Too Ordinary',
-    location: 'Bumi - Trotoar Kota',
-    locationEn: 'Earth - City Sidewalk',
-    mode: 'visual_novel',
-    background: 'ch1/bg_earth_street.webp',
-    characters: [
-      { characterId: 'aeterna', position: 'center', initialExpression: 'matcha' },
-    ],
-    dialogues: [
-      { id: 'CH1_S01A_D001', speaker: 'aeterna', expression: 'matcha', text: 'Berjalan kaki menyusuri trotoar di bawah langit senja kota Bumi setelah jam lembur kerja keras itu rasanya menenangkan.', textEn: 'Walking along the sidewalk under the evening sky after a long overtime shift... it\'s oddly peaceful.' },
-      { id: 'CH1_S01A_D002', speaker: 'aeterna', expression: 'matcha', text: 'Meskipun lelah seharian menatap monitor, setidaknya gajiku sangat stabil. Cukup untuk langganan streaming, bayar sewa apartemen kecil, dan menikmati segelas matcha latte dingin ini.', textEn: 'Exhausting as it is staring at a screen all day, at least the paycheck is steady. Enough for streaming subscriptions, a tiny apartment, and this iced matcha latte.' },
-      { id: 'CH1_S01A_D003', speaker: 'aeterna', expression: 'matcha', text: 'Bisa dibilang rutinitas harianku berjalan damai dan terjadwal secara logis.', textEn: 'You could say my daily routine runs peacefully — logical, well-scheduled.' },
-      { id: 'CH1_S01A_D004', speaker: 'aeterna', expression: 'matcha', text: 'Satu-satunya kekurangannya adalah, tidak ada magic di dunia ini.', textEn: 'The only downside is... there\'s no magic in this world.' },
-      { id: 'CH1_S01A_D005', speaker: 'aeterna', expression: 'matcha', text: 'Seandainya aku bisa memprogram sirkuit mana agar matcha latte di genggamanku ini menyeduh dirinya sendiri secara otomatis, pasti hidup ini jauh lebih efisien.', textEn: 'If only I could program a mana circuit to brew this matcha latte automatically... now that would make life infinitely more efficient.' },
-      { id: 'CH1_S01A_D006', speaker: 'aeterna', expression: 'matcha', text: 'Aku melangkahkan kakiku ke zebra cross, menyeberang jalanan sepi yang biasanya aman ini.', textEn: 'I stepped onto the crosswalk, crossing this quiet street that\'s usually safe.' }
-    ],
-    unlockEvidenceIds: [],
-    nextSceneId: 'CH1_S01B',
-  },
-
-  // SCENE 1B: EARTH (Truck Hit)
-  {
-    id: 'CH1_S01B',
-    chapterId: 'CH1',
-    title: 'The Truck',
-    titleEn: 'The Truck',
-    location: 'Bumi - Jalan Raya',
-    locationEn: 'Earth - Main Road',
-    mode: 'visual_novel',
-    background: 'ch1/cg_ch1_s01_truck_hit.webp',
-    characters: [],
-    dialogues: [
-      { id: 'CH1_S01B_D001', speaker: 'system', expression: 'neutral', text: '*HONK!!!*', textEn: '*HONK!!!*', audioSrc: '/assets/audio/sfx/car_horn.ogg' },
-      { id: 'CH1_S01B_D002', speaker: 'system', expression: 'neutral', text: '*CRASH!!!*', textEn: '*CRASH!!!*', audioSrc: '/assets/audio/sfx/car_crash.ogg' }
-    ],
-    unlockEvidenceIds: [],
-    nextSceneId: 'CH1_S01C',
-  },
-
-  // SCENE 1C: EARTH (Black Screen / Game Over)
-  {
-    id: 'CH1_S01C',
-    chapterId: 'CH1',
-    title: 'Cuti Panjang',
-    titleEn: 'Extended Leave',
-    location: 'Bumi - ?',
-    locationEn: 'Earth - ?',
-    mode: 'visual_novel',
-    background: 'ch1/bg_black.webp',
-    characters: [],
-    dialogues: [
-      { id: 'CH1_S01C_D001', speaker: 'aeterna', expression: 'neutral', text: 'Truk? Serius?', textEn: 'A truck? Seriously?' },
-      { id: 'CH1_S01C_D002', speaker: 'aeterna', expression: 'neutral', text: 'Mati ditabrak truk di tengah senja seindah ini adalah metode perpindahan dunia yang sangat klise dan tidak kreatif.', textEn: 'Getting hit by a truck on a sunset this beautiful — what a cliché, uncreative way to get isekai\'d.' },
-      { id: 'CH1_S01C_D003', speaker: 'aeterna', expression: 'neutral', text: 'Yah, sudahlah. Anggap saja aku mengambil cuti panjang tak berbayar.', textEn: 'Well, whatever. Consider it an extended unpaid leave.' }
-    ],
-    unlockEvidenceIds: [],
-    nextSceneId: 'CH1_S01D',
-  },
-
-  // SCENE 1D: AETHERIA (Reincarnation Cinematic)
-  {
-    id: 'CH1_S01D',
     chapterId: 'CH1',
     title: 'Dunia Baru',
     titleEn: 'A New World',
@@ -101,17 +14,17 @@ export const scenes: Scene[] = [
     characters: [],
     dialogues: [
       // ── Video 1: Planet (7s) ──
-      { id: 'CH1_S01D_D001', speaker: 'narrator', expression: 'neutral', text: 'Aetheria... Sebuah dimensi di mana hukum fisika tunduk pada kehendak sihir.', textEn: 'Aetheria... A dimension where the laws of physics bow to the will of magic.', backgroundOverride: 'ch1/cg_ch1_s01_aetheria_planet.mp4', audioSrc: '/assets/audio/sfx/ethereal_chime.ogg', autoAdvance: true, unskippable: true, autoAdvanceDelay: 7000 },
+      { id: 'CH1_S00_D001', speaker: 'narrator', expression: 'neutral', text: 'Aetheria... Sebuah dimensi di mana hukum fisika tunduk pada kehendak sihir.', textEn: 'Aetheria... A dimension where the laws of physics bow to the will of magic.', backgroundOverride: 'ch1/cg_ch1_s01_aetheria_planet.mp4', audioSrc: '/assets/audio/sfx/ethereal_chime.ogg', autoAdvance: true, unskippable: true, autoAdvanceDelay: 7000 },
       // ── Video 2: Metropolis (7s) ──
-      { id: 'CH1_S01D_D002', speaker: 'narrator', expression: 'neutral', text: 'Di sini, peradaban tidak dibangun dengan baja dan minyak, melainkan dengan sirkuit siber dan kristal mana.', textEn: 'Here, civilization is not built with steel and oil — but with cyber circuits and mana crystals.', backgroundOverride: 'ch1/cg_ch1_s01_aetheria_metropolis.mp4', autoAdvance: true, unskippable: true, autoAdvanceDelay: 7000 },
+      { id: 'CH1_S00_D002', speaker: 'narrator', expression: 'neutral', text: 'Di sini, peradaban tidak dibangun dengan baja dan minyak, melainkan dengan sirkuit siber dan kristal mana.', textEn: 'Here, civilization is not built with steel and oil — but with cyber circuits and mana crystals.', backgroundOverride: 'ch1/cg_ch1_s01_aetheria_metropolis.mp4', autoAdvance: true, unskippable: true, autoAdvanceDelay: 7000 },
       // ── Video 3: Street (7s) ──
-      { id: 'CH1_S01D_D003', speaker: 'narrator', expression: 'neutral', text: 'Sihir bukan lagi dongeng mistis. Ia adalah teknologi. Ia adalah napas kehidupan sehari-hari.', textEn: 'Magic is no longer a mystical fairy tale. It is technology. It is the breath of everyday life.', backgroundOverride: 'ch1/cg_ch1_s01_aetheria_street.mp4', autoAdvance: true, unskippable: true, autoAdvanceDelay: 7000 },
+      { id: 'CH1_S00_D003', speaker: 'narrator', expression: 'neutral', text: 'Sihir bukan lagi dongeng mistis. Ia adalah teknologi. Ia adalah napas kehidupan sehari-hari.', textEn: 'Magic is no longer a mystical fairy tale. It is technology. It is the breath of everyday life.', backgroundOverride: 'ch1/cg_ch1_s01_aetheria_street.mp4', autoAdvance: true, unskippable: true, autoAdvanceDelay: 7000 },
       // ── Video 4: Baby (7s) ──
-      { id: 'CH1_S01D_D004', speaker: 'narrator', expression: 'neutral', text: 'Dan di dunia yang megah inilah... jiwaku yang terlempar dari Bumi menemukan wadah barunya.', textEn: 'And in this magnificent world... my soul, flung from Earth, found its new vessel.', backgroundOverride: 'ch1/cg_ch1_s01_isekai_baby.mp4', autoAdvance: true, unskippable: true, autoAdvanceDelay: 7000 },
+      { id: 'CH1_S00_D004', speaker: 'narrator', expression: 'neutral', text: 'Dan di dunia yang megah inilah... jiwaku yang terlempar entah dari mana menemukan wadah barunya.', textEn: 'And in this magnificent world... my soul, flung from nowhere, found its new vessel.', backgroundOverride: 'ch1/cg_ch1_s01_isekai_baby.mp4', autoAdvance: true, unskippable: true, autoAdvanceDelay: 7000 },
       // ── Parents (7s) ──
-      { id: 'CH1_S01D_D005', speaker: 'narrator', expression: 'neutral', text: 'Aku dilahirkan kembali. Menjalani masa kecil di bawah asuhan orang tua angkatku yang hangat...', textEn: 'I was reborn. Growing up under the care of my warm adoptive parents...', backgroundOverride: 'ch1/cg_ch1_s02_parents_silhouette.webp', autoAdvance: true, unskippable: true, autoAdvanceDelay: 5000 },
+      { id: 'CH1_S00_D005', speaker: 'narrator', expression: 'neutral', text: 'Aku dilahirkan kembali. Menjalani masa kecil di bawah asuhan orang tua angkatku yang hangat...', textEn: 'I was reborn. Growing up under the care of my warm adoptive parents...', backgroundOverride: 'ch1/cg_ch1_s02_parents_silhouette.webp', autoAdvance: true, unskippable: true, autoAdvanceDelay: 5000 },
       // ── Workshop (7s) ──
-      { id: 'CH1_S01D_D006', speaker: 'narrator', expression: 'neutral', text: "Di bengkel kecil milik merekalah, aku belajar merangkai sirkuit Magitech pertamaku, dan menemukan tujuan hidup baruku: hidup santai tanpa lembur.", textEn: "It was in their small workshop that I learned to assemble my first Magitech circuit — and discovered my new life's purpose: living easy, no overtime.", backgroundOverride: 'ch1/bg_magitech_learning.webp', autoAdvance: true, unskippable: true, autoAdvanceDelay: 5000 }
+      { id: 'CH1_S00_D006', speaker: 'narrator', expression: 'neutral', text: "Di bengkel kecil milik merekalah, aku belajar merangkai sirkuit Magitech pertamaku, dan menemukan tujuan hidup baruku: hidup santai tanpa lembur.", textEn: "It was in their small workshop that I learned to assemble my first Magitech circuit — and discovered my new life's purpose: living easy, no overtime.", backgroundOverride: 'ch1/bg_magitech_learning.webp', autoAdvance: true, unskippable: true, autoAdvanceDelay: 5000 }
     ],
     unlockEvidenceIds: [],
     nextSceneId: 'CH1_S02A',
@@ -277,6 +190,21 @@ export const scenes: Scene[] = [
       { id: 'CH1_S05_D014', speaker: 'narrator', expression: 'neutral', text: 'Dengan senyum lega, kulepaskan wujud keilahianku. Membiarkan diriku terhapus dari Aetheria menuju dunia yang jauh.', textEn: 'With a relieved smile, I released my divinity. Letting myself be erased from Aetheria towards a distant world.', backgroundOverride: 'ch1/cg_ch1_s05_09_aeterna_dissolve.png', autoAdvance: true, unskippable: true, autoAdvanceDelay: 9000 },
       { id: 'CH1_S05_D015', speaker: 'narrator', expression: 'neutral', text: 'Sebuah janji tanpa batas waktu. Dan dia benar-benar memegang teguh sumpah itu... setia menjaga sistem ini sendirian selama sepuluh ribu tahun.', textEn: 'A promise with no time limit. And she actually held onto that oath... faithfully guarding this system all alone for ten thousand years.', backgroundOverride: 'ch1/cg_ch1_s05_01_void.png', autoAdvance: true, unskippable: true, autoAdvanceDelay: 9000 }
     ],
+    unlockEvidenceIds: [],
+    nextSceneId: 'CH1_S06',
+  },
+
+  // SCENE 6: CINEMATIC MONTAGE (Ending Sequence)
+  {
+    id: 'CH1_S06',
+    chapterId: '1',
+    title: 'Flashback - The 10,000 Years',
+    location: 'The Flow of Time',
+    mode: 'cinematic_montage',
+    bgm: '/assets/audio/bgm/last_song-supercell-ending_theme.mp3',
+    background: 'black',
+    characters: [],
+    dialogues: [],
     unlockEvidenceIds: [],
     nextSceneId: 'CHAPTER_END',
   }

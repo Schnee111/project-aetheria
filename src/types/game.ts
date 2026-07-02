@@ -15,6 +15,7 @@ export type Screen =
   | 'decision'
   | 'reflection'
   | 'isekai_transition'
+  | 'cinematic_montage'
   | 'chapter_complete';
 
 export interface PlayerState {

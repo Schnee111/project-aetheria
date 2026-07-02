@@ -12,8 +12,8 @@ import {
   ReflectionScreen,
   ExplorationScreen,
   SettingsModal,
-  IsekaiTransitionScreen,
   ChapterCompleteScreen,
+  CinematicMontageScreen,
 } from './components/screens';
 import { SmartphoneOverlay } from './components/smartphone';
 import { Background } from './components/visual-novel/Background';
@@ -39,6 +39,7 @@ const MODE_TO_SCREEN: Record<string, Screen> = {
   confrontation: 'confrontation',
   decision: 'decision',
   reflection: 'reflection',
+  cinematic_montage: 'cinematic_montage',
 };
 
 function App() {
@@ -428,17 +429,13 @@ function App() {
         </button>
       </div>
     );
-  } else if (screen === 'isekai_transition') {
-    activeScreenComponent = (
-      <IsekaiTransitionScreen
-        onComplete={() => {
-          setScreen('visual_novel');
-        }}
-      />
-    );
   } else if (screen === 'chapter_complete') {
     activeScreenComponent = (
       <ChapterCompleteScreen />
+    );
+  } else if (screen === 'cinematic_montage') {
+    activeScreenComponent = (
+      <CinematicMontageScreen />
     );
   } else {
     activeScreenComponent = (

@@ -8,5 +8,5 @@ export { DecisionScreen } from './DecisionScreen';
 export { ReflectionScreen } from './ReflectionScreen';
 export { SettingsModal } from './SettingsModal';
 export { ExplorationScreen } from './ExplorationScreen';
-export { IsekaiTransitionScreen } from './IsekaiTransitionScreen';
 export { ChapterCompleteScreen } from './ChapterCompleteScreen';
+export { CinematicMontageScreen } from './CinematicMontageScreen';
