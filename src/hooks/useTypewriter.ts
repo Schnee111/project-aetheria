@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { TEXT_SPEED_MS, useSettingsStore } from '../stores';
 
-export function useTypewriter(text: string, onComplete?: () => void, instant = false) {
+export function useTypewriter(text: string, onComplete?: () => void, instant = false, forceSpeed?: 'slow' | 'normal' | 'fast') {
   const [displayedText, setDisplayedText] = useState('');
   const [isComplete, setIsComplete] = useState(false);
   const textSpeed = useSettingsStore((s) => s.textSpeed);
@@ -30,7 +30,7 @@ export function useTypewriter(text: string, onComplete?: () => void, instant = f
       return;
     }
 
-    const speed = TEXT_SPEED_MS[textSpeed];
+    const speed = forceSpeed ? TEXT_SPEED_MS[forceSpeed] : TEXT_SPEED_MS[textSpeed];
     const initialDelay = 150;
 
     const timeout = setTimeout(() => {
@@ -51,7 +51,7 @@ export function useTypewriter(text: string, onComplete?: () => void, instant = f
       clearTimeout(timeout);
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [text, textSpeed, instant]);
+  }, [text, textSpeed, instant, forceSpeed]);
 
   return { displayedText, isComplete, skip };
 }

@@ -28,27 +28,34 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
 
   // Cancel pending auto-advance when line changes
   useEffect(() => {
+    if (line.autoAdvance && line.unskippable) {
+      const delay = line.autoAdvanceDelay || 1500;
+      autoTimerRef.current = setTimeout(() => {
+        onTapRef.current();
+      }, delay);
+    }
     return () => {
       if (autoTimerRef.current) {
         clearTimeout(autoTimerRef.current);
         autoTimerRef.current = undefined;
       }
     };
-  }, [line.id]);
+  }, [line.id, line.autoAdvance, line.unskippable, line.autoAdvanceDelay]);
 
   const handleTypewriterComplete = useCallback(() => {
-    if (line.autoAdvance) {
+    if (line.autoAdvance && !line.unskippable) {
       const delay = line.autoAdvanceDelay || 1500;
       autoTimerRef.current = setTimeout(() => {
         onTapRef.current();
       }, delay);
     }
-  }, [line.autoAdvance, line.autoAdvanceDelay]);
+  }, [line.autoAdvance, line.unskippable, line.autoAdvanceDelay]);
 
   const { displayedText, isComplete, skip } = useTypewriter(
     localizedText,
     handleTypewriterComplete,
     isInstant,
+    line.unskippable ? 'fast' : undefined
   );
 
   // ── Audio ──

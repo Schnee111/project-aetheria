@@ -4,12 +4,11 @@ import { CharacterSprite } from '../visual-novel/CharacterSprite';
 import { DialogBox } from '../visual-novel/DialogBox';
 import { ChoicePanel } from '../visual-novel/ChoicePanel';
 import { useBgm } from '../../hooks';
-import type { Scene, DialogueLine, Evidence } from '../../types';
+import type { Scene, DialogueLine } from '../../types';
 
 interface StoryScreenProps {
   scene: Scene;
   currentLine: DialogueLine | null;
-  inventory: Evidence[];
   onChoose: (choiceId: string) => void;
   onTapDialog: () => void;
   isDialogComplete: boolean;

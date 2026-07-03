@@ -1,15 +1,6 @@
 export type SceneMode =
   | 'visual_novel'
-  | 'phone'
-  | 'hub'
-  | 'board'
-  | 'inspection'
-  | 'decision'
-  | 'reflection'
-  | 'confrontation'
-  | 'cinematic'
-  | 'cinematic_montage'
-  | 'exploration';
+  | 'cinematic_montage';
 
 export interface DialogueLine {
   id: string;
@@ -48,25 +39,7 @@ export interface CharacterInScene {
   initialExpression: string;
 }
 
-export interface ConditionalNext {
-  condition: string;
-  requiredInsightIds?: string[];
-  requiredChoices?: string[];
-  nextSceneId: string;
-}
 
-export interface ExplorationOptions {
-  characterId: string;
-  talkSceneId: string;
-  interrogationScenes?: {
-    soft: string;
-    hard: string;
-    psychological?: string;
-  };
-  investigationSceneId?: string;
-  presentEvidenceRoutes?: Record<string, string>;
-  defaultPresentSceneId?: string;
-}
 
 export interface Scene {
   id: string;
@@ -81,9 +54,5 @@ export interface Scene {
   characters: CharacterInScene[];
   dialogues: DialogueLine[];
   choices?: Choice[];
-  unlockEvidenceIds: string[];
-  unlockLocationIds?: string[];
   nextSceneId?: string;
-  conditionalNext?: ConditionalNext[];
-  exploration?: ExplorationOptions;
 }
