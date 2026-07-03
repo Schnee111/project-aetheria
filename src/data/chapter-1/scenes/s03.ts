@@ -119,7 +119,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
 
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6000,
+      autoAdvanceDelay: 6500,
     },
     {
       id: "CH1_S03_D007",
