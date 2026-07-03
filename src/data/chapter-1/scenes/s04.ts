@@ -23,7 +23,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_01_void.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 4300,
+      autoAdvanceDelay: 4400,
     },
     {
       id: "CH1_S04_D001_B",
@@ -46,7 +46,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_04_lysthea_order.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5300,
+      autoAdvanceDelay: 5400,
     },
     {
       id: "CH1_S04_D003",
@@ -58,7 +58,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_03_pantheon.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5500,
+      autoAdvanceDelay: 5700,
     },
     {
       id: "CH1_S04_D004",
@@ -70,7 +70,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_05_architect_kuil.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5500,
+      autoAdvanceDelay: 5700,
     },
     {
       id: "CH1_S04_D005",
@@ -82,7 +82,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_05b_lysthea_fading_smile.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5400,
+      autoAdvanceDelay: 5600,
     },
     {
       id: "CH1_S04_D006",
@@ -93,7 +93,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_06b_cracking.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3000,
+      autoAdvanceDelay: 3100,
     },
     {
       id: "CH1_S04_D006_B",
@@ -104,7 +104,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_06b_cracking.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5200,
+      autoAdvanceDelay: 5400,
     },
     {
       id: "CH1_S04_D007",
@@ -116,7 +116,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_06c_lysthea_panic.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 4500,
+      autoAdvanceDelay: 4600,
     },
     {
       id: "CH1_S04_D008",
@@ -128,7 +128,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_06b_cracking.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5600,
+      autoAdvanceDelay: 5800,
     },
     {
       id: "CH1_S04_D009",
@@ -140,7 +140,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_07_handover_cube.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 4400,
+      autoAdvanceDelay: 4600,
     },
     {
       id: "CH1_S04_D009_B",
@@ -152,7 +152,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_07_handover_cube.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5500,
+      autoAdvanceDelay: 5700,
     },
     {
       id: "CH1_S04_D010",
@@ -164,7 +164,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_07_handover_cube.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5500,
+      autoAdvanceDelay: 5700,
     },
     {
       id: "CH1_S04_D011",
@@ -176,7 +176,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_08a_lysthea_crying.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 4900,
+      autoAdvanceDelay: 5000,
     },
     {
       id: "CH1_S04_D012",
@@ -188,7 +188,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_08_lysthea_kneel.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5500,
+      autoAdvanceDelay: 5700,
     },
     {
       id: "CH1_S04_D013",
@@ -199,7 +199,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_08_lysthea_kneel.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 4200,
+      autoAdvanceDelay: 4400,
     },
     {
       id: "CH1_S04_D013_B",
@@ -210,7 +210,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_08_lysthea_kneel.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 4500,
+      autoAdvanceDelay: 4600,
     },
     {
       id: "CH1_S04_D014",
@@ -222,7 +222,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_09_aeterna_dissolve.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5200,
+      autoAdvanceDelay: 5400,
     },
     {
       id: "CH1_S04_D015",
@@ -233,7 +233,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_01_void.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 4400,
+      autoAdvanceDelay: 4500,
     },
     {
       id: "CH1_S04_D015_B",
@@ -244,7 +244,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_01_void.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3900,
+      autoAdvanceDelay: 4000,
     },
     {
       id: "CH1_S04_D016",
@@ -255,7 +255,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "black",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 4200,
+      autoAdvanceDelay: 4300,
     },
   ],
   nextSceneId: "CH1_S05",
