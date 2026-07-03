@@ -104,7 +104,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
         {isNarrator ? (
           // ── NARRATOR LAYOUT ──
           <motion.div
-            key="narrator"
+            key={'narrator-' + line.id}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
