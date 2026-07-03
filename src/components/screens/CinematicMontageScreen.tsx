@@ -11,8 +11,7 @@ export function CinematicMontageScreen() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentYear, setCurrentYear] = useState(0);
   const targetYearRef = useRef(0);
-  const [showEndText, setShowEndText] = useState(false);
-
+  
   const currentMontageId = progress.currentSceneId;
   const MONTAGE_SEQUENCE = MontageRegistry[currentMontageId] || [];
   
@@ -26,9 +25,6 @@ export function CinematicMontageScreen() {
   // Handle advancing frames
   useEffect(() => {
     if (currentIndex >= MONTAGE_SEQUENCE.length) {
-      // Transition to final text
-      setShowEndText(true);
-
       const endTimer = setTimeout(() => {
         setProgress({ ...progress, currentSceneId: nextSceneId });
         if (nextSceneId === 'CH1_END') {
@@ -36,7 +32,7 @@ export function CinematicMontageScreen() {
         } else {
           setScreen('visual_novel');
         }
-      }, 5000); // Wait 5s for the text
+      }, 2000); // Wait 2s on black screen before transitioning
       return () => clearTimeout(endTimer);
     }
     
@@ -156,26 +152,7 @@ export function CinematicMontageScreen() {
         )}
       </AnimatePresence>
       
-      {/* Black Screen Hit / End Text */}
-      <AnimatePresence>
-        {showEndText && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2, delay: 0.5 }}
-            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black"
-          >
-            <div className="text-white text-center">
-              <h1 className="text-3xl md:text-5xl font-serif tracking-[0.4em] text-white/90 uppercase drop-shadow-2xl">
-                Chapter 1
-              </h1>
-              <p className="mt-4 text-xl md:text-2xl font-serif tracking-[0.5em] text-[#E11D48] uppercase drop-shadow-[0_0_10px_rgba(225,29,72,0.8)]">
-                Cleared
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      
 
       <style>{`
         .glitch-effect {

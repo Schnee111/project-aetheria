@@ -28,18 +28,31 @@ const CREDITS = [
 
 export function ChapterCompleteScreen() {
   const setScreen = useGameStore((state) => state.setScreen);
-  const [showCredits, setShowCredits] = useState(true);
-  const [showTitle, setShowTitle] = useState(false);
+  const [showTitle, setShowTitle] = useState(true);
+  const [showCredits, setShowCredits] = useState(false);
+  const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    // 100 seconds for credits to roll at a faster pace
-    const timer = setTimeout(() => {
-      setShowCredits(false);
-      setTimeout(() => setShowTitle(true), 2000);
-    }, 100000);
+    // Show title for 5 seconds, then transition to credits
+    if (showTitle) {
+      const timer = setTimeout(() => {
+        setShowTitle(false);
+        setTimeout(() => setShowCredits(true), 2000);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showTitle]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  useEffect(() => {
+    // 100 seconds for credits
+    if (showCredits) {
+      const timer = setTimeout(() => {
+        setShowCredits(false);
+        setTimeout(() => setIsDone(true), 2000);
+      }, 100000);
+      return () => clearTimeout(timer);
+    }
+  }, [showCredits]);
 
   return (
     <motion.div
@@ -49,15 +62,48 @@ export function ChapterCompleteScreen() {
       transition={{ duration: 2 }}
       className="absolute inset-0 z-50 flex items-center justify-center bg-black overflow-hidden cursor-pointer"
       onClick={() => {
-        // Allow skipping the credits by clicking
-        if (showCredits) {
+        // Skip logic
+        if (showTitle) {
+          setShowTitle(false);
+          setShowCredits(true);
+        } else if (showCredits) {
           setShowCredits(false);
-          setShowTitle(true);
-        } else if (showTitle) {
+          setIsDone(true);
+        } else if (isDone) {
           setScreen('landing');
         }
       }}
     >
+      <AnimatePresence>
+        {showTitle && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2 }}
+            className="text-center absolute inset-0 flex flex-col items-center justify-center"
+          >
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 3 }}
+              className="text-4xl md:text-5xl font-bold tracking-[0.2em] text-white mb-6 uppercase"
+              style={{ textShadow: '0 0 20px rgba(255,255,255,0.5)' }}
+            >
+              Chapter 1: Complete
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2, delay: 2 }}
+              className="text-gray-400 text-lg tracking-widest uppercase"
+            >
+              To Be Continued...
+            </motion.p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <AnimatePresence>
         {showCredits && (
           <motion.div
@@ -82,34 +128,19 @@ export function ChapterCompleteScreen() {
       </AnimatePresence>
 
       <AnimatePresence>
-        {showTitle && (
-          <div className="text-center">
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 3 }}
-              className="text-4xl md:text-5xl font-bold tracking-[0.2em] text-white mb-6 uppercase"
-              style={{ textShadow: '0 0 20px rgba(255,255,255,0.5)' }}
-            >
-              Chapter 1: Complete
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 2, delay: 2.5 }}
-              className="text-gray-400 text-lg tracking-widest uppercase"
-            >
-              To Be Continued...
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 5 }}
-              className="text-gray-600 text-sm tracking-widest mt-12 animate-pulse"
-            >
-              Click anywhere to return to main menu
-            </motion.p>
-          </div>
+        {isDone && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center absolute inset-0 flex flex-col items-center justify-center"
+          >
+             <h2 className="text-white text-3xl font-light tracking-[0.3em] uppercase mb-12">
+               Thank You For Playing
+             </h2>
+             <p className="text-gray-600 text-sm tracking-widest animate-pulse">
+               Click anywhere to return to main menu
+             </p>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.div>
