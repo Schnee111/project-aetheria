@@ -32,6 +32,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       textEn:
         '"T-Ten silver coins...? Wait, that\'s not the point! How did you do..."',
       characterOverrides: { aeterna: "neutral", lysthea: "shocked" },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 7500,
     },
     {
       id: "CH1_S03_D002",
@@ -41,6 +45,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       textEn:
         "Before she could finish her sentence, an incredibly dense, cold aura enveloped my workshop.",
       characterOverrides: { aeterna: "neutral", lysthea: "shocked" },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 8500,
     },
     {
       id: "CH1_S03_D003",
@@ -49,14 +57,16 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "*CRASH!!!* Kaca jendela khusus bengkel pecah berkeping-keping.",
       textEn:
         "*CRASH!!!* The workshop's reinforced window shattered into pieces.",
-      autoAdvance: true,
-      autoAdvanceDelay: 1000,
       backgroundOverride: "ch1/cg_ch1_s04_assassin_entry.webp",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 5500,
     },
     {
       id: "CH1_S03_D004",
@@ -70,6 +80,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 5000,
     },
     {
       id: "CH1_S03_D005",
@@ -84,6 +98,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D006",
@@ -98,6 +116,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 6500,
     },
     {
       id: "CH1_S03_D007",
@@ -112,6 +134,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D008",
@@ -126,6 +152,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D009",
@@ -140,6 +170,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D010",
@@ -154,6 +188,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D011",
@@ -168,6 +206,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         aeterna: "none",
         lysthea: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D012",
@@ -182,6 +224,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         aeterna: "none",
         lysthea: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 5500,
     },
     {
       id: "CH1_S03_D013",
@@ -196,6 +242,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         aeterna: "none",
         lysthea: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D014",
@@ -211,9 +261,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
       },
       bgmOverride: "/assets/audio/bgm/last_song-supercell-ending_theme.mp3",
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 4500,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D015",
@@ -228,9 +279,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         aeterna: "none",
         lysthea: "none",
       },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5500,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D016",
@@ -245,9 +297,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         aeterna: "none",
         lysthea: "none",
       },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5000,
+      autoAdvanceDelay: 7500,
     },
     {
       id: "CH1_S03_D017",
@@ -258,9 +311,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         '"You... know who I am? But if your memories are intact, why were you hiding in this workshop?"',
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_smile.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3000,
+      autoAdvanceDelay: 7500,
     },
     {
       id: "CH1_S03_D018",
@@ -271,9 +325,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         '"Of course I remember. But honestly... I only remembered everything just this second. It took your familiar magic to break the seal on my dormant memories."',
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_smile.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6000,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D019",
@@ -284,9 +339,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         '"I\'m sorry for making you wait. And thank you for keeping the server online all by yourself all this time, Lysthea. Good work."',
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_smile.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5000,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D020",
@@ -297,9 +353,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         "Hearing those simple words of apology, the Grand Saintess bowed her head deeply, hiding her tears of relief beneath her elegant composure.",
       backgroundOverride: "ch1/cg_ch1_s04_lys_crying.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6000,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D021",
@@ -310,9 +367,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         '"For ten thousand years, I have kept this System running. But recently... the Abyss has found a vulnerability in the Origin Rune."',
       backgroundOverride: "ch1/cg_ch1_s04_lys_crying.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 7000,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D022",
@@ -323,9 +381,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         '"Hah... I figured. No system can run forever without a maintenance patch. And here my memories just returned, and my original power hasn\'t even fully recovered yet."',
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_smile.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 7000,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D023",
@@ -335,9 +394,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       textEn: '"You haven\'t changed at all, Grand Architect."',
       backgroundOverride: "ch1/cg_ch1_s04_lys_smile.png",
       characterOverrides: { aeterna: "none", lysthea: "none" },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3500,
+      autoAdvanceDelay: 5000,
     },
     {
       id: "CH1_S03_D024",
@@ -348,9 +408,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         "The late afternoon sunlight slowly pierced through the remains of the shattered workshop window, clearing away the storm clouds and the demonic aura that had choked the room.",
       backgroundOverride: "ch1/cg_ch1_s04_sunlight_window.png",
       characterOverrides: { aeterna: "none", lysthea: "none" },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6500,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D025",
@@ -361,9 +422,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         "The warm breeze that caressed our faces took me back to the early days of creation. To the era when Aetheria didn't even have land or sky...",
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_nostalgic.png",
       characterOverrides: { aeterna: "none", lysthea: "none" },
+
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 7000,
+      autoAdvanceDelay: 9000,
     },
   ],
   nextSceneId: "CH1_S04",
