@@ -55,7 +55,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
     localizedText,
     handleTypewriterComplete,
     isInstant,
-    line.unskippable ? 'fast' : undefined
+    undefined
   );
 
   // ── Audio ──
