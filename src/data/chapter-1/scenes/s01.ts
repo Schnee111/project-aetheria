@@ -25,6 +25,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Kisah hidupku dimulai dari sebuah keranjang bayi yang hangat, di sudut bengkel penuh pelumas dan suku cadang.",
       textEn: "My life began in a warm crib, in the corner of a workshop filled with grease and spare parts.",
       backgroundOverride: "ch1/bg_isekai_baby.webp",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 8500,
     },
     {
       id: "CH1_S01_D002",
@@ -33,6 +37,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Aku terlahir dari sepasang mekanik Magitech kelas menengah. Mereka bukan bangsawan, apalagi pahlawan. Hanya pekerja keras yang penuh kasih sayang.",
       textEn: "I was born to a pair of mid-class Magitech mechanics. They were no nobles, let alone heroes. Just loving, hardworking people.",
       backgroundOverride: "ch1/cg_ch1_s02_parents_silhouette.webp",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S01_D003",
@@ -41,6 +49,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Alih-alih bermain dengan boneka, masa kecilku dihabiskan dengan membongkar pasang sirkuit sihir dan mencium aroma logam yang memanas.",
       textEn: "Instead of playing with toys, my childhood was spent dismantling magic circuits and breathing in the scent of heating metal.",
       backgroundOverride: "ch1/bg_magitech_learning.webp",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S01_D004",
@@ -49,6 +61,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Waktu berlalu begitu cepat. Hingga akhirnya usia memakan mereka, mewariskan bengkel tua ini kepadaku.",
       textEn: "Time passed so quickly. Until eventually age took them, leaving this old workshop to me.",
       backgroundOverride: "black",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 8000,
     },
     {
       id: "CH1_S01_D005",
@@ -57,6 +73,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Dan kini, dua puluh tiga tahun telah berlalu sejak hari kelahiranku.",
       textEn: "And now, twenty-three years have passed since the day of my birth.",
       backgroundOverride: "ch1/bg_mechanic_shop_corner.webp",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 6000,
     },
     {
       id: "CH1_S01_D006",
@@ -64,6 +84,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       expression: "smile",
       text: "Tidak ada ramalan suci, tidak ada kewajiban mengalahkan Raja Iblis, tidak ada beban menyelamatkan dunia.",
       textEn: "No holy prophecy, no obligation to defeat the Demon King, no burden of saving the world.",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 8000,
     },
     {
       id: "CH1_S01_D007",
@@ -71,6 +95,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       expression: "lazy",
       text: "Hanya hari-hari tenang sebagai mekanik kelas menengah... Dan sejujurnya, aku sangat menyukai hidup seperti ini.",
       textEn: "Just quiet days as a mid-class mechanic... And honestly, I really love this kind of life.",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 8500,
     },
     {
       id: "CH1_S01_D008",
@@ -79,6 +107,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Kuambil sebuah lampu kristal (Aether-bulb) dari meja kerjaku. Benda usang titipan pelanggan ini rusak lagi.",
       textEn: "I picked up a crystal lamp (Aether-bulb) from my workbench. This obsolete item left by a customer is broken again.",
       backgroundOverride: "ch1/cg_ch1_s01_tinker_bulb.png",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 8500,
     },
     {
       id: "CH1_S01_D009",
@@ -87,6 +119,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Tiga belas segel sihir hanya untuk memancarkan cahaya redup? Para penyihir zaman sekarang benar-benar suka membuang tenaga untuk hal sederhana.",
       textEn: "Thirteen magic seals just to emit a dim light? Modern mages really love wasting energy on simple things.",
       backgroundOverride: "ch1/cg_ch1_s01_tinker_bulb.png",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S01_D010",
@@ -96,6 +132,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       textEn: "Its magic flow is an overlapping mess because it was made carelessly. I plucked out a few excessive pathways with my fingertip. Instantly, the lamp glowed brightly.",
       audioSrc: "/assets/audio/sfx/magic_repair.ogg",
       backgroundOverride: "ch1/cg_ch1_s01_magic_fix.png",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S01_D011",
@@ -104,6 +144,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Nah, begini lebih baik. Memperbaiki barang-barang ajaib ini sebenarnya tak lebih dari sekadar mengurai benang kusut.",
       textEn: "There, much better. Fixing these magical items is really nothing more than untangling a knotted thread.",
       backgroundOverride: "ch1/cg_ch1_s01_magic_fix.png",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S01_D012",
@@ -112,6 +156,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Kumatikan lampu utama bengkel. Membiarkan pendaran hangat dari kristal itu menjadi satu-satunya penerang di atas mejaku yang berserakan cetak biru.",
       textEn: "I turned off the main workshop lights. Letting the warm glow from the crystal be the only illumination on my blueprint-scattered desk.",
       backgroundOverride: "ch1/cg_ch1_s01_warm_desk.png",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S01_D013",
@@ -120,6 +168,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Kuseduh secangkir teh panas. Aroma manis dari dedaunan kering perlahan menguar, memenuhi seisi ruangan.",
       textEn: "I brewed a cup of hot tea. The sweet aroma of dried leaves slowly drifted, filling the room.",
       backgroundOverride: "ch1/cg_ch1_s01_warm_desk.png",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 8000,
     },
     {
       id: "CH1_S01_D014",
@@ -129,6 +181,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       textEn: "The first raindrops of the season began to fall, tapping against the window pane with a slow rhythm.",
       backgroundOverride: "ch1/cg_ch1_s01_rain_window.png",
       audioSrc: "/assets/audio/sfx/rain_gentle.ogg",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 8000,
     },
     {
       id: "CH1_S01_D015",
@@ -137,6 +193,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Aku selalu menyukai hujan. Suaranya selalu berhasil menenggelamkan deru bising mesin-mesin di kota Aetheria...",
       textEn: "I have always liked the rain. Its sound always manages to drown out the noisy roar of machines in Aetheria city...",
       backgroundOverride: "ch1/cg_ch1_s01_rain_window.png",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 8500,
     },
     {
       id: "CH1_S01_D016",
@@ -145,6 +205,10 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "...Membawa keheningan dan kedamaian yang selalu kurindukan.",
       textEn: "...Bringing the silence and peace I always long for.",
       backgroundOverride: "ch1/cg_ch1_s01_rain_window.png",
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 5500,
     },
   ],
   nextSceneId: "CH1_S02",
