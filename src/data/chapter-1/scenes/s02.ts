@@ -26,11 +26,9 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       expression: "neutral",
       text: "*BLAAARRR...*",
       textEn: "*RRRUMBLE...*",
-      audioSrc: "/assets/audio/sfx/thunder.ogg",
-
       autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 4500,
+      autoAdvanceDelay: 1500,
+      audioSrc: "/assets/audio/sfx/thunder.ogg",
     },
     {
       id: "CH1_S02_D002",
@@ -40,10 +38,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       textEn:
         "*BANG BANG BANG!* Loud pounding from outside, followed by the frantic ring of the workshop bell.",
       audioSrc: "/assets/audio/sfx/shop_bell.ogg",
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 8000,
     },
     {
       id: "CH1_S02_D003",
@@ -51,10 +45,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       expression: "hidden",
       text: "Permisi! Apakah ada mekanik di dalam?! Tolong buka pintunya!",
       textEn: "Hello! Is there a mechanic in there?! Please open the door!",
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 5500,
     },
     {
       id: "CH1_S02_D004",
@@ -65,10 +55,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
         "I opened the workshop's wooden door. A woman in a soaked robe stood shivering in the rain. Her face was sheer panic.",
       backgroundOverride: "ch1/cg_ch1_s03_lys_arrive.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S02_D005",
@@ -79,10 +65,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
         "Thank goodness... Sorry to bother you this late. But could you take a look at this?!",
       backgroundOverride: "ch1/cg_ch1_s03_lys_arrive.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 7000,
     },
     {
       id: "CH1_S02_D006",
@@ -93,10 +75,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
         "She slammed a metal-cased crystal orb onto the table. Its core was cracked, shooting wild bursts of blue energy.",
       backgroundOverride: "ch1/cg_ch1_s03_core_slam.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S02_D007",
@@ -107,10 +85,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
         "This is the crystal core from the Seventh District's Defense Server. The district's barrier will collapse if the system fails to reboot!",
       backgroundOverride: "ch1/cg_ch1_s03_core_slam.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S02_D008",
@@ -119,10 +93,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       text: 'Aku mengambil kristal itu. Energinya bocor karena ada beberapa baris \"Rune\" yang mengalami konflik logika. Layaknya sebuah memory leak.',
       textEn:
         "I picked up the crystal. Energy was leaking because a few rune lines had logic conflicts. Basically a memory leak.",
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S02_D009",
@@ -134,10 +104,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       audioSrc: "/assets/audio/sfx/magic_repair.ogg",
       backgroundOverride: "ch1/cg_ch1_s02_casual_repair.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S02_D010",
@@ -147,10 +113,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       textEn:
         "Within seconds, the wild light died down. The magic circuit inside reconnected and spun smoothly.",
       backgroundOverride: "ch1/cg_ch1_s02_casual_repair.webp",
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 8500,
     },
     {
       id: "CH1_S02_D011",
@@ -160,10 +122,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       textEn: "Patched. The barrier system should be back online now.",
       backgroundOverride: "ch1/cg_ch1_s03_lys_shock.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 6500,
     },
     {
       id: "CH1_S02_D012",
@@ -173,10 +131,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       textEn: "...What?",
       backgroundOverride: "ch1/cg_ch1_s03_lys_shock.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 4500,
     },
     {
       id: "CH1_S02_D013",
@@ -187,10 +141,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
         "(Impossible... Rewriting an Origin Rune configuration without chanting?! Even my elite division takes days for something like this!)",
       backgroundOverride: "ch1/cg_ch1_s03_lys_shock.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S02_D014",
@@ -198,10 +148,6 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       expression: "smug",
       text: "Biaya perbaikannya sepuluh Silver Coins. Bisa bayar tunai sekarang?",
       textEn: "That'll be ten Silver Coins. Cash is fine.",
-
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 6000,
     },
   ],
   nextSceneId: "CH1_S03",

@@ -22,10 +22,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         "Ten thousand years ago, The Void was nothing but a boundless static expanse. We floated in nothingness, before Aetheria existed.",
       backgroundOverride: "ch1/cg_ch1_s05_01_void.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 5500,
     },
     {
       id: "CH1_S04_D002",
@@ -35,10 +34,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         '"Why do you bother compiling billions of magical logic for a mortal world, Architect?" she asked me back then.',
       backgroundOverride: "ch1/cg_ch1_s05_04_lysthea_order.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 6000,
     },
     {
       id: "CH1_S04_D003",
@@ -48,10 +46,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         '"Because I am tired of looking at nothingness. I want a planet where we can sit quietly and look at a blue sky," I answered.',
       backgroundOverride: "ch1/cg_ch1_s05_03_pantheon.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 6000,
     },
     {
       id: "CH1_S04_D004",
@@ -61,10 +58,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         "Then, by unifying the entire energy of the Pantheon, I executed 'Genesis'. Making myself the primary compiling core of this world.",
       backgroundOverride: "ch1/cg_ch1_s05_05_architect_kuil.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 6000,
     },
     {
       id: "CH1_S04_D005",
@@ -74,10 +70,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         '"System stable. The ecosystem is beating. You succeeded, Architect!" Lysthea exclaimed. But her smile faded when she saw me.',
       backgroundOverride: "ch1/cg_ch1_s05_05b_lysthea_fading_smile.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 6500,
     },
     {
       id: "CH1_S04_D006",
@@ -87,10 +82,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         "My divinity began to crack. The Origin Code within my soul shattered from forcefully compiling a planet out of nothingness.",
       backgroundOverride: "ch1/cg_ch1_s05_06b_cracking.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 6500,
     },
     {
       id: "CH1_S04_D007",
@@ -100,10 +94,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         '"Your body... You are breaking apart! We must halt the cycle!" Lysthea panicked.',
       backgroundOverride: "ch1/cg_ch1_s05_06c_lysthea_panic.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 7000,
+      autoAdvanceDelay: 5000,
     },
     {
       id: "CH1_S04_D008",
@@ -113,10 +106,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         '"No. If I stay here, the radiation from my soul fragments will over-load Aetheria and cause it to explode," I explained with a heavy breath.',
       backgroundOverride: "ch1/cg_ch1_s05_06b_cracking.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 7000,
     },
     {
       id: "CH1_S04_D009",
@@ -126,10 +118,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         'I handed her an energy cube—the physical manifestation of Aetheria\'s Admin Privileges. "I have to initiate auto-recovery by throwing the rest of my soul to another server... To an obsolete dimension without magic named Earth,"',
       backgroundOverride: "ch1/cg_ch1_s05_07_handover_cube.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 7500,
     },
     {
       id: "CH1_S04_D010",
@@ -139,10 +130,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         '"Without magic, my soul can sleep and recover slowly as a mortal human. While I\'m gone, hold the authority of this cube."',
       backgroundOverride: "ch1/cg_ch1_s05_07_handover_cube.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 6000,
     },
     {
       id: "CH1_S04_D011",
@@ -152,10 +142,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         '"Then... when will you return? How long must I wait?" her voice trembled, holding back tears.',
       backgroundOverride: "ch1/cg_ch1_s05_08a_lysthea_crying.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 8000,
+      autoAdvanceDelay: 5500,
     },
     {
       id: "CH1_S04_D012",
@@ -165,10 +154,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         "\"I don't know. Maybe centuries, maybe forever. If I never wake up, guard this world's system for me, Lysthea.\"",
       backgroundOverride: "ch1/cg_ch1_s05_08_lysthea_kneel.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 6500,
     },
     {
       id: "CH1_S04_D013",
@@ -178,10 +166,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         'The Goddess of Order dropped down, kneeling on the marble floor of the Pantheon. "I swear. No entity shall dare touch your world, Architect..."',
       backgroundOverride: "ch1/cg_ch1_s05_08_lysthea_kneel.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 7000,
     },
     {
       id: "CH1_S04_D014",
@@ -191,10 +178,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         "With a relieved smile, I released my divinity. Letting myself be erased from Aetheria towards a distant world.",
       backgroundOverride: "ch1/cg_ch1_s05_09_aeterna_dissolve.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 6500,
     },
     {
       id: "CH1_S04_D015",
@@ -204,10 +190,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       textEn:
         "A promise with no time limit. And she actually held onto that oath... faithfully guarding this system all alone for ten thousand years.",
       backgroundOverride: "ch1/cg_ch1_s05_01_void.png",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 9000,
+      autoAdvanceDelay: 6800,
     },
     {
       id: "CH1_S04_D016",
@@ -216,10 +201,9 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       text: "",
       textEn: "",
       backgroundOverride: "black",
-
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5000,
+      autoAdvanceDelay: 3500,
     },
   ],
   nextSceneId: "CH1_S05",
