@@ -8,7 +8,7 @@ export const s05: Scene = // SCENE 5: CINEMATIC MONTAGE (Ending Sequence)
   location: "The Flow of Time",
   mode: "cinematic_montage",
   bgm: "",
-  background: "black",
+  background: "ch1/bg_black",
   characters: [],
   dialogues: [],
   nextSceneId: "CHAPTER_END",

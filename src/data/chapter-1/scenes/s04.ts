@@ -2,7 +2,20 @@ import type { Scene } from '../../../types';
 
 export const s04: Scene = // SCENE 4: THE GENESIS
 {
-      id: "CH1_S04",
+  id: "CH1_S04",
+  chapterId: "1",
+  title: "Flashback - The Genesis",
+  location: "The Void",
+  mode: "visual_novel",
+  bgm: "",
+  background: "ch1/bg_black",
+  characters: [
+    { characterId: "aeterna", position: "left", initialExpression: "none" },
+    { characterId: "lysthea", position: "right", initialExpression: "none" },
+  ],
+  dialogues: [
+    {
+      id: "CH1_S04_D001",
       speaker: "narrator",
       expression: "neutral",
       text: "Sepuluh ribu tahun yang lalu... kami mengambang di The Void, kehampaan statis sebelum Aetheria ada.",
@@ -11,7 +24,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6000,
+      autoAdvanceDelay: 6600,
     },
     {
       id: "CH1_S04_D002",
@@ -23,7 +36,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_04_lysthea_order.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6600,
+      autoAdvanceDelay: 7400,
     },
     {
       id: "CH1_S04_D003",
@@ -35,7 +48,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_03_pantheon.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6900,
+      autoAdvanceDelay: 7700,
     },
     {
       id: "CH1_S04_D004",
@@ -47,7 +60,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_05_architect_kuil.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6900,
+      autoAdvanceDelay: 7700,
     },
     {
       id: "CH1_S04_D005",
@@ -59,7 +72,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_05b_lysthea_fading_smile.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6800,
+      autoAdvanceDelay: 7600,
     },
     {
       id: "CH1_S04_D006",
@@ -71,7 +84,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6600,
+      autoAdvanceDelay: 7600,
     },
     {
       id: "CH1_S04_D007",
@@ -83,19 +96,19 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_06c_lysthea_panic.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5400,
+      autoAdvanceDelay: 6300,
     },
     {
       id: "CH1_S04_D008",
       speaker: "narrator",
       expression: "neutral",
       text: '"Tidak. Jika aku tetap di sini, radiasi jiwaku akan membuat Aetheria over-load," jelasku. Kuserahkan wujud fisik dari Admin Privileges padanya.',
-      textEn: '"No. If I stay here, my soul's radiation will cause Aetheria to overload," I explained. I handed her the physical form of Admin Privileges.',
+      textEn: '"No. If I stay here, my soul\'s radiation will cause Aetheria to overload," I explained. I handed her the physical form of Admin Privileges.',
       backgroundOverride: "ch1/cg_ch1_s05_07_handover_cube.png",
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 7600,
+      autoAdvanceDelay: 8400,
     },
     {
       id: "CH1_S04_D009_B",
@@ -107,7 +120,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_07_handover_cube.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6900,
+      autoAdvanceDelay: 8200,
     },
     {
       id: "CH1_S04_D010",
@@ -119,7 +132,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_07_handover_cube.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6900,
+      autoAdvanceDelay: 7700,
     },
     {
       id: "CH1_S04_D011",
@@ -131,7 +144,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_08a_lysthea_crying.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6000,
+      autoAdvanceDelay: 7300,
     },
     {
       id: "CH1_S04_D012",
@@ -143,7 +156,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_08_lysthea_kneel.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6900,
+      autoAdvanceDelay: 7800,
     },
     {
       id: "CH1_S04_D013",
@@ -155,7 +168,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6400,
+      autoAdvanceDelay: 7200,
     },
     {
       id: "CH1_S04_D014",
@@ -167,7 +180,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/cg_ch1_s05_09_aeterna_dissolve.png",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6500,
+      autoAdvanceDelay: 8000,
     },
     {
       id: "CH1_S04_D015",
@@ -179,7 +192,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6900,
+      autoAdvanceDelay: 8000,
     },
     {
       id: "CH1_S04_D016",
@@ -187,10 +200,10 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       expression: "neutral",
       text: "",
       textEn: "",
-      backgroundOverride: "black",
+      backgroundOverride: "ch1/bg_black",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3800,
+      autoAdvanceDelay: 1500,
     },
   ],
   nextSceneId: "CH1_S05",
