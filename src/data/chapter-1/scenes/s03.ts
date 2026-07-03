@@ -32,6 +32,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       textEn:
         '"T-Ten silver coins...? Wait, that\'s not the point! How did you do..."',
       characterOverrides: { aeterna: "neutral", lysthea: "shocked" },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 7500,
     },
     {
       id: "CH1_S03_D002",
@@ -41,6 +45,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       textEn:
         "Before she could finish her sentence, an incredibly dense, cold aura enveloped my workshop.",
       characterOverrides: { aeterna: "neutral", lysthea: "shocked" },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 8500,
     },
     {
       id: "CH1_S03_D003",
@@ -49,14 +57,16 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "*CRASH!!!* Kaca jendela khusus bengkel pecah berkeping-keping.",
       textEn:
         "*CRASH!!!* The workshop's reinforced window shattered into pieces.",
-      autoAdvance: true,
-      autoAdvanceDelay: 1000,
       backgroundOverride: "ch1/cg_ch1_s04_assassin_entry.webp",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 5500,
     },
     {
       id: "CH1_S03_D004",
@@ -70,6 +80,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 5000,
     },
     {
       id: "CH1_S03_D005",
@@ -84,6 +98,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D006",
@@ -92,12 +110,16 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: '"Abyssal Assassin?! Awas! Mundur, Engineer! Biar aku yang menanganinya!"',
       textEn:
         '"An Abyssal Assassin?! Look out! Back away, Engineer! I\'ll handle this!"',
-      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.webp",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.png",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 6500,
     },
     {
       id: "CH1_S03_D007",
@@ -106,12 +128,16 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "Sang Grand Saintess melompat ke depanku, melepaskan gelombang sihir perlindungan yang begitu murni untuk menahan serangan iblis itu.",
       textEn:
         "The Grand Saintess jumped in front of me, releasing a wave of incredibly pure protective magic to block the demon's attack.",
-      backgroundOverride: "ch1/cg_ch1_s04_resonance.png",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.png",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D008",
@@ -120,12 +146,16 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "Saat energi sihirnya menyentuhku... sesuatu di dalam jiwaku beresonansi keras. Pancaran sihir ini... rasanya terlalu familier. Seakan ia dirangkai dari... tanganku sendiri.",
       textEn:
         "As her magical energy touched me... something within my soul resonated violently. This magical signature... it felt too familiar. As if it was woven by... my own hands.",
-      backgroundOverride: "ch1/cg_ch1_s04_resonance.png",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.png",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D009",
@@ -140,6 +170,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D010",
@@ -154,6 +188,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         lysthea: "none",
         abyssal_assassin: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D011",
@@ -168,6 +206,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         aeterna: "none",
         lysthea: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D012",
@@ -182,6 +224,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         aeterna: "none",
         lysthea: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 5500,
     },
     {
       id: "CH1_S03_D013",
@@ -196,6 +242,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         aeterna: "none",
         lysthea: "none",
       },
+
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 9000,
     },
     {
       id: "CH1_S03_D014",
