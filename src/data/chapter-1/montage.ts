@@ -2,10 +2,10 @@ import type { MontageFrame } from '../../types';
 
 export const CH1_S05_MONTAGE: MontageFrame[] = [
   // FASE 1: THE GOLDEN AGE
-  { id: '1', src: '/assets/cgs/ch1/cg_ch1_s05_01_void.png', fadeIn: 1, hold: 3.5, yearText: 0 },
-  { id: '2', src: '/assets/cgs/ch1/cg_ch1_montage_02_komet.png', fadeIn: 1, hold: 4, yearText: 0 },
+  { id: '1', src: '/assets/cgs/ch1/cg_ch1_s05_01_void.png', fadeIn: 1, hold: 2.5, yearText: 0 },
+  { id: '2', src: '/assets/cgs/ch1/cg_ch1_montage_02_komet.png', fadeIn: 1, hold: 3, yearText: 0 },
   { id: '3', src: '/assets/cgs/ch1/cg_ch1_montage_detail_1_hands.png', fadeIn: 0.5, hold: 3.5, yearText: 0 },
-  { id: '4', src: '/assets/cgs/ch1/cg_ch1_montage_03_pantheon.png', fadeIn: 1, hold: 4, yearText: 0 },
+  { id: '4', src: '/assets/cgs/ch1/cg_ch1_montage_03_pantheon.png', fadeIn: 1, hold: 3, yearText: 0 },
   { id: '5', src: '/assets/cgs/ch1/cg_ch1_montage_04_sunrise.png', fadeIn: 1, hold: 5, yearText: 0 },
   
   // FASE 2: THE DEPARTURE

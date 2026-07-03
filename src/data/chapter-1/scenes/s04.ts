@@ -203,7 +203,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "black",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 500,
+      autoAdvanceDelay: 3500,
     },
   ],
   nextSceneId: "CH1_S05",
