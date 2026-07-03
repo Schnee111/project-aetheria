@@ -69,8 +69,8 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       id: "CH1_S01_D007",
       speaker: "aeterna",
       expression: "lazy",
-      text: "Hanya hari-hari tenang sebagai mekanik kelas menengah yang mencari koin untuk makan malam... Dan sejujurnya, aku sangat menyukai hidup seperti ini.",
-      textEn: "Just quiet days as a mid-class mechanic scraping coins for dinner... And honestly, I really love this kind of life.",
+      text: "Hanya hari-hari tenang sebagai mekanik kelas menengah... Dan sejujurnya, aku sangat menyukai hidup seperti ini.",
+      textEn: "Just quiet days as a mid-class mechanic... And honestly, I really love this kind of life.",
     },
     {
       id: "CH1_S01_D008",
