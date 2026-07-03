@@ -263,7 +263,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       bgmOverride: "/assets/audio/bgm/last_song-supercell-ending_theme.mp3",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 4500,
+      autoAdvanceDelay: 5400,
     },
     {
       id: "CH1_S03_D015",
@@ -280,7 +280,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5500,
+      autoAdvanceDelay: 4800,
     },
     {
       id: "CH1_S03_D016",
@@ -297,7 +297,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5000,
+      autoAdvanceDelay: 4400,
     },
     {
       id: "CH1_S03_D017",
@@ -310,7 +310,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3000,
+      autoAdvanceDelay: 4400,
     },
     {
       id: "CH1_S03_D018",
@@ -323,7 +323,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6000,
+      autoAdvanceDelay: 6300,
     },
     {
       id: "CH1_S03_D019",
@@ -335,7 +335,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 2000,
+      autoAdvanceDelay: 3100,
     },
     {
       id: "CH1_S03_D019_B",
@@ -347,7 +347,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3000,
+      autoAdvanceDelay: 4600,
     },
     {
       id: "CH1_S03_D020",
@@ -359,7 +359,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3000,
+      autoAdvanceDelay: 4400,
     },
     {
       id: "CH1_S03_D020_B",
@@ -371,7 +371,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3000,
+      autoAdvanceDelay: 3700,
     },
     {
       id: "CH1_S03_D021",
@@ -384,7 +384,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 7000,
+      autoAdvanceDelay: 5300,
     },
     {
       id: "CH1_S03_D022",
@@ -397,7 +397,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 7000,
+      autoAdvanceDelay: 6100,
     },
     {
       id: "CH1_S03_D023",
@@ -409,7 +409,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3500,
+      autoAdvanceDelay: 3400,
     },
     {
       id: "CH1_S03_D024",
@@ -421,7 +421,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3200,
+      autoAdvanceDelay: 4000,
     },
     {
       id: "CH1_S03_D024_B",
@@ -433,7 +433,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3300,
+      autoAdvanceDelay: 4000,
     },
     {
       id: "CH1_S03_D025",
@@ -446,7 +446,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 7000,
+      autoAdvanceDelay: 5900,
     },
   ],
   nextSceneId: "CH1_S04",
