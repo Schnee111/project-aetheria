@@ -180,7 +180,6 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       text: "Rintik hujan pertama di musim ini mulai berjatuhan, mengetuk kaca jendela dengan ritme yang pelan.",
       textEn: "The first raindrops of the season began to fall, tapping against the window pane with a slow rhythm.",
       backgroundOverride: "ch1/cg_ch1_s01_rain_window.png",
-      audioSrc: "/assets/audio/sfx/rain_gentle.ogg",
 
       autoAdvance: true,
       unskippable: true,

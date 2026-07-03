@@ -110,7 +110,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: '"Abyssal Assassin?! Awas! Mundur, Engineer! Biar aku yang menanganinya!"',
       textEn:
         '"An Abyssal Assassin?! Look out! Back away, Engineer! I\'ll handle this!"',
-      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.webp",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.png",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
@@ -119,7 +119,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
 
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6500,
+      autoAdvanceDelay: 6000,
     },
     {
       id: "CH1_S03_D007",
@@ -128,7 +128,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "Sang Grand Saintess melompat ke depanku, melepaskan gelombang sihir perlindungan yang begitu murni untuk menahan serangan iblis itu.",
       textEn:
         "The Grand Saintess jumped in front of me, releasing a wave of incredibly pure protective magic to block the demon's attack.",
-      backgroundOverride: "ch1/cg_ch1_s04_resonance.png",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.png",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
@@ -146,7 +146,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "Saat energi sihirnya menyentuhku... sesuatu di dalam jiwaku beresonansi keras. Pancaran sihir ini... rasanya terlalu familier. Seakan ia dirangkai dari... tanganku sendiri.",
       textEn:
         "As her magical energy touched me... something within my soul resonated violently. This magical signature... it felt too familiar. As if it was woven by... my own hands.",
-      backgroundOverride: "ch1/cg_ch1_s04_resonance.png",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.png",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
