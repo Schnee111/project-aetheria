@@ -18,13 +18,12 @@ export const s00: Scene = // SCENE 0: AETHERIA (Prologue Cinematic)
       speaker: "narrator",
       expression: "neutral",
       text: "Aetheria... Sebuah dimensi di mana hukum fisika tunduk pada kehendak sihir.",
-      textEn:
-        "Aetheria... A dimension where the laws of physics bow to the will of magic.",
-      backgroundOverride: "ch1/cg_ch1_s01_aetheria_planet.mp4",
-      audioSrc: "/assets/audio/sfx/ethereal_chime.ogg",
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 7000,
+      textEn:
+        "Aetheria... A dimension where the laws of physics bow to the will of magic.",
+      backgroundOverride: "ch1/cg_ch1_s01_aetheria_planet.mp4",
     },
     // ── Video 2: Metropolis (7s) ──
     {
@@ -32,12 +31,12 @@ export const s00: Scene = // SCENE 0: AETHERIA (Prologue Cinematic)
       speaker: "narrator",
       expression: "neutral",
       text: "Di sini, peradaban tidak dibangun dengan baja dan minyak, melainkan dengan sirkuit siber dan kristal mana.",
-      textEn:
-        "Here, civilization is not built with steel and oil — but with cyber circuits and mana crystals.",
-      backgroundOverride: "ch1/cg_ch1_s01_aetheria_metropolis.mp4",
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 7000,
+      textEn:
+        "Here, civilization is not built with steel and oil — but with cyber circuits and mana crystals.",
+      backgroundOverride: "ch1/cg_ch1_s01_aetheria_metropolis.mp4",
     },
     // ── Video 3: Street (7s) ──
     {
@@ -45,12 +44,12 @@ export const s00: Scene = // SCENE 0: AETHERIA (Prologue Cinematic)
       speaker: "narrator",
       expression: "neutral",
       text: "Sihir bukan lagi dongeng mistis. Ia adalah teknologi. Ia adalah napas kehidupan sehari-hari.",
-      textEn:
-        "Magic is no longer a mystical fairy tale. It is technology. It is the breath of everyday life.",
-      backgroundOverride: "ch1/cg_ch1_s01_aetheria_street.mp4",
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 7000,
+      textEn:
+        "Magic is no longer a mystical fairy tale. It is technology. It is the breath of everyday life.",
+      backgroundOverride: "ch1/cg_ch1_s01_aetheria_street.mp4",
     },
     // ── Video 4: Baby (7s) ──
     {
@@ -58,12 +57,12 @@ export const s00: Scene = // SCENE 0: AETHERIA (Prologue Cinematic)
       speaker: "narrator",
       expression: "neutral",
       text: "Dan di dunia yang megah inilah... jiwaku yang terlempar entah dari mana menemukan wadah barunya.",
-      textEn:
-        "And in this magnificent world... my soul, flung from nowhere, found its new vessel.",
-      backgroundOverride: "ch1/cg_ch1_s01_isekai_baby.mp4",
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 7000,
+      textEn:
+        "And in this magnificent world... my soul, flung from nowhere, found its new vessel.",
+      backgroundOverride: "ch1/cg_ch1_s01_isekai_baby.mp4",
     },
     // ── Parents (7s) ──
     {
@@ -71,12 +70,12 @@ export const s00: Scene = // SCENE 0: AETHERIA (Prologue Cinematic)
       speaker: "narrator",
       expression: "neutral",
       text: "Aku dilahirkan kembali. Menjalani masa kecil di bawah asuhan orang tua angkatku yang hangat...",
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 7000,
       textEn:
         "I was reborn. Growing up under the care of my warm adoptive parents...",
       backgroundOverride: "ch1/cg_ch1_s02_parents_silhouette.webp",
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 5000,
     },
     // ── Workshop (7s) ──
     {
@@ -84,12 +83,12 @@ export const s00: Scene = // SCENE 0: AETHERIA (Prologue Cinematic)
       speaker: "narrator",
       expression: "neutral",
       text: "Di bengkel kecil milik merekalah, aku belajar merangkai sirkuit Magitech pertamaku, dan menemukan tujuan hidup baruku: hidup santai tanpa lembur.",
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 7000,
       textEn:
         "It was in their small workshop that I learned to assemble my first Magitech circuit — and discovered my new life's purpose: living easy, no overtime.",
       backgroundOverride: "ch1/bg_magitech_learning.webp",
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 5000,
     },
   ],
   nextSceneId: "CH1_S01",

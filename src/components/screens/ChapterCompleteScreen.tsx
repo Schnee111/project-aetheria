@@ -49,7 +49,7 @@ export function ChapterCompleteScreen() {
       const timer = setTimeout(() => {
         setShowCredits(false);
         setTimeout(() => setIsDone(true), 2000);
-      }, 100000);
+      }, 90000);
       return () => clearTimeout(timer);
     }
   }, [showCredits]);
@@ -60,16 +60,10 @@ export function ChapterCompleteScreen() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 2 }}
-      className="absolute inset-0 z-50 flex items-center justify-center bg-black overflow-hidden cursor-pointer"
+      className={`absolute inset-0 z-50 flex items-center justify-center bg-black overflow-hidden ${isDone ? 'cursor-pointer' : ''}`}
       onClick={() => {
-        // Skip logic
-        if (showTitle) {
-          setShowTitle(false);
-          setShowCredits(true);
-        } else if (showCredits) {
-          setShowCredits(false);
-          setIsDone(true);
-        } else if (isDone) {
+        // Cannot skip anymore! Must watch.
+        if (isDone) {
           setScreen('landing');
         }
       }}
@@ -110,7 +104,7 @@ export function ChapterCompleteScreen() {
             initial={{ y: '80vh' }}
             animate={{ y: '-150%' }}
             exit={{ opacity: 0, transition: { duration: 1 } }}
-            transition={{ duration: 100, ease: 'linear' }}
+            transition={{ duration: 90, ease: 'linear' }}
             className="absolute flex flex-col items-center w-full top-0"
           >
             {CREDITS.map((credit, idx) => (
@@ -140,6 +134,29 @@ export function ChapterCompleteScreen() {
              <p className="text-gray-600 text-sm tracking-widest animate-pulse">
                Click anywhere to return to main menu
              </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Skip/Back to Main Menu Button during Credits */}
+      <AnimatePresence>
+        {showCredits && !isDone && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute bottom-12 right-12 z-[60]"
+          >
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setScreen('landing');
+              }}
+              className="text-gray-500 hover:text-white transition-colors duration-300 text-sm tracking-[0.2em] uppercase cursor-pointer flex items-center gap-2 group"
+            >
+              <span>Main Menu</span>
+              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

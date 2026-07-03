@@ -126,16 +126,14 @@ export function CinematicMontageScreen() {
       <AnimatePresence>
         {!isComplete && frame && !frame.hideYear && (
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: frame.earthYear ? 20 : -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0 }}
-            className="absolute bottom-12 left-12 z-50"
+            className={`absolute bottom-12 z-50 ${frame.earthYear ? 'right-12' : 'left-12'}`}
           >
-            <div className="text-left">
+            <div className={frame.earthYear ? "text-right" : "text-left"}>
               {frame.earthYear ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
                   className="font-sans text-[#E11D48] text-5xl md:text-6xl tracking-[0.3em] font-semibold uppercase drop-shadow-[0_4px_15px_rgba(0,0,0,0.8)]"
                 >
                   EARTH: 2026
