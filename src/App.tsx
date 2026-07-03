@@ -36,7 +36,7 @@ function App() {
 
   const currentScene: Scene | undefined = chapter1.scenes.find(
     (s) => s.id === progress.currentSceneId,
-  );
+  ) || chapter1.scenes[0];
 
   // Prefetch assets for the next scene(s) in the background
   useScenePreloader(currentScene ?? null, chapter1, screen === 'visual_novel' || screen === 'story');

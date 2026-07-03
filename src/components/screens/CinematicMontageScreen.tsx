@@ -27,7 +27,7 @@ export function CinematicMontageScreen() {
     if (currentIndex >= MONTAGE_SEQUENCE.length) {
       const endTimer = setTimeout(() => {
         setProgress({ ...progress, currentSceneId: nextSceneId });
-        if (nextSceneId === 'CH1_END') {
+        if (nextSceneId === 'CHAPTER_END' || nextSceneId === 'CH1_END') {
           setScreen('chapter_complete');
         } else {
           setScreen('visual_novel');
