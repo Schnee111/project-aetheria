@@ -30,8 +30,8 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       id: "CH1_S01_D002",
       speaker: "narrator",
       expression: "neutral",
-      text: "Aku terlahir dari sepasang mekanik Magitech kelas bawah. Mereka bukan bangsawan, apalagi pahlawan. Hanya pekerja keras yang penuh kasih sayang.",
-      textEn: "I was born to a pair of low-class Magitech mechanics. They were no nobles, let alone heroes. Just loving, hardworking people.",
+      text: "Aku terlahir dari sepasang mekanik Magitech kelas menengah. Mereka bukan bangsawan, apalagi pahlawan. Hanya pekerja keras yang penuh kasih sayang.",
+      textEn: "I was born to a pair of mid-class Magitech mechanics. They were no nobles, let alone heroes. Just loving, hardworking people.",
       backgroundOverride: "ch1/cg_ch1_s02_parents_silhouette.webp",
     },
     {
@@ -39,7 +39,7 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       speaker: "narrator",
       expression: "neutral",
       text: "Alih-alih bermain dengan boneka, masa kecilku dihabiskan dengan membongkar pasang sirkuit sihir dan mencium aroma logam yang memanas.",
-      textEn: "Instead of playing with dolls, my childhood was spent dismantling magic circuits and breathing in the scent of heating metal.",
+      textEn: "Instead of playing with toys, my childhood was spent dismantling magic circuits and breathing in the scent of heating metal.",
       backgroundOverride: "ch1/bg_magitech_learning.webp",
     },
     {
@@ -69,8 +69,8 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
       id: "CH1_S01_D007",
       speaker: "aeterna",
       expression: "lazy",
-      text: "Hanya hari-hari tenang sebagai mekanik kelas bawah yang mencari koin untuk makan malam... Dan sejujurnya, aku sangat menyukai hidup seperti ini.",
-      textEn: "Just quiet days as a low-class mechanic scraping coins for dinner... And honestly, I really love this kind of life.",
+      text: "Hanya hari-hari tenang sebagai mekanik kelas menengah yang mencari koin untuk makan malam... Dan sejujurnya, aku sangat menyukai hidup seperti ini.",
+      textEn: "Just quiet days as a mid-class mechanic scraping coins for dinner... And honestly, I really love this kind of life.",
     },
     {
       id: "CH1_S01_D008",
