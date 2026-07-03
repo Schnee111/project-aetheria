@@ -132,7 +132,7 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
     },
     {
       id: "CH1_S01_D015",
-      speaker: "aeterna",
+      speaker: "narrator",
       expression: "neutral",
       text: "Aku selalu menyukai hujan. Suaranya selalu berhasil menenggelamkan deru bising mesin-mesin di kota Aetheria...",
       textEn: "I have always liked the rain. Its sound always manages to drown out the noisy roar of machines in Aetheria city...",
@@ -140,7 +140,7 @@ export const s01: Scene = // SCENE 1: AETHERIA (Magitech Workshop - Aeterna's Mo
     },
     {
       id: "CH1_S01_D016",
-      speaker: "aeterna",
+      speaker: "narrator",
       expression: "smile",
       text: "...Membawa keheningan dan kedamaian yang selalu kurindukan.",
       textEn: "...Bringing the silence and peace I always long for.",
