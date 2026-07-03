@@ -7,7 +7,7 @@ export const s05: Scene = // SCENE 5: CINEMATIC MONTAGE (Ending Sequence)
   title: "Flashback - The 10,000 Years",
   location: "The Flow of Time",
   mode: "cinematic_montage",
-  bgm: "/assets/audio/bgm/last_song-supercell-ending_theme.mp3",
+  bgm: "",
   background: "black",
   characters: [],
   dialogues: [],
