@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { useTypewriter } from '../../hooks/useTypewriter';
-import { useSfx } from '../../hooks';
+import { useSfx, useVoice } from '../../hooks';
 import { useSettingsStore } from '../../stores';
 import { useLocalization } from '../../hooks/useLocalization';
 import type { DialogueLine } from '../../types';
@@ -19,6 +19,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
   const localizedText = getDialogueText(line);
   const isInstant = line.speaker === 'system' || line.speaker === 'narrator';
   const { play: playSfx } = useSfx();
+  const { play: playVoice } = useVoice();
   const sfxVolume = useSettingsStore((s) => s.sfxVolume);
 
   // ── Auto-advance timer management ──
@@ -28,7 +29,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
 
   // Cancel pending auto-advance when line changes
   useEffect(() => {
-    if (line.autoAdvance && line.unskippable) {
+    if (line.autoAdvance && line.unskippable && (!line.voiceSrc || line.ignoreVoiceDuration)) {
       const delay = line.autoAdvanceDelay || 1500;
       autoTimerRef.current = setTimeout(() => {
         onTapRef.current();
@@ -61,10 +62,8 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
   // ── Audio ──
   const blip = useMemo(() => {
     let src = '/assets/audio/sfx/blip_mid.ogg';
-    if (line.speaker === 'lysthea') src = '/assets/audio/sfx/blip_high.ogg';
-    if (line.speaker === 'narrator' || line.speaker === 'system') src = '/assets/audio/sfx/blip_deep.ogg';
-    return new Howl({ src: [src], volume: sfxVolume * 0.7 });
-  }, [line.speaker, sfxVolume]);
+    return new Howl({ src: [src], volume: sfxVolume * 0.3 });
+  }, [sfxVolume]);
 
   useEffect(() => {
     if (!isComplete && displayedText.length > 0) {
@@ -81,6 +80,28 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
       return () => { sfx?.stop(); };
     }
   }, [line.id, line.audioSrc, playSfx]);
+
+  useEffect(() => {
+    let playTimer: ReturnType<typeof setTimeout>;
+    if (line.voiceSrc) {
+      const voiceSrc = line.voiceSrc;
+      playTimer = setTimeout(() => {
+        playVoice(voiceSrc, () => {
+          if (line.autoAdvance && !line.ignoreVoiceDuration) {
+            autoTimerRef.current = setTimeout(() => {
+              onTapRef.current();
+            }, line.postVoiceDelay ?? 1000);
+          }
+        });
+      }, 150); // Wait 150ms for fade-in transition (tuned for BGM sync)
+      
+      return () => {
+        clearTimeout(playTimer);
+        // DO NOT call stopVoice() here. It will cut off audio spanning multiple dialogues.
+        // useVoice.play() automatically stops the old voice when a new one is played.
+      };
+    }
+  }, [line.id, line.voiceSrc, line.autoAdvance, line.ignoreVoiceDuration, playVoice]);
 
   // ── Interaction ──
   const handleClick = useCallback(() => {

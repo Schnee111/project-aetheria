@@ -92,7 +92,9 @@ export function StoryScreen({
 
       {/* Dialog */}
       {currentLine && !isDialogComplete && (
-        <DialogBox line={currentLine} onTap={onTapDialog} />
+        <div className={currentLine.hideDialogBox ? "opacity-0 pointer-events-none" : ""}>
+          <DialogBox line={currentLine} onTap={onTapDialog} />
+        </div>
       )}
 
       {/* Choices */}

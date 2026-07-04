@@ -1,9 +1,10 @@
-import { useRef, useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Howl } from 'howler';
 import { useSettingsStore } from '../stores';
 
 let globalBgm: Howl | null = null;
 let currentBgmSrc: string | null = null;
+let currentBgmScale: number = 0.5;
 
 export function useBgm() {
   const bgmVolume = useSettingsStore((s) => s.bgmVolume);
@@ -16,7 +17,7 @@ export function useBgm() {
       const oldBgm = globalBgm;
       setTimeout(() => oldBgm.stop(), 500);
     }
-    
+
     currentBgmSrc = src;
     globalBgm = new Howl({
       src: [src],
@@ -24,7 +25,7 @@ export function useBgm() {
       volume: 0,
     });
     globalBgm.play();
-    globalBgm.fade(0, bgmVolume, 1000);
+    globalBgm.fade(0, bgmVolume * currentBgmScale, 1000);
   }, [bgmVolume]);
 
   const stop = useCallback(() => {
@@ -36,23 +37,43 @@ export function useBgm() {
       }, 500);
       globalBgm = null;
       currentBgmSrc = null;
+      currentBgmScale = 0.5;
     }
   }, []);
 
-  useEffect(() => {
+  const seek = useCallback((seconds: number) => {
     if (globalBgm) {
-      globalBgm.volume(bgmVolume);
+      globalBgm.seek(seconds);
+    }
+  }, []);
+
+  const setVolumeScale = useCallback((scale: number, fadeMs: number = 500) => {
+    currentBgmScale = scale;
+    if (globalBgm) {
+      const currentVol = globalBgm.volume() as number;
+      const targetVol = bgmVolume * scale;
+      if (fadeMs > 0) {
+        globalBgm.fade(currentVol, targetVol, fadeMs);
+      } else {
+        globalBgm.volume(targetVol);
+      }
     }
   }, [bgmVolume]);
 
-  return { play, stop };
+  useEffect(() => {
+    if (globalBgm) {
+      globalBgm.volume(bgmVolume * currentBgmScale);
+    }
+  }, [bgmVolume]);
+
+  return { play, stop, seek, setVolumeScale };
 }
 
 export function useSfx() {
   const sfxVolume = useSettingsStore((s) => s.sfxVolume);
 
   const play = useCallback((src: string) => {
-    const sfx = new Howl({ src: [src], volume: sfxVolume });
+    const sfx = new Howl({ src: [src], volume: sfxVolume * 0.5 });
     sfx.play();
     return sfx;
   }, [sfxVolume]);
@@ -60,25 +81,36 @@ export function useSfx() {
   return { play };
 }
 
-export function useVoice() {
-  const voiceRef = useRef<Howl | null>(null);
-  const sfxVolume = useSettingsStore((s) => s.sfxVolume); // voice tied to sfx volume or specific voice volume
+let globalVoice: Howl | null = null;
 
-  const play = useCallback((src: string) => {
-    if (voiceRef.current) {
-      voiceRef.current.stop();
+export function useVoice() {
+  const voiceVolume = useSettingsStore((s) => s.voiceVolume);
+  const voiceEnabled = useSettingsStore((s) => s.voiceEnabled);
+
+  const play = useCallback((src: string, onEnd?: () => void) => {
+    if (!voiceEnabled) {
+      if (onEnd) setTimeout(onEnd, 100);
+      return;
     }
-    voiceRef.current = new Howl({
+    if (globalVoice) {
+      const oldVoice = globalVoice;
+      oldVoice.fade(oldVoice.volume(), 0, 100);
+      setTimeout(() => oldVoice.unload(), 100);
+    }
+    globalVoice = new Howl({
       src: [src],
-      volume: sfxVolume,
+      volume: voiceVolume,
+      onend: onEnd,
     });
-    voiceRef.current.play();
-  }, [sfxVolume]);
+    globalVoice.play();
+  }, [voiceVolume, voiceEnabled]);
 
   const stop = useCallback(() => {
-    if (voiceRef.current) {
-      voiceRef.current.stop();
-      voiceRef.current = null;
+    if (globalVoice) {
+      const oldVoice = globalVoice;
+      oldVoice.fade(oldVoice.volume(), 0, 100);
+      setTimeout(() => oldVoice.unload(), 100);
+      globalVoice = null;
     }
   }, []);
 

@@ -1,16 +1,40 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '../../stores/gameStore';
+import { useBgm } from '../../hooks';
+import { useSettingsStore } from '../../stores/settingsStore';
 import { MontageRegistry } from '../../data/montages';
 import { chapter1 } from '../../data/chapter-1';
+import type { Scene } from '../../types';
 
 
 
-export function CinematicMontageScreen() {
+const VOICE_START_MS = 150;
+const DEFAULT_POST_VOICE_MS = 1000;
+
+function estimateLineDuration(line: { autoAdvanceDelay?: number; postVoiceDelay?: number; voiceSrc?: string }): number {
+  const delay = line.autoAdvanceDelay || 1500;
+  const postVoice = line.postVoiceDelay ?? DEFAULT_POST_VOICE_MS;
+  if (line.voiceSrc) {
+    return (VOICE_START_MS + delay + postVoice) / 1000;
+  }
+  return delay / 1000;
+}
+
+interface MontageScrubberProps {
+  scenes?: Scene[];
+  currentSceneId?: string;
+  onSceneJump?: (sceneId: string) => void;
+  bgmOffset?: number; // seconds elapsed before montage starts
+}
+
+export function CinematicMontageScreen({ scenes = [], currentSceneId, onSceneJump, bgmOffset = 0 }: MontageScrubberProps) {
   const { setScreen, progress, setProgress } = useGameStore();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentYear, setCurrentYear] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const targetYearRef = useRef(0);
+  const scrubberRef = useRef<HTMLDivElement>(null);
   
   const currentMontageId = progress.currentSceneId;
   const MONTAGE_SEQUENCE = MontageRegistry[currentMontageId] || [];
@@ -24,6 +48,7 @@ export function CinematicMontageScreen() {
   
   // Handle advancing frames
   useEffect(() => {
+    if (isPaused) return;
     if (currentIndex >= MONTAGE_SEQUENCE.length) {
       const endTimer = setTimeout(() => {
         setProgress({ ...progress, currentSceneId: nextSceneId });
@@ -32,7 +57,7 @@ export function CinematicMontageScreen() {
         } else {
           setScreen('visual_novel');
         }
-      }, 2000); // Wait 2s on black screen before transitioning
+      }, 1000); // Wait 1s on black screen before transitioning
       return () => clearTimeout(endTimer);
     }
     
@@ -45,7 +70,7 @@ export function CinematicMontageScreen() {
     }, durationMs);
     
     return () => clearTimeout(timer);
-  }, [currentIndex, setScreen, setProgress, progress]);
+  }, [currentIndex, setScreen, setProgress, progress, isPaused]);
 
   // Handle year counting animation
   useEffect(() => {
@@ -88,6 +113,81 @@ export function CinematicMontageScreen() {
 
   // Render logic
   const isComplete = currentIndex >= MONTAGE_SEQUENCE.length;
+  const totalFrames = MONTAGE_SEQUENCE.length;
+
+  // BGM seek on jump
+  const { seek: seekBgm, setVolumeScale } = useBgm();
+
+  // Apply montage scene BGM volume scale (smooth transition)
+  useEffect(() => {
+    const scale = currentSceneData?.bgmVolumeScale ?? 1.0;
+    setVolumeScale(scale, 3500); // 3.5s smooth fade into montage
+  }, [currentSceneData?.bgmVolumeScale, setVolumeScale]);
+
+  // Cumulative times for scrubber
+  const cumulativeTimes = useMemo(() => {
+    const times: number[] = [0];
+    for (let i = 1; i < MONTAGE_SEQUENCE.length; i++) {
+      const prev = MONTAGE_SEQUENCE[i - 1];
+      times.push(times[i - 1] + (prev ? prev.fadeIn + prev.hold : 0));
+    }
+    return times;
+  }, [MONTAGE_SEQUENCE]);
+
+  const lastFrame = MONTAGE_SEQUENCE[MONTAGE_SEQUENCE.length - 1];
+  const totalDuration = cumulativeTimes.length > 0
+    ? cumulativeTimes[cumulativeTimes.length - 1] + (lastFrame ? lastFrame.fadeIn + lastFrame.hold : 0)
+    : 0;
+
+  const handleFrameJump = useCallback((index: number) => {
+    if (index < 0 || index >= totalFrames) return;
+    setCurrentIndex(index);
+    setCurrentYear(0);
+    targetYearRef.current = 0;
+    // Seek BGM: offset from previous scenes + montage elapsed
+    const montageElapsed = cumulativeTimes[index] || 0;
+    seekBgm(bgmOffset + montageElapsed);
+  }, [totalFrames, cumulativeTimes, seekBgm, bgmOffset]);
+
+  const handleSceneJump = useCallback((sceneId: string) => {
+    onSceneJump?.(sceneId);
+    // Seek BGM to the start of the target scene
+    if (scenes.length > 0) {
+      const targetIdx = scenes.findIndex(s => s.id === sceneId);
+      let offset = 0;
+      for (let i = 0; i < targetIdx; i++) {
+        const scene = scenes[i];
+        if (scene) {
+          for (const line of scene.dialogues) {
+            if (line.voiceDuration) {
+              offset += 0.150 + line.voiceDuration + (line.postVoiceDelay ?? 1000) / 1000;
+            } else if (line.voiceSrc) {
+              offset += 0.150 + (line.autoAdvanceDelay || 1500) / 1000 + (line.postVoiceDelay ?? 1000) / 1000;
+            } else {
+              offset += (line.autoAdvanceDelay || 1500) / 1000;
+            }
+          }
+        }
+      }
+      seekBgm(offset);
+    }
+  }, [onSceneJump, scenes, seekBgm]);
+
+  const handleScrubberClick = useCallback((e: React.MouseEvent) => {
+    const track = scrubberRef.current;
+    if (!track) return;
+    const rect = track.getBoundingClientRect();
+    const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+    const idx = Math.round((x / rect.width) * (totalFrames - 1));
+    handleFrameJump(idx);
+    setIsPaused(true);
+  }, [totalFrames, handleFrameJump]);
+
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  };
 
   return (
     <div className="absolute inset-0 bg-black overflow-hidden pointer-events-none select-none">
@@ -149,8 +249,113 @@ export function CinematicMontageScreen() {
           </motion.div>
         )}
       </AnimatePresence>
-      
-      
+
+      {/* Montage Timeline Scrubber (hidden by default) */}
+      {useSettingsStore.getState().showTimeline && (
+        <div className="absolute bottom-0 left-0 right-0 z-50 pointer-events-auto">
+        {/* Info bar */}
+        <div className="flex items-center justify-between px-4 py-1 bg-black/70 backdrop-blur-sm border-t border-white/5">
+        <div className="flex items-center gap-3">
+          {/* Scene nav */}
+          {scenes.length > 0 && (
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => {
+                  const idx = scenes.findIndex(s => s.id === currentSceneId);
+                  if (idx > 0) handleSceneJump(scenes[idx - 1].id);
+                }}
+                className="text-[10px] text-gray-400 hover:text-white"
+              >
+                ◀
+              </button>
+              <span className="text-[10px] font-bold tracking-widest text-emerald-400 uppercase px-1">
+                {currentSceneId || '—'}
+              </span>
+              <button
+                onClick={() => {
+                  const idx = scenes.findIndex(s => s.id === currentSceneId);
+                  if (idx < scenes.length - 1) handleSceneJump(scenes[idx + 1].id);
+                }}
+                className="text-[10px] text-gray-400 hover:text-white"
+              >
+                ▶
+              </button>
+            </div>
+          )}
+
+          <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">
+            FRAME {currentIndex + 1}/{totalFrames}
+          </span>
+            <span className="text-[10px] font-mono text-cyan-400 tracking-wider">
+              {formatTime(bgmOffset + (cumulativeTimes[currentIndex] || 0))} / {formatTime(bgmOffset + totalDuration)}
+            </span>
+            {frame?.yearText !== undefined && !frame?.hideYear && (
+              <span className="text-[10px] font-bold text-amber-400 tracking-wider">
+                YEAR {String(currentYear).padStart(4, '0')}
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            {isPaused && (
+              <button
+                onClick={() => setIsPaused(false)}
+                className="text-[9px] font-bold text-green-400 tracking-wider uppercase hover:text-green-300"
+              >
+                ▶ RESUME
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Track */}
+        <div
+          ref={scrubberRef}
+          className="relative h-6 bg-black/80 backdrop-blur-sm cursor-pointer select-none"
+          onClick={handleScrubberClick}
+        >
+          {/* Frame markers */}
+          {MONTAGE_SEQUENCE.map((f, i) => {
+            const x = totalFrames > 1 ? (i / (totalFrames - 1)) * 100 : 0;
+            const isActive = i === currentIndex;
+            const isTruck = f.id === '33';
+
+            return (
+              <div
+                key={f.id}
+                className="absolute top-0 bottom-0 flex items-center"
+                style={{ left: `${x}%`, transform: 'translateX(-50%)' }}
+              >
+                <div
+                  className="rounded-full transition-all duration-75"
+                  style={{
+                    width: isActive ? 4 : isTruck ? 3 : 2,
+                    height: isActive ? '100%' : isTruck ? '80%' : '50%',
+                    backgroundColor: isActive ? '#FAFAFA' : isTruck ? '#EF4444' : '#6B7280',
+                    opacity: isActive ? 1 : 0.5,
+                    boxShadow: isActive ? '0 0 6px white' : isTruck ? '0 0 4px #EF4444' : 'none',
+                  }}
+                />
+              </div>
+            );
+          })}
+
+          {/* Progress */}
+          <div
+            className="absolute top-0 bottom-0 left-0 bg-white/5 pointer-events-none"
+            style={{ width: `${totalFrames > 1 ? (currentIndex / (totalFrames - 1)) * 100 : 0}%` }}
+          />
+
+          {/* Playhead */}
+          <div
+            className="absolute top-0 bottom-0 w-0.5 bg-white pointer-events-none"
+            style={{
+              left: `${totalFrames > 1 ? (currentIndex / (totalFrames - 1)) * 100 : 0}%`,
+              boxShadow: '0 0 8px rgba(255,255,255,0.5)',
+            }}
+          />
+        </div>
+      </div>
+      )}
 
       <style>{`
         .glitch-effect {
