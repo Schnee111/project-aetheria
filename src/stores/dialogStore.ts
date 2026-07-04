@@ -14,6 +14,7 @@ interface DialogState {
   advanceLine: () => DialogueLine | null;
   previousLine: () => DialogueLine | null;
   skipTypewriter: () => void;
+  goToLine: (index: number) => DialogueLine | null;
   reset: () => void;
 }
 
@@ -71,6 +72,19 @@ export const useDialogStore = create<DialogState>((set, get) => ({
   },
 
   skipTypewriter: () => set({ isTyping: false }),
+
+  goToLine: (index) => {
+    const { dialogQueue } = get();
+    if (index < 0 || index >= dialogQueue.length) return null;
+    const line = dialogQueue[index]!;
+    set({
+      currentIndex: index,
+      currentLine: line,
+      isTyping: true,
+      isComplete: false,
+    });
+    return line;
+  },
 
   reset: () =>
     set({

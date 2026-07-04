@@ -10,6 +10,7 @@ export function useDialog(lines: DialogueLine[], onSceneComplete?: () => void) {
     setDialogQueue,
     advanceLine,
     previousLine,
+    goToLine,
     reset,
   } = useDialogStore();
 
@@ -37,6 +38,7 @@ export function useDialog(lines: DialogueLine[], onSceneComplete?: () => void) {
     handleTap,
     advanceLine,
     previousLine,
+    goToLine,
     reset,
   };
 }

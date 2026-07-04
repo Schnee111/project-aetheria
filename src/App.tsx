@@ -8,11 +8,15 @@ import {
   ChapterCompleteScreen,
   CinematicMontageScreen,
 } from './components/screens';
+import { TimelineScrubber } from './components/visual-novel/TimelineScrubber';
 import { chapter1 } from './data/chapter-1';
 import { advanceScene } from './engines/storyEngine';
 import { loadGame, saveGame } from './engines/saveEngine';
 import { useGameStore } from './stores/gameStore';
+import { useDialogStore } from './stores/dialogStore';
 import { useDialog } from './hooks/useDialog';
+import { useBgm, useVoice } from './hooks';
+import { useSettingsStore } from './stores/settingsStore';
 import { useScenePreloader } from './hooks/useScenePreloader';
 import type { Screen, Scene } from './types';
 
@@ -34,6 +38,11 @@ function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
 
+  // Reset settings modal when screen changes
+  useEffect(() => {
+    setShowSettings(false);
+  }, [screen]);
+
   const currentScene: Scene | undefined = chapter1.scenes.find(
     (s) => s.id === progress.currentSceneId,
   ) || chapter1.scenes[0];
@@ -46,7 +55,10 @@ function App() {
     () => ((screen === 'story' || screen === 'visual_novel') ? currentScene?.dialogues ?? [] : []),
     [screen, currentScene]
   );
-  const { currentLine, isComplete, handleTap, reset: resetDialog, advanceLine, previousLine } = useDialog(dialogues);
+  const { currentLine, isComplete, handleTap, reset: resetDialog, advanceLine, previousLine, goToLine } = useDialog(dialogues);
+  const { stop: stopBgm } = useBgm();
+  const { stop: stopVoice } = useVoice();
+  const showTimeline = useSettingsStore((s) => s.showTimeline);
   
   // Scene mode navigation helper
   const navigateFromScene = useCallback(
@@ -79,6 +91,36 @@ function App() {
 
     return () => clearTimeout(timer);
   }, [isComplete, screen, currentScene, setProgress, navigateFromScene, setScreen]);
+
+  // Keyboard shortcuts for timeline scrubbing
+  useEffect(() => {
+    if (screen !== 'visual_novel' && screen !== 'story') return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const state = useDialogStore.getState();
+        const target = e.shiftKey ? Math.max(0, state.currentIndex - 5) : state.currentIndex - 1;
+        if (target >= 0) {
+          goToLine(target);
+        } else {
+          previousLine();
+        }
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const state = useDialogStore.getState();
+        const target = e.shiftKey
+          ? Math.min(state.dialogQueue.length - 1, state.currentIndex + 5)
+          : state.currentIndex + 1;
+        if (target < state.dialogQueue.length) {
+          goToLine(target);
+        } else {
+          advanceLine();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [screen, goToLine, advanceLine, previousLine]);
 
   // Immediately continue after selecting a choice
   const handleChoiceSelect = useCallback((choiceId: string) => {
@@ -150,8 +192,36 @@ function App() {
       <ChapterCompleteScreen />
     );
   } else if (screen === 'cinematic_montage') {
+    // Calculate BGM offset from all scenes before montage
+    const montageIdx = chapter1.scenes.findIndex(s => s.id === progress.currentSceneId);
+    let bgmOffset = 0;
+    for (let i = 0; i < montageIdx; i++) {
+      const scene = chapter1.scenes[i];
+      if (scene) {
+        for (const line of scene.dialogues) {
+          if (line.voiceDuration) {
+            bgmOffset += 0.150 + line.voiceDuration + (line.postVoiceDelay ?? 1000) / 1000;
+          } else if (line.voiceSrc) {
+            bgmOffset += 0.150 + (line.autoAdvanceDelay || 1500) / 1000 + (line.postVoiceDelay ?? 1000) / 1000;
+          } else {
+            bgmOffset += (line.autoAdvanceDelay || 1500) / 1000;
+          }
+        }
+      }
+    }
     activeScreenComponent = (
-      <CinematicMontageScreen />
+      <CinematicMontageScreen
+        scenes={chapter1.scenes}
+        currentSceneId={progress.currentSceneId}
+        onSceneJump={(sceneId) => {
+          setProgress({ ...progress, currentSceneId: sceneId });
+          const targetScene = chapter1.scenes.find(s => s.id === sceneId);
+          if (targetScene) {
+            setScreen(targetScene.mode === 'cinematic_montage' ? 'cinematic_montage' : 'visual_novel');
+          }
+        }}
+        bgmOffset={bgmOffset}
+      />
     );
   } else {
     activeScreenComponent = (
@@ -196,6 +266,25 @@ function App() {
             Next
           </button>
         </div>
+
+        {/* Timeline Scrubber (hidden by default, toggle in Settings) */}
+        {showTimeline && (
+          <TimelineScrubber
+            lines={dialogues}
+            onJump={(idx) => goToLine(idx)}
+            bgmStartIndex={dialogues.findIndex(l => l.bgmOverride) >= 0 ? dialogues.findIndex(l => l.bgmOverride) : 0}
+            scenes={chapter1.scenes}
+            currentSceneId={currentScene?.id}
+            onSceneJump={(sceneId) => {
+              resetDialog();
+              setProgress({ ...progress, currentSceneId: sceneId });
+              const targetScene = chapter1.scenes.find(s => s.id === sceneId);
+              if (targetScene) {
+                setScreen(targetScene.mode === 'cinematic_montage' ? 'cinematic_montage' : 'visual_novel');
+              }
+            }}
+          />
+        )}
       </>
     );
   }
@@ -214,7 +303,12 @@ function App() {
           {activeScreenComponent}
         </motion.div>
       </AnimatePresence>
-      <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} onGoHome={() => setScreen('landing')} />
+      <SettingsModal isOpen={showSettings} onClose={() => setShowSettings(false)} onGoHome={() => {
+        setShowSettings(false);
+        stopBgm();
+        stopVoice();
+        setScreen('landing');
+      }} />
     </div>
   );
 }
