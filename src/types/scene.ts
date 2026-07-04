@@ -8,13 +8,23 @@ export interface DialogueLine {
   expression: string;
   text: string;
   textEn?: string; // English translation (if omitted, falls back to `text`)
+  voiceTextEn?: string; // Optional spoken English override for TTS timing/performance.
+  voiceSpeaker?: string; // Optional TTS speaker override for cinematic narration.
   audioSrc?: string;
+  voiceSrc?: string;
   autoAdvance?: boolean;
   unskippable?: boolean;
+  /** Delay (in ms) to wait before auto-advancing (if autoAdvance is true) */
   autoAdvanceDelay?: number;
+  /** Delay (in ms) to wait AFTER the voice finishes before auto-advancing. Defaults to 800ms. */
+  postVoiceDelay?: number;
+  /** Actual voice file duration in seconds (for accurate timeline/BGM sync) */
+  voiceDuration?: number;
+  ignoreVoiceDuration?: boolean;
   backgroundOverride?: string;
   bgmOverride?: string;
   characterOverrides?: Record<string, string>;
+  hideDialogBox?: boolean;
 }
 
 export interface Choice {
@@ -39,8 +49,6 @@ export interface CharacterInScene {
   initialExpression: string;
 }
 
-
-
 export interface Scene {
   id: string;
   chapterId: string;
@@ -51,6 +59,8 @@ export interface Scene {
   mode: SceneMode;
   background: string;
   bgm?: string;
+  /** Volume scale for BGM (0-1). Default: 1.0. Set lower for voice scenes, higher for montage. */
+  bgmVolumeScale?: number;
   characters: CharacterInScene[];
   dialogues: DialogueLine[];
   choices?: Choice[];
