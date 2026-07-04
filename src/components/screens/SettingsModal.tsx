@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Type, Gauge, Home, Globe } from 'lucide-react';
+import { X, Volume2, Gauge, Home, Globe, Eye, EyeOff } from 'lucide-react';
 import { useSettingsStore, TEXT_SPEED_MS, type Language } from '../../stores/settingsStore';
 import { useLocalization } from '../../hooks/useLocalization';
 
@@ -9,14 +9,99 @@ interface SettingsModalProps {
   onGoHome: () => void;
 }
 
+function VolumeControls() {
+  const bgmVolume = useSettingsStore((s) => s.bgmVolume);
+  const sfxVolume = useSettingsStore((s) => s.sfxVolume);
+  const voiceVolume = useSettingsStore((s) => s.voiceVolume);
+  const setBgmVolume = useSettingsStore((s) => s.setBgmVolume);
+  const setSfxVolume = useSettingsStore((s) => s.setSfxVolume);
+  const setVoiceVolume = useSettingsStore((s) => s.setVoiceVolume);
+  const showTimeline = useSettingsStore((s) => s.showTimeline);
+  const setShowTimeline = useSettingsStore((s) => s.setShowTimeline);
+
+  const sliders = [
+    { label: 'BGM', value: bgmVolume, setter: setBgmVolume },
+    { label: 'SFX', value: sfxVolume, setter: setSfxVolume },
+    { label: 'Voice', value: voiceVolume, setter: setVoiceVolume },
+  ];
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-2 text-[10px] font-bold text-[#8D84B8] uppercase tracking-[0.2em]">
+        <Volume2 size={12} className="text-[#F5A400]" />
+        <span>Volume</span>
+      </div>
+      <div className="space-y-3">
+        {sliders.map(({ label, value, setter }) => (
+          <div key={label} className="flex items-center gap-3">
+            <span className="text-[10px] font-bold text-[#6B6190] uppercase tracking-widest w-10">{label}</span>
+            <div className="flex-1 relative h-5 flex items-center">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full h-[2px] bg-white/[0.06] rounded-full" />
+              </div>
+              <div className="absolute inset-0 flex items-center">
+                <div
+                  className="h-[2px] bg-[#F5A400] rounded-full transition-all duration-100"
+                  style={{ width: `${value * 100}%` }}
+                />
+              </div>
+              <input
+                type="range"
+                min={0}
+                max={1}
+                step={0.05}
+                value={value}
+                onChange={(e) => setter(parseFloat(e.target.value))}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              />
+              <div
+                className="absolute w-2.5 h-2.5 bg-white rounded-full shadow-[0_0_8px_rgba(245,164,0,0.4)] pointer-events-none transition-all duration-100"
+                style={{ left: `calc(${value * 100}% - 5px)` }}
+              />
+            </div>
+            <span className="text-[9px] font-mono text-[#6B6190] w-7 text-right">
+              {Math.round(value * 100)}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TimelineToggle() {
+  const showTimeline = useSettingsStore((s) => s.showTimeline);
+  const setShowTimeline = useSettingsStore((s) => s.setShowTimeline);
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center gap-2 text-[10px] font-bold text-[#8D84B8] uppercase tracking-[0.2em]">
+        <Eye size={12} className="text-[#F5A400]" />
+        <span>Debug</span>
+      </div>
+      <button
+        onClick={() => setShowTimeline(!showTimeline)}
+        className={`w-full py-2.5 px-4 text-[10px] font-bold tracking-[0.15em] uppercase transition-all duration-200 rounded flex items-center justify-center gap-2 ${
+          showTimeline
+            ? 'bg-[#F5A400] text-[#08070D] shadow-[0_0_12px_rgba(245,164,0,0.25)]'
+            : 'bg-white/[0.04] text-[#6B6190] hover:text-[#C8BDF0] hover:bg-white/[0.06] border border-white/[0.06]'
+        }`}
+      >
+        {showTimeline ? <Eye size={12} /> : <EyeOff size={12} />}
+        Timeline Scrubber {showTimeline ? 'ON' : 'OFF'}
+      </button>
+    </div>
+  );
+}
+
 const textSpeedLabels: Record<Language, Record<string, string>> = {
   en: { slow: 'Slow', normal: 'Normal', fast: 'Fast', instant: 'Instant' },
   id: { slow: 'Lambat', normal: 'Normal', fast: 'Cepat', instant: 'Instan' },
 };
 
 const languageLabels: { value: Language; label: string }[] = [
-  { value: 'en', label: 'English' },
-  { value: 'id', label: 'Indonesia' },
+  { value: 'en', label: 'EN' },
+  { value: 'id', label: 'ID' },
 ];
 
 export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps) {
@@ -31,7 +116,7 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
         <>
           {/* Backdrop */}
           <motion.div
-            className="absolute inset-0 z-50 bg-black/80 backdrop-blur-sm"
+            className="absolute inset-0 z-50 bg-[#06050A]/90 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -40,46 +125,48 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
 
           {/* Modal */}
           <motion.div
-            className="absolute inset-0 z-50 flex items-center justify-center p-4 font-body"
+            className="absolute inset-0 z-50 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="relative w-full max-w-sm bg-navy-800 border border-navy-600 rounded-2xl shadow-2xl overflow-hidden"
-              initial={{ scale: 0.9, y: 20 }}
+              className="relative w-full max-w-[320px] bg-[#0A0910]/95 backdrop-blur-xl border border-white/[0.06] rounded-lg overflow-hidden"
+              initial={{ scale: 0.95, y: 10 }}
               animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              exit={{ scale: 0.95, y: 10 }}
+              transition={{ type: 'spring', damping: 30, stiffness: 400 }}
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-navy-700 bg-navy-900/50">
-                <h3 className="font-heading text-lg font-bold text-navy-100">{t('settings.title')}</h3>
+              <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.04]">
+                <h3 className="text-[11px] font-bold text-[#C8BDF0] tracking-[0.3em] uppercase">
+                  {t('settings.title')}
+                </h3>
                 <button
                   onClick={onClose}
-                  className="p-1.5 rounded-lg hover:bg-navy-700 text-navy-400 hover:text-navy-100 transition-colors"
+                  className="p-1 text-[#6B6190] hover:text-white transition-colors"
                 >
-                  <X size={18} />
+                  <X size={14} />
                 </button>
               </div>
 
               {/* Body */}
-              <div className="p-5 space-y-6">
+              <div className="px-5 py-4 space-y-5">
                 {/* Language */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-navy-300 uppercase tracking-wider">
-                    <Globe size={16} className="text-game-accent" />
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2 text-[10px] font-bold text-[#8D84B8] uppercase tracking-[0.2em]">
+                    <Globe size={12} className="text-[#F5A400]" />
                     <span>{t('settings.language')}</span>
                   </div>
-                  <div className="flex gap-2 bg-navy-900/50 p-1 rounded-xl border border-navy-700">
+                  <div className="flex gap-1.5">
                     {languageLabels.map((lang) => (
                       <button
                         key={lang.value}
                         onClick={() => setLanguage(lang.value)}
-                        className={`flex-1 py-2.5 px-2 rounded-lg text-xs font-bold transition-all duration-300 uppercase tracking-wider ${
+                        className={`flex-1 py-2 px-3 text-[10px] font-bold tracking-[0.15em] uppercase transition-all duration-200 rounded ${
                           language === lang.value
-                            ? 'bg-game-accent text-white shadow-lg shadow-game-accent/20'
-                            : 'bg-transparent text-navy-500 hover:text-navy-300 hover:bg-navy-700/50'
+                            ? 'bg-[#F5A400] text-[#08070D] shadow-[0_0_12px_rgba(245,164,0,0.25)]'
+                            : 'bg-white/[0.04] text-[#6B6190] hover:text-[#C8BDF0] hover:bg-white/[0.06] border border-white/[0.06]'
                         }`}
                       >
                         {lang.label}
@@ -88,21 +175,24 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
                   </div>
                 </div>
 
+                {/* Separator */}
+                <div className="h-px bg-white/[0.04]" />
+
                 {/* Text Speed */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-navy-300 uppercase tracking-wider">
-                    <Gauge size={16} className="text-game-accent" />
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-2 text-[10px] font-bold text-[#8D84B8] uppercase tracking-[0.2em]">
+                    <Gauge size={12} className="text-[#F5A400]" />
                     <span>{t('settings.textSpeed')}</span>
                   </div>
-                  <div className="flex gap-2 bg-navy-900/50 p-1 rounded-xl border border-navy-700">
+                  <div className="flex gap-1.5">
                     {speeds.map((speed) => (
                       <button
                         key={speed}
                         onClick={() => setTextSpeed(speed)}
-                        className={`flex-1 py-2.5 px-2 rounded-lg text-xs font-bold transition-all duration-300 uppercase tracking-wider ${
+                        className={`flex-1 py-2 px-1.5 text-[9px] font-bold tracking-[0.1em] uppercase transition-all duration-200 rounded ${
                           textSpeed === speed
-                            ? 'bg-game-accent text-white shadow-lg shadow-game-accent/20'
-                            : 'bg-transparent text-navy-500 hover:text-navy-300 hover:bg-navy-700/50'
+                            ? 'bg-[#F5A400] text-[#08070D] shadow-[0_0_12px_rgba(245,164,0,0.25)]'
+                            : 'bg-white/[0.04] text-[#6B6190] hover:text-[#C8BDF0] hover:bg-white/[0.06] border border-white/[0.06]'
                         }`}
                       >
                         {textSpeedLabels[language][speed]}
@@ -111,20 +201,26 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
                   </div>
                 </div>
 
-                {/* Info */}
-                <div className="flex items-start gap-3 p-4 bg-navy-900/50 border border-navy-700 rounded-xl text-xs text-navy-400 leading-relaxed font-medium">
-                  <Type size={14} className="mt-0.5 flex-shrink-0 text-navy-500" />
-                  <span>{t('settings.info')}</span>
-                </div>
+                {/* Separator */}
+                <div className="h-px bg-white/[0.04]" />
+
+                {/* Volume */}
+                <VolumeControls />
+
+                {/* Separator */}
+                <div className="h-px bg-white/[0.04]" />
+
+                {/* Debug */}
+                <TimelineToggle />
               </div>
 
               {/* Footer */}
-              <div className="p-4 border-t border-navy-700 bg-navy-900/50">
+              <div className="px-5 py-3 border-t border-white/[0.04]">
                 <button
                   onClick={onGoHome}
-                  className="w-full py-3.5 px-4 rounded-xl bg-navy-700 hover:bg-game-contradiction hover:text-white border border-navy-600 hover:border-game-contradiction/50 text-navy-300 text-sm font-bold tracking-wide uppercase transition-all flex items-center justify-center gap-2"
+                  className="w-full py-2.5 px-4 text-[10px] font-bold tracking-[0.2em] uppercase text-[#6B6190] hover:text-[#C8BDF0] bg-white/[0.03] hover:bg-white/[0.05] border border-white/[0.06] hover:border-white/[0.1] rounded transition-all duration-200 flex items-center justify-center gap-2"
                 >
-                  <Home size={16} />
+                  <Home size={12} />
                   {t('settings.backToMenu')}
                 </button>
               </div>

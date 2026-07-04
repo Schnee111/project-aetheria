@@ -11,6 +11,7 @@ interface SettingsState {
   voiceVolume: number;
   autoPlay: boolean;
   language: Language;
+  showTimeline: boolean;
 
   setTextSpeed: (speed: TextSpeed) => void;
   setBgmVolume: (volume: number) => void;
@@ -19,6 +20,7 @@ interface SettingsState {
   setVoiceVolume: (volume: number) => void;
   setAutoPlay: (autoPlay: boolean) => void;
   setLanguage: (language: Language) => void;
+  setShowTimeline: (show: boolean) => void;
 }
 
 export const TEXT_SPEED_MS: Record<TextSpeed, number> = {
@@ -29,12 +31,13 @@ export const TEXT_SPEED_MS: Record<TextSpeed, number> = {
 
 export const useSettingsStore = create<SettingsState>()((set) => ({
   textSpeed: 'normal',
-  bgmVolume: 0.7,
-  sfxVolume: 0.8,
+  bgmVolume: 0.4,
+  sfxVolume: 0.6,
   voiceEnabled: true,
-  voiceVolume: 0.8,
+  voiceVolume: 1.0,
   autoPlay: false,
   language: 'en',
+  showTimeline: false,
 
   setTextSpeed: (textSpeed) => set({ textSpeed }),
   setBgmVolume: (bgmVolume) => set({ bgmVolume: Math.max(0, Math.min(1, bgmVolume)) }),
@@ -43,4 +46,5 @@ export const useSettingsStore = create<SettingsState>()((set) => ({
   setVoiceVolume: (voiceVolume) => set({ voiceVolume: Math.max(0, Math.min(1, voiceVolume)) }),
   setAutoPlay: (autoPlay) => set({ autoPlay }),
   setLanguage: (language) => set({ language }),
+  setShowTimeline: (showTimeline) => set({ showTimeline }),
 }));
