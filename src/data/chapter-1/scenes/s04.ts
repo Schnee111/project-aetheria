@@ -7,7 +7,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
   title: "Flashback - The Genesis",
   location: "The Void",
   mode: "visual_novel",
-  bgmVolumeScale: 0.5,
+  bgmVolumeScale: 0.4,
   bgm: "",
   background: "ch1/bg_black",
   characters: [
@@ -156,7 +156,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       autoAdvanceDelay: 6300,
       voiceSrc: "/assets/audio/voice/chapter-1/scene-04/CH1_S04_D007.mp3",
       voiceDuration: 7.58,
-      postVoiceDelay: 400,
+      postVoiceDelay: 500,
     },
     {
       id: "CH1_S04_D008_A",
@@ -219,7 +219,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       autoAdvanceDelay: 5000,
       voiceSrc: "/assets/audio/voice/chapter-1/scene-04/CH1_S04_D011_A.mp3",
       voiceDuration: 5.02,
-      postVoiceDelay: 500,
+      postVoiceDelay: 600,
     },
     {
       id: "CH1_S04_D011_B",

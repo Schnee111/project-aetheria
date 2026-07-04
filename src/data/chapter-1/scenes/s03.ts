@@ -9,7 +9,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
   location: "Aeterna's Magitech Fix",
   locationEn: "Aeterna's Magitech Fix",
     mode: "visual_novel",
-    bgmVolumeScale: 0.5,
+    bgmVolumeScale: 0.4,
   background: "ch1/bg_mechanic_shop_rain.webp",
   characters: [
     {

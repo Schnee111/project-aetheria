@@ -9,7 +9,7 @@ export function Background({ src, alt = 'Background' }: BackgroundProps) {
   const isVideo = src.endsWith('.mp4') || src.endsWith('.webm');
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       <motion.div
         key={src}
         className="absolute inset-0 z-0"

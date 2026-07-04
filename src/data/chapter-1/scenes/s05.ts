@@ -1,4 +1,4 @@
-import type { Scene } from '../../../types';
+﻿import type { Scene } from '../../../types';
 
 export const s05: Scene = // SCENE 5: CINEMATIC MONTAGE (Ending Sequence)
 {
@@ -6,10 +6,12 @@ export const s05: Scene = // SCENE 5: CINEMATIC MONTAGE (Ending Sequence)
   chapterId: "1",
   title: "Flashback - The 10,000 Years",
   location: "The Flow of Time",
-  mode: "cinematic_montage",
+    mode: "cinematic_montage",
+    bgmVolumeScale: 0.8,
   bgm: "",
   background: "ch1/bg_black",
   characters: [],
   dialogues: [],
   nextSceneId: "CHAPTER_END",
 };
+
