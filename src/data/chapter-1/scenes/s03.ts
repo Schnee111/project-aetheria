@@ -8,7 +8,8 @@ export const s03: Scene = // SCENE 3: THE REVELATION
   titleEn: "The Revelation",
   location: "Aeterna's Magitech Fix",
   locationEn: "Aeterna's Magitech Fix",
-  mode: "visual_novel",
+    mode: "visual_novel",
+    bgmVolumeScale: 0.5,
   background: "ch1/bg_mechanic_shop_rain.webp",
   characters: [
     {
@@ -27,14 +28,16 @@ export const s03: Scene = // SCENE 3: THE REVELATION
     {
       id: "CH1_S03_D001",
       speaker: "lysthea",
-      expression: "shocked",
+      expression: "cool",
       text: '"S-Sepuluh silver coins...? Tunggu, bukan itu masalahnya! Bagaimana kau bisa melakukan..."',
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 7400,
+      
       textEn:
         '"T-Ten silver coins...? Wait, that\'s not the point! How did you do..."',
-      characterOverrides: { aeterna: "neutral", lysthea: "shocked" },
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D001.mp3",
+      characterOverrides: { aeterna: "neutral", lysthea: "cool" },
     },
     {
       id: "CH1_S03_D002",
@@ -46,24 +49,26 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvanceDelay: 8400,
       textEn:
         "Before she could finish her sentence, an incredibly dense, cold aura enveloped my workshop.",
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D002.mp3",
       characterOverrides: { aeterna: "neutral", lysthea: "shocked" },
     },
     {
       id: "CH1_S03_D003",
       speaker: "system",
       expression: "neutral",
-      text: "*CRASH!!!* Kaca jendela khusus bengkel pecah berkeping-keping.",
+      text: "",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5700,
-      textEn:
-        "*CRASH!!!* The workshop's reinforced window shattered into pieces.",
+      autoAdvanceDelay: 3700,
+      audioSrc: "/assets/audio/sfx/broken-glass.mp3",
+      textEn: "",
       backgroundOverride: "ch1/cg_ch1_s04_assassin_entry.webp",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
         abyssal_assassin: "none",
       },
+      hideDialogBox: true,
     },
     {
       id: "CH1_S03_D004",
@@ -74,6 +79,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       unskippable: true,
       autoAdvanceDelay: 5000,
       textEn: '"Found you... That relic... perish with it!"',
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D004.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_assassin_entry.webp",
       characterOverrides: {
         aeterna: "none",
@@ -91,6 +97,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvanceDelay: 9100,
       textEn:
         "A black shadow dashed through the shattered glass, swinging a dagger coated in a deadly curse toward us.",
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D005.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_assassin_entry.webp",
       characterOverrides: {
         aeterna: "none",
@@ -106,9 +113,13 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 6300,
+      audioSrc: "/assets/audio/sfx/magic-spell.mp3",
       textEn:
-        '"An Abyssal Assassin?! Look out! Back away, Engineer! I\'ll handle this!"',
-      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.png",
+        '"An assassin from the Abyss?! Look out! Back away, Engineer! I\'ll handle this!"',
+      voiceTextEn:
+        '"An assassin from the Abyss. Look out. Step back, Engineer. I will handle this."',
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D006.mp3",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.webp",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
@@ -123,9 +134,11 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 9900,
+      audioSrc: "/assets/audio/sfx/resonance-energy.mp3",
       textEn:
         "The Grand Saintess jumped in front of me, releasing a wave of incredibly pure protective magic to block the demon's attack.",
-      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.png",
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D007.mp3",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.webp",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
@@ -136,13 +149,32 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       id: "CH1_S03_D008",
       speaker: "narrator",
       expression: "neutral",
-      text: "Saat energi sihirnya menyentuhku... sesuatu di dalam jiwaku beresonansi keras. Pancaran sihir ini... rasanya terlalu familier. Seakan ia dirangkai dari... tanganku sendiri.",
+      text: "Saat energi sihirnya menyentuhku... sesuatu di dalam jiwaku beresonansi keras.",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 12300,
+      autoAdvanceDelay: 6800,
+      ignoreVoiceDuration: true,
       textEn:
-        "As her magical energy touched me... something within my soul resonated violently. This magical signature... it felt too familiar. As if it was woven by... my own hands.",
-      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.png",
+        "As her magical energy touched me... something within my soul resonated violently.",
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D008.mp3",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.webp",
+      characterOverrides: {
+        aeterna: "none",
+        lysthea: "none",
+        abyssal_assassin: "none",
+      },
+    },
+    {
+      id: "CH1_S03_D008_B",
+      speaker: "narrator",
+      expression: "neutral",
+      text: "Pancaran sihir ini... rasanya terlalu familier. Seakan ia dirangkai dari... tanganku sendiri.",
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 10000,
+      textEn:
+        "This magical signature... it felt too familiar. As if it was woven by... my own hands.",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_protect.webp",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
@@ -153,13 +185,33 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       id: "CH1_S03_D009",
       speaker: "narrator",
       expression: "neutral",
-      text: "Resonansi energi Lysthea bertindak layaknya kunci dekripsi. Untaian kode emas—memori dari sepuluh ribu tahun yang lalu—mengalir deras menghancurkan segel di dalam ingatanku.",
+      text: "Resonansi energi Lysthea bertindak layaknya kunci dekripsi.",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 12400,
+      autoAdvanceDelay: 4200,
+      ignoreVoiceDuration: true,
+      audioSrc: "/assets/audio/sfx/data-processing.mp3",
       textEn:
-        "Lysthea's energy resonance acted like a decryption key. Strands of golden code—memories from ten thousand years ago—flooded in, shattering the seal within my mind.",
-      backgroundOverride: "ch1/cg_ch1_s04_memories_awaken.png",
+        "Lysthea's energy resonance acted like a decryption key.",
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D009.mp3",
+      backgroundOverride: "ch1/cg_ch1_s04_memories_awaken.webp",
+      characterOverrides: {
+        aeterna: "none",
+        lysthea: "none",
+        abyssal_assassin: "none",
+      },
+    },
+    {
+      id: "CH1_S03_D009_B",
+      speaker: "narrator",
+      expression: "neutral",
+      text: "Untaian kode emas—memori dari sepuluh ribu tahun yang lalu—mengalir deras menghancurkan segel di dalam ingatanku.",
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 11000,
+      textEn:
+        "Strands of golden code—memories from ten thousand years ago—flooded in, shattering the seal within my mind.",
+      backgroundOverride: "ch1/cg_ch1_s04_memories_awaken.webp",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
@@ -176,7 +228,8 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvanceDelay: 9400,
       textEn:
         "A pillar of magical light erupted from this mortal body, sweeping away the demon's curse in an instant. I... remembered everything.",
-      backgroundOverride: "ch1/cg_ch1_s04_unsealing.png",
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D010.mp3",
+      backgroundOverride: "ch1/cg_ch1_s04_unsealing.webp",
       characterOverrides: {
         aeterna: "none",
         lysthea: "none",
@@ -193,6 +246,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvanceDelay: 10100,
       textEn:
         'With a flat gaze now filled with absolute authority, I stepped past Lysthea and raised my hand. "Root Access: Override."',
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D011.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_authority.webp",
       characterOverrides: {
         abyssal_assassin: "none",
@@ -207,9 +261,13 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "T-Tekanan ini... Otoritas penciptaan?! Tidak mungkin... Kau—",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5600,
+      autoAdvanceDelay: 8400,
+      audioSrc: "/assets/audio/sfx/finger-snap.mp3",
       textEn:
-        "T-This pressure... The authority of creation?! Impossible... You—",
+        "Creation authority...? Impossible... you...",
+      voiceTextEn:
+        "Creation authority...? Impossible... you...",
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D012.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_dust_snap.webp",
       characterOverrides: {
         abyssal_assassin: "none",
@@ -225,8 +283,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 11400,
+      audioSrc: "/assets/audio/sfx/disintegrate.mp3",
       textEn:
         "A snap of my fingers shattered the silence. The demon's body instantly unraveled into red dust. Shocked by the surge of absolute energy, Lysthea fell to her knees.",
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D013.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_dust_snap.webp",
       characterOverrides: {
         abyssal_assassin: "none",
@@ -241,13 +301,17 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: '"Hak Akses Mutlak ini... Otoritas dari inti penciptaan... Anda... adalah The Weaver of Fate? Sang Arsitek Utama sepuluh ribu tahun yang lalu?"',
       textEn:
         '"This Absolute Access... Authority from the core of creation... You... are the Weaver of Fate? The Grand Architect from ten thousand years ago?"',
+      voiceTextEn:
+        '"This authority... You are the Weaver of Fate?"',
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D014.mp3",
+      voiceDuration: 8.38,
+      postVoiceDelay: 400,
       backgroundOverride: "ch1/cg_ch1_s04_lys_crying.webp",
       characterOverrides: {
         abyssal_assassin: "leave",
         aeterna: "none",
         lysthea: "none",
       },
-      bgmOverride: "/assets/audio/bgm/last_song-supercell-ending_theme.mp3",
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 8500,
@@ -258,13 +322,17 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       expression: "neutral",
       text: "Aku menghela napas, menatap wanita di depanku. Pancaran energinya yang murni dan terstruktur... tidak salah lagi.",
       textEn:
-        "I sighed, gazing at the woman before me. That pure, structured energy signature... unmistakable.",
+        "I sighed, gazing at the woman before me. That pure, structured energy signature...",
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D015.mp3",
+      voiceDuration: 6.14,
+            postVoiceDelay: 500,
       backgroundOverride: "ch1/cg_ch1_s04_lys_crying.webp",
       characterOverrides: {
         abyssal_assassin: "leave",
         aeterna: "none",
         lysthea: "none",
       },
+      bgmOverride: "/assets/audio/bgm/last_song-supercell-ending_theme.mp3",
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 7200,
@@ -276,6 +344,11 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: '"Bangunlah. Lantainya kotor dan penuh pecahan kaca. Lama tidak berjumpa... Goddess of Order."',
       textEn:
         '"Stand up. The floor is filthy — covered in glass shards. It\'s been a while... Goddess of Order."',
+      voiceTextEn:
+        '"Stand up. It\'s been a while... Goddess of Order."',
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D016.mp3",
+      voiceDuration: 4.7,
+            postVoiceDelay: 600,
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_smile.webp",
       characterOverrides: {
         abyssal_assassin: "leave",
@@ -297,6 +370,9 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 8500,
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D018.mp3",
+      voiceDuration: 8.54,
+            postVoiceDelay: 500,
     },
     {
       id: "CH1_S03_D019",
@@ -309,6 +385,9 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 3800,
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D019.mp3",
+      voiceDuration: 2.14,
+            postVoiceDelay: 500,
     },
     {
       id: "CH1_S03_D019_B",
@@ -321,6 +400,9 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 7000,
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D019_B.mp3",
+      voiceDuration: 7.9,
+            postVoiceDelay: 600,
     },
     {
       id: "CH1_S03_D020",
@@ -328,11 +410,15 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       expression: "neutral",
       text: "Mendengar itu, sang Grand Saintess menundukkan kepalanya, menahan isak tangis kelegaan di balik sikap elegannya.",
       textEn: "Hearing that, the Grand Saintess bowed her head, holding back tears of relief behind her elegant demeanor.",
+      voiceTextEn: "Hearing that, the Grand Saintess bowed her head. She held back tears of relief behind her elegant demeanor.",
       backgroundOverride: "ch1/cg_ch1_s04_lys_crying.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 7200,
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D020.mp3",
+      voiceDuration: 6.41,
+            postVoiceDelay: 600,
     },
     {
       id: "CH1_S03_D021",
@@ -341,11 +427,16 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: '"Selama sepuluh ribu tahun, saya terus menjalankan Sistem ini. Namun akhir-akhir ini... Abyss menemukan celah keamanan pada Origin Rune."',
       textEn:
         '"For ten thousand years, I have kept this System running. But recently... the Abyss has found a vulnerability in the Origin Rune."',
+      voiceTextEn:
+        '"For ten thousand years, I kept this System running. Recently, the Abyss found a flaw."',
       backgroundOverride: "ch1/cg_ch1_s04_lys_crying.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 8200,
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D021.mp3",
+      voiceDuration: 6.62,
+            postVoiceDelay: 500,
     },
     {
       id: "CH1_S03_D022",
@@ -354,11 +445,16 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: '"Hah... sudah kuduga. Tidak ada sistem yang bisa berjalan selamanya tanpa maintenance patch. Padahal ingatanku baru saja kembali, dan kekuatan asalku belum pulih sepenuhnya."',
       textEn:
         '"Hah... I figured. No system can run forever without a maintenance patch. And here my memories just returned, and my original power hasn\'t even fully recovered yet."',
+      voiceTextEn:
+        '"I figured. No system can run forever without a maintenance patch. And here my memories just returned, and my original power hasn\'t even fully recovered yet."',
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_smile.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 9800,
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D022.mp3",
+      voiceDuration: 12.38,
+            postVoiceDelay: 700,
     },
     {
       id: "CH1_S03_D023",
@@ -366,23 +462,14 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       expression: "smile",
       text: '"Anda sama sekali tidak berubah, Sang Arsitek."',
       textEn: '"You haven\'t changed at all, Grand Architect."',
-      backgroundOverride: "ch1/cg_ch1_s04_lys_smile.png",
+      backgroundOverride: "ch1/cg_ch1_s04_lys_smile.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 6000,
-    },
-    {
-      id: "CH1_S03_D024",
-      speaker: "narrator",
-      expression: "neutral",
-      text: "Cahaya mentari sore menembus masuk, menyingkirkan awan badai dan hawa iblis yang menyelimuti bengkel ini.",
-      textEn: "The afternoon sunlight pierced through, clearing away the storm clouds and demonic aura that had blanketed the workshop.",
-      backgroundOverride: "ch1/cg_ch1_s04_sunlight_window.png",
-      characterOverrides: { aeterna: "none", lysthea: "none" },
-      autoAdvance: true,
-      unskippable: true,
-      autoAdvanceDelay: 6500,
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D023.mp3",
+      voiceDuration: 4.37,
+            postVoiceDelay: 1600,
     },
     {
       id: "CH1_S03_D025",
@@ -391,11 +478,28 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "Hembusan angin hangat yang membelai wajah kami membawaku kembali ke masa-masa awal penciptaan. Ke era di mana Aetheria bahkan belum memiliki daratan maupun langit...",
       textEn:
         "The warm breeze that caressed our faces took me back to the early days of creation. To the era when Aetheria didn't even have land or sky...",
-      backgroundOverride: "ch1/cg_ch1_s04_aeterna_nostalgic.png",
+      voiceTextEn:
+        "The warm breeze took me back to the early days of creation, before land or sky.",
+      backgroundOverride: "ch1/cg_ch1_s04_aeterna_nostalgic.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 7000,
+      voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D025.mp3",
+      voiceDuration: 6.46,
+            postVoiceDelay: 700,
+    },
+    {
+      id: "CH1_S03_D026",
+      speaker: "system",
+      expression: "neutral",
+      text: "",
+      textEn: "",
+      backgroundOverride: "ch1/bg_black",
+      hideDialogBox: true,
+      autoAdvance: true,
+      unskippable: true,
+      autoAdvanceDelay: 1800,
     },
   ],
   nextSceneId: "CH1_S04",
