@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '../../stores/gameStore';
+import { useBgm, useVoice } from '../../hooks';
 
 const CREDITS = [
   // ── Cast ──
@@ -56,6 +57,14 @@ const CREDITS = [
 export function ChapterCompleteScreen() {
   const setScreen = useGameStore((state) => state.setScreen);
   const [phase, setPhase] = useState<'title' | 'credits' | 'done'>('title');
+  const { stop: stopBgm } = useBgm();
+  const { stop: stopVoice } = useVoice();
+
+  const goToMenu = () => {
+    stopBgm();
+    stopVoice();
+    setScreen('landing');
+  };
 
   useEffect(() => {
     // Title → credits → done
@@ -77,7 +86,7 @@ export function ChapterCompleteScreen() {
       transition={{ duration: 2 }}
       className={`absolute inset-0 z-50 bg-black overflow-hidden ${phase === 'done' ? 'cursor-pointer' : ''}`}
       onClick={() => {
-        if (phase === 'done') setScreen('landing');
+        if (phase === 'done') goToMenu();
       }}
     >
       {/* ── Title Card ── */}
@@ -199,7 +208,7 @@ export function ChapterCompleteScreen() {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                setScreen('landing');
+                goToMenu();
               }}
               className="text-gray-500 hover:text-white transition-colors duration-300 text-sm tracking-[0.2em] uppercase cursor-pointer flex items-center gap-2 group"
             >
