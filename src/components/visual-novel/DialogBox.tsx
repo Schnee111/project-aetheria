@@ -148,7 +148,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="absolute inset-0 flex items-end justify-center pb-[6vh] md:pb-[12vh] cursor-pointer bg-gradient-to-t from-black/50 via-black/10 to-transparent"
+            className="absolute inset-0 flex items-end justify-center pb-[4vh] md:pb-[12vh] cursor-pointer bg-gradient-to-t from-black/50 via-black/10 to-transparent"
             onClick={handleClick}
           >
             <motion.div
@@ -156,7 +156,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="max-w-4xl px-3 md:px-8 text-center"
+              className="max-w-4xl px-2 md:px-8 text-center"
             >
               <p
                 className="text-base md:text-xl lg:text-3xl leading-relaxed font-body font-medium text-white tracking-wide"
@@ -170,7 +170,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               <AnimatePresence>
                 {isComplete && !line.unskippable && !line.autoAdvance && (
                   <motion.div
-                    className="mt-12 text-xs font-bold text-gray-300 tracking-[0.3em] uppercase drop-shadow-md"
+                    className="mt-4 md:mt-12 text-xs font-bold text-gray-300 tracking-[0.3em] uppercase drop-shadow-md"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                   >
@@ -188,16 +188,16 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 10, opacity: 0 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="absolute bottom-2 left-0 right-0 mx-auto w-[92%] max-w-5xl md:bottom-8 md:w-[90%] transform-gpu"
+              className="absolute bottom-1 left-0 right-0 mx-auto w-[85%] max-w-5xl md:bottom-8 md:w-[90%] transform-gpu"
             >
-              <div className="relative w-full bg-black/30 backdrop-blur-md border border-white/5 rounded-lg p-2 pt-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.5)] md:min-h-[140px] md:p-8 md:pt-6">
+              <div className="relative w-full bg-black/30 backdrop-blur-md border border-white/5 rounded-lg p-1.5 pt-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] md:min-h-[140px] md:p-8 md:pt-6">
                 <AnimatePresence>
                   {speakerName && (
                     <motion.div
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       key={speakerName}
-                      className="inline-block mb-1 md:mb-4 relative z-20"
+                      className="inline-block mb-0.5 md:mb-4 relative z-20"
                     >
                       <span className="text-[10px] md:text-xs font-semibold tracking-widest text-gray-300 uppercase border-b border-white/20 pb-1">
                         {speakerName}
