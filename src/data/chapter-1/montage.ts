@@ -8,7 +8,7 @@ export const CH1_S05_MONTAGE: MontageFrame[] = [
   { id: '5', src: '/assets/cgs/ch1/cg_ch1_montage_04_sunrise.webp', fadeIn: 1, hold: 3, yearText: 0 },
   
   // FASE 2: THE DEPARTURE
-  { id: '6', src: '/assets/cgs/ch1/cg_ch1_s05_06_aeterna_tired.webp', fadeIn: 1, hold: 2.4, yearText: 1 },
+  { id: '6', src: '/assets/cgs/ch1/cg_ch1_s05_06_aeterna_tired.webp', fadeIn: 1, hold: 2.3, yearText: 1 },
   { id: '7', src: '/assets/cgs/ch1/cg_ch1_montage_detail_2_halo.webp', fadeIn: 0.3, hold: 1.4, yearText: 1 },
   { id: '8', src: '/assets/cgs/ch1/cg_ch1_s05_06b_cracking.webp', fadeIn: 0.5, hold: 2.4, yearText: 1 },
   { id: '9', src: '/assets/cgs/ch1/cg_ch1_s05_07_handover_cube.webp', fadeIn: 1, hold: 2.4, yearText: 1 },
@@ -43,7 +43,7 @@ export const CH1_S05_MONTAGE: MontageFrame[] = [
   
   // FASE 7: THE IMPACT
   { id: '29', src: '/assets/cgs/ch1/cg_ch1_montage_detail_5_traffic.webp', fadeIn: 0.3, hold: 1.3, hideYear: true, flash: true },
-  { id: '32', src: '/assets/cgs/ch1/cg_ch1_montage_16_crosswalk.webp', fadeIn: 0.3, hold: 1.45, hideYear: true, flash: true },
+  { id: '32', src: '/assets/cgs/ch1/cg_ch1_montage_16_crosswalk.webp', fadeIn: 0.3, hold: 1.55, hideYear: true, flash: true },
   { id: '33', src: '/assets/cgs/ch1/cg_ch1_montage_17_truck_hit.webp', fadeIn: 0, hold: 0.45, hideYear: true, flash: true },
   
   // BLACK SCREEN
