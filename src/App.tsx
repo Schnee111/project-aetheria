@@ -38,10 +38,36 @@ function App() {
 
   const [showSettings, setShowSettings] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
+  const [cursorVisible, setCursorVisible] = useState(true);
 
   // Reset settings modal when screen changes
   useEffect(() => {
     setShowSettings(false);
+  }, [screen]);
+
+  // Cursor auto-hide after 3s inactivity
+  useEffect(() => {
+    if (screen === 'landing' || screen === 'language_select') {
+      setCursorVisible(true);
+      return;
+    }
+
+    let timeout: ReturnType<typeof setTimeout>;
+    const showCursor = () => {
+      setCursorVisible(true);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => setCursorVisible(false), 3000);
+    };
+
+    window.addEventListener('mousemove', showCursor);
+    window.addEventListener('mousedown', showCursor);
+    showCursor(); // start timer
+
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener('mousemove', showCursor);
+      window.removeEventListener('mousedown', showCursor);
+    };
   }, [screen]);
 
   const currentScene: Scene | undefined = chapter1.scenes.find(
@@ -73,6 +99,15 @@ function App() {
     },
     [setScreen],
   );
+
+  // Request fullscreen
+  const requestFullscreen = useCallback(() => {
+    try {
+      document.documentElement.requestFullscreen?.();
+    } catch {
+      // fullscreen not available or blocked
+    }
+  }, []);
 
   // Auto-advance when all dialog lines are done (no choices)
   useEffect(() => {
@@ -179,6 +214,7 @@ function App() {
           setScreen('language_select');
         }}
         onContinue={() => {
+          requestFullscreen();
           void loadGame().then((data) => {
             if (data && data.screen !== 'landing') {
               setScreen(data.screen);
@@ -194,6 +230,7 @@ function App() {
       <LanguageSelectScreen
         onSelect={(lang) => {
           setLanguage(lang);
+          requestFullscreen();
           startGame();
         }}
       />
@@ -301,7 +338,7 @@ function App() {
   }
 
   return (
-    <div className="w-full h-full text-[#FAFAFA] overflow-hidden bg-black font-sans selection:bg-[#E11D48]/30">
+    <div className={`w-full h-full text-[#FAFAFA] overflow-hidden bg-black font-sans selection:bg-[#E11D48]/30 ${cursorVisible ? '' : 'cursor-none'}`}>
       <AnimatePresence mode="wait">
         <motion.div
           key={screen}
