@@ -18,6 +18,7 @@ import { useDialogStore } from './stores/dialogStore';
 import { useDialog } from './hooks/useDialog';
 import { useBgm, useVoice } from './hooks';
 import { useSettingsStore } from './stores/settingsStore';
+import { RotatePrompt } from './components/ui/RotatePrompt';
 import { useScenePreloader } from './hooks/useScenePreloader';
 import type { Screen, Scene } from './types';
 
@@ -100,10 +101,15 @@ function App() {
     [setScreen],
   );
 
-  // Request fullscreen
+  // Request fullscreen + landscape lock on mobile
   const requestFullscreen = useCallback(() => {
     try {
       document.documentElement.requestFullscreen?.();
+      // Lock landscape on mobile
+      try {
+        const orient = (window as any).screen?.orientation;
+        orient?.lock?.('landscape');
+      } catch { /* orientation lock not supported */ }
     } catch {
       // fullscreen not available or blocked
     }
@@ -339,6 +345,7 @@ function App() {
 
   return (
     <div className={`w-full h-full text-[#FAFAFA] overflow-hidden bg-black font-sans selection:bg-[#E11D48]/30 ${cursorVisible ? '' : 'cursor-none'}`}>
+      <RotatePrompt />
       <AnimatePresence mode="wait">
         <motion.div
           key={screen}
