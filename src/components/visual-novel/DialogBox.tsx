@@ -148,7 +148,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="absolute inset-0 flex items-end justify-center pb-[10vh] md:pb-[12vh] cursor-pointer bg-gradient-to-t from-black/50 via-black/10 to-transparent"
+            className="absolute inset-0 flex items-end justify-center pb-[6vh] md:pb-[12vh] cursor-pointer bg-gradient-to-t from-black/50 via-black/10 to-transparent"
             onClick={handleClick}
           >
             <motion.div
