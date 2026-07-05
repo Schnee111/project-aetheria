@@ -156,7 +156,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="max-w-4xl px-8 text-center"
+              className="max-w-4xl px-4 md:px-8 text-center"
             >
               <p
                 className="text-base md:text-xl lg:text-3xl leading-relaxed font-body font-medium text-white tracking-wide"
@@ -190,7 +190,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               transition={{ duration: 0.2, ease: 'easeOut' }}
               className="absolute bottom-4 left-0 right-0 mx-auto w-[92%] max-w-5xl md:bottom-8 md:w-[90%] transform-gpu"
             >
-              <div className="relative w-full bg-black/30 backdrop-blur-md border border-white/5 rounded-xl p-3 pt-3 shadow-[0_8px_32px_rgba(0,0,0,0.5)] min-h-[80px] md:min-h-[160px] md:p-8 md:pt-6">
+              <div className="relative w-full bg-black/30 backdrop-blur-md border border-white/5 rounded-lg p-2.5 pt-2 shadow-[0_8px_32px_rgba(0,0,0,0.5)] min-h-[60px] md:min-h-[140px] md:p-8 md:pt-6">
                 <AnimatePresence>
                   {speakerName && (
                     <motion.div
