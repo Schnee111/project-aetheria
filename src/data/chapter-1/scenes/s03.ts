@@ -304,7 +304,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
     {
       id: "CH1_S03_D014",
             speaker: "lysthea",
-            speakerLabel: "Lysthea (Grand Saintess)",
+            speakerLabel: "Wanita Berjubah",
       speakerLabelEn: "Robed Woman",
       expression: "shocked",
       text: '"Hak Akses Mutlak ini... Otoritas dari inti penciptaan... Anda... adalah The Weaver of Fate? Sang Arsitek Utama sepuluh ribu tahun yang lalu?"',
@@ -348,7 +348,8 @@ export const s03: Scene = // SCENE 3: THE REVELATION
     },
     {
       id: "CH1_S03_D016",
-      speaker: "aeterna",
+            speaker: "aeterna",
+            speakerLabel: "Aeterna",
       expression: "smile",
       text: '"Bangunlah. Lantainya kotor dan penuh pecahan kaca. Lama tidak berjumpa... Goddess of Order."',
       textEn:
@@ -433,7 +434,8 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       id: "CH1_S03_D021",
             speaker: "lysthea",
             speakerLabel: "Lysthea (Grand Saintess)",
-            expression: "sad",
+                  speakerLabelEn: "Lysthea (Grand Saintess)",
+                        expression: "sad",
       text: '"Selama sepuluh ribu tahun, saya terus menjalankan Sistem ini. Namun akhir-akhir ini... Abyss menemukan celah keamanan pada Origin Rune."',
       textEn:
         '"For ten thousand years, I have kept this System running. But recently... the Abyss has found a vulnerability in the Origin Rune."',
@@ -470,7 +472,8 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       id: "CH1_S03_D023",
             speaker: "lysthea",
             speakerLabel: "Lysthea (Grand Saintess)",
-            expression: "smile",
+                  speakerLabelEn: "Lysthea (Grand Saintess)",
+                        expression: "smile",
       text: '"Anda sama sekali tidak berubah, Sang Arsitek."',
       textEn: '"You haven\'t changed at all, Grand Architect."',
       backgroundOverride: "ch1/cg_ch1_s04_lys_smile.webp",
