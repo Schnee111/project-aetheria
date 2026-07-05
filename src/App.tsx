@@ -298,13 +298,6 @@ function App() {
           </button>
         </div>
 
-        {/* Screen-specific HUD overlays */}
-        <div className="absolute top-4 left-4 z-40 pointer-events-none">
-          <div className="text-[10px] px-4 py-2 rounded-full bg-[#09090B]/80 border border-[#27272A] text-[#A1A1AA] backdrop-blur-md font-bold tracking-widest uppercase shadow-lg inline-block">
-            {currentScene?.title ?? 'Aetheria'}
-          </div>
-        </div>
-        
         {/* Debug / Testplay Controls (hidden by default, toggle in Settings) */}
         {showTimeline && (
         <div className="absolute top-16 left-4 z-50 flex gap-2">
