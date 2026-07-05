@@ -74,7 +74,7 @@ export function ChapterCompleteScreen() {
       return () => clearTimeout(t);
     }
     if (phase === 'credits') {
-      const t = setTimeout(() => setPhase('done'), 305000);
+      const t = setTimeout(() => setPhase('done'), 150000);
       return () => clearTimeout(t);
     }
   }, [phase]);
