@@ -16,7 +16,7 @@ interface DialogBoxProps {
 }
 
 export function DialogBox({ line, onTap }: DialogBoxProps) {
-  const { getDialogueText, getSpeakerName, t } = useLocalization();
+  const { getDialogueText, getSpeakerName, language, t } = useLocalization();
   const localizedText = getDialogueText(line);
   const isInstant = line.speaker === 'system' || line.speaker === 'narrator';
   const { play: playSfx } = useSfx();
@@ -132,7 +132,9 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
   const isNarrator = line.speaker === 'narrator';
   const speakerName = isNarrator || line.speaker === 'system'
     ? ''
-    : getSpeakerName(line.speaker);
+    : language === 'en' && line.speakerLabelEn
+      ? line.speakerLabelEn
+      : line.speakerLabel ?? getSpeakerName(line.speaker);
 
   return (
     <div style={{ position: 'absolute', inset: 0, zIndex: 30 }}>

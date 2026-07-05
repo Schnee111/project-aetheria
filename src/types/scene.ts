@@ -8,6 +8,8 @@ export interface DialogueLine {
   expression: string;
   text: string;
   textEn?: string; // English translation (if omitted, falls back to `text`)
+  speakerLabel?: string; // Optional display name override for spoiler-safe character labels.
+  speakerLabelEn?: string;
   voiceTextEn?: string; // Optional spoken English override for TTS timing/performance.
   voiceSpeaker?: string; // Optional TTS speaker override for cinematic narration.
   audioSrc?: string;

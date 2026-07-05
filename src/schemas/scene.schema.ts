@@ -10,6 +10,8 @@ export const DialogueLineSchema = z.object({
   speaker: z.string(),
   expression: z.string(),
   text: z.string().min(1),
+  speakerLabel: z.string().optional(),
+  speakerLabelEn: z.string().optional(),
   audioSrc: z.string().optional(),
   autoAdvance: z.boolean().optional(),
   autoAdvanceDelay: z.number().optional(),
