@@ -206,7 +206,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
                   )}
                 </AnimatePresence>
                 <div className="relative z-10">
-                  <p className="text-[14px] leading-relaxed font-body font-medium text-gray-100 min-h-[64px] drop-shadow-md lg:min-h-[60px] lg:text-xl lg:leading-relaxed">
+                  <p className="text-[15px] leading-relaxed font-body font-medium text-gray-100 min-h-[64px] drop-shadow-md lg:min-h-[60px] lg:text-xl lg:leading-relaxed">
                     {displayedText}
                     {!isComplete && (
                       <span className="inline-block w-[3px] h-[1em] bg-white/80 ml-2 align-text-bottom animate-pulse-slow shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
