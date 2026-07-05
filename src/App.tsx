@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useMemo, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Settings, Play } from 'lucide-react';
+import { Settings } from 'lucide-react';
 import {
   LandingScreen,
   LanguageSelectScreen,
