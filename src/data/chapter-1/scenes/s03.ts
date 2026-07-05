@@ -303,8 +303,8 @@ export const s03: Scene = // SCENE 3: THE REVELATION
     },
     {
       id: "CH1_S03_D014",
-      speaker: "lysthea",
-      speakerLabel: "Wanita Berjubah",
+            speaker: "lysthea",
+            speakerLabel: "Lysthea (Grand Saintess)",
       speakerLabelEn: "Robed Woman",
       expression: "shocked",
       text: '"Hak Akses Mutlak ini... Otoritas dari inti penciptaan... Anda... adalah The Weaver of Fate? Sang Arsitek Utama sepuluh ribu tahun yang lalu?"',
@@ -431,8 +431,9 @@ export const s03: Scene = // SCENE 3: THE REVELATION
     },
     {
       id: "CH1_S03_D021",
-      speaker: "lysthea",
-      expression: "sad",
+            speaker: "lysthea",
+            speakerLabel: "Lysthea (Grand Saintess)",
+            expression: "sad",
       text: '"Selama sepuluh ribu tahun, saya terus menjalankan Sistem ini. Namun akhir-akhir ini... Abyss menemukan celah keamanan pada Origin Rune."',
       textEn:
         '"For ten thousand years, I have kept this System running. But recently... the Abyss has found a vulnerability in the Origin Rune."',
@@ -467,8 +468,9 @@ export const s03: Scene = // SCENE 3: THE REVELATION
     },
     {
       id: "CH1_S03_D023",
-      speaker: "lysthea",
-      expression: "smile",
+            speaker: "lysthea",
+            speakerLabel: "Lysthea (Grand Saintess)",
+            expression: "smile",
       text: '"Anda sama sekali tidak berubah, Sang Arsitek."',
       textEn: '"You haven\'t changed at all, Grand Architect."',
       backgroundOverride: "ch1/cg_ch1_s04_lys_smile.webp",
@@ -508,7 +510,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       hideDialogBox: true,
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 1800,
+      autoAdvanceDelay: 1500,
     },
   ],
   nextSceneId: "CH1_S04",

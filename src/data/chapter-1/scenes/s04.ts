@@ -35,6 +35,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
     {
       id: "CH1_S04_D002_A",
       speaker: "lysthea",
+      speakerLabel: "Lysthea (Goddess of Order)",
       expression: "none",
       text: "Kenapa Anda repot-repot menyusun miliaran logika sihir untuk sebuah dunia fana, Arsitek?",
       textEn: "Why do you bother compiling billions of magical logic for a mortal world, Architect?",
@@ -96,6 +97,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
     {
       id: "CH1_S04_D005_A",
       speaker: "lysthea",
+      speakerLabel: "Lysthea (Goddess of Order)",
       expression: "none",
       text: "Sistem stabil. Ekosistem mulai berdetak. Anda berhasil, Sang Arsitek!",
       textEn: "System stable. The ecosystem is beating. You succeeded, Architect!",
@@ -145,6 +147,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
     {
       id: "CH1_S04_D007",
       speaker: "lysthea",
+      speakerLabel: "Lysthea (Goddess of Order)",
       expression: "none",
       text: "Tubuh Anda... Anda akan hancur! Kita harus menghentikan siklusnya!",
       textEn: "Your body... You are breaking apart! We must halt the cycle!",
@@ -328,7 +331,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
       backgroundOverride: "ch1/bg_black",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 1800,
+      autoAdvanceDelay: 1500,
     },
   ],
   nextSceneId: "CH1_S05",
