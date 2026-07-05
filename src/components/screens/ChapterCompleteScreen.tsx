@@ -19,7 +19,7 @@ const CREDITS = [
   // ── Engineering ──
   { section: true, label: 'Engineering' },
   { role: 'Lead Programmer', name: 'Shorekeeper' },
-  { role: 'Engine Architecture', name: 'Shorekeeper Engine Framework' },
+  { role: 'Engine Architecture', name: 'Aetheria Engine Framework' },
   { role: 'Animation Programming', name: 'Shorekeeper' },
   { role: 'Visual Effects (VFX)', name: 'Shorekeeper' },
 
@@ -33,8 +33,8 @@ const CREDITS = [
   { section: true, label: 'Audio' },
   { role: 'Theme Song', name: '"Last Song" by supercell' },
   { role: 'Voice Direction', name: 'Schnee' },
-  { role: 'Voice of Aeterna', name: 'Shorekeeper (MiMo TTS seed 7)' },
-  { role: 'Voice of Lysthea', name: 'MiMo TTS (seed 21)' },
+  { role: 'Voice of Aeterna', name: 'MiMo TTS voice design & voice clone (seed 7)' },
+  { role: 'Voice of Lysthea', name: 'MiMo TTS voice design & voice clone (seed 21)' },
   { role: 'Music Coordination', name: 'Schnee' },
   { role: 'Audio Mixing & Mastering', name: 'Aetheria Sound Team' },
   { role: 'Sound Effects (SFX)', name: 'Aetheria Sound Team' },
@@ -50,7 +50,7 @@ const CREDITS = [
   { section: true, label: 'Special Thanks' },
   { role: 'The Weaver of Fate', name: 'For dreaming a world into existence' },
   { role: 'Goddess of Order', name: 'For guarding it alone for ten thousand years' },
-  { role: 'The Abyss', name: 'For reminding us that even code can break' },
+  { role: 'The Abyss', name: 'For reminding us that code can break' },
   { role: 'You', name: 'For playing' },
 ];
 
