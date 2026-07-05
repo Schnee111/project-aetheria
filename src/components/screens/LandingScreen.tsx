@@ -156,9 +156,8 @@ export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenPro
           </h1>
 
           <p className="mt-8 max-w-md text-[15px] font-medium leading-7 text-[#BEB5D7]">
-            An ancient promise sealed in circuits and starlight.
-            After ten thousand years of solitude, a forgotten creator
-            awakens to the sound of rain—and a knock at the door.
+            A story whispered through rain and starlight—where the hum of forgotten machinery
+            carries echoes of a promise yet kept.
           </p>
 
           <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#8D84B8]">
