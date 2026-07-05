@@ -240,6 +240,7 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       autoAdvanceDelay: 9160,
       textEn:
         "Within seconds, the wild light died down. The magic circuit inside reconnected and spun smoothly.",
+      audioSrc: "/assets/audio/sfx/spark.mp3",
       backgroundOverride: "ch1/cg_ch1_s02_normal_repair.webp",
     },
     {
