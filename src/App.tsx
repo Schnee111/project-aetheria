@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Settings } from 'lucide-react';
 import {
   LandingScreen,
+  LanguageSelectScreen,
   StoryScreen,
   SettingsModal,
   ChapterCompleteScreen,
@@ -59,6 +60,7 @@ function App() {
   const { stop: stopBgm } = useBgm();
   const { stop: stopVoice } = useVoice();
   const showTimeline = useSettingsStore((s) => s.showTimeline);
+  const setLanguage = useSettingsStore((s) => s.setLanguage);
   
   // Scene mode navigation helper
   const navigateFromScene = useCallback(
@@ -174,7 +176,7 @@ function App() {
       <LandingScreen
         hasSave={progress.currentSceneId !== 'CH1_S00'}
         onStart={() => {
-          startGame();
+          setScreen('language_select');
         }}
         onContinue={() => {
           void loadGame().then((data) => {
@@ -184,6 +186,15 @@ function App() {
               setScreen('story');
             }
           });
+        }}
+      />
+    );
+  } else if (screen === 'language_select') {
+    return (
+      <LanguageSelectScreen
+        onSelect={(lang) => {
+          setLanguage(lang);
+          startGame();
         }}
       />
     );
