@@ -159,7 +159,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               className="max-w-4xl px-4 lg:px-8 text-center"
             >
               <p
-                className="text-[17px] lg:text-2xl xl:text-3xl leading-relaxed font-body font-medium text-white tracking-wide"
+                className="text-[18px] lg:text-2xl xl:text-3xl leading-relaxed font-body font-medium text-white tracking-wide"
                 style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.9), 0px 8px 24px rgba(0,0,0,1)' }}
               >
                 {displayedText}
