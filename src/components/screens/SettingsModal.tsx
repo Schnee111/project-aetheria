@@ -129,14 +129,14 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="relative w-full max-w-[320px] bg-[#0A0910]/95 backdrop-blur-xl border border-white/[0.06] rounded-lg overflow-hidden"
+              className="relative w-full max-w-[320px] max-h-[85vh] bg-[#0A0910]/95 backdrop-blur-xl border border-white/[0.06] rounded-lg overflow-hidden flex flex-col"
               initial={{ scale: 0.95, y: 10 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 10 }}
               transition={{ type: 'spring', damping: 30, stiffness: 400 }}
             >
               {/* Header */}
-              <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.04]">
+              <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.04] flex-shrink-0">
                 <h3 className="text-[11px] font-bold text-[#C8BDF0] tracking-[0.3em] uppercase">
                   {t('settings.title')}
                 </h3>
@@ -149,7 +149,7 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
               </div>
 
               {/* Body */}
-              <div className="px-5 py-4 space-y-5">
+              <div className="px-4 py-3 space-y-4 overflow-y-auto flex-1 min-h-0">
                 {/* Language */}
                 <div className="space-y-2.5">
                   <div className="flex items-center gap-2 text-[10px] font-bold text-[#8D84B8] uppercase tracking-[0.2em]">
@@ -213,7 +213,7 @@ export function SettingsModal({ isOpen, onClose, onGoHome }: SettingsModalProps)
               </div>
 
               {/* Footer */}
-              <div className="px-5 py-3 border-t border-white/[0.04]">
+              <div className="px-4 py-2.5 border-t border-white/[0.04] flex-shrink-0">
                 <button
                   onClick={onGoHome}
                   className="w-full py-2.5 px-4 text-[10px] font-bold tracking-[0.2em] uppercase text-[#6B6190] hover:text-[#C8BDF0] bg-white/[0.03] hover:bg-white/[0.05] border border-white/[0.06] hover:border-white/[0.1] rounded transition-all duration-200 flex items-center justify-center gap-2"
