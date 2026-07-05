@@ -43,8 +43,8 @@ export const CH1_S05_MONTAGE: MontageFrame[] = [
   
   // FASE 7: THE IMPACT
   { id: '29', src: '/assets/cgs/ch1/cg_ch1_montage_detail_5_traffic.webp', fadeIn: 0.3, hold: 1.3, hideYear: true, flash: true },
-  { id: '32', src: '/assets/cgs/ch1/cg_ch1_montage_16_crosswalk.webp', fadeIn: 0.3, hold: 1.5, hideYear: true, flash: true },
-  { id: '33', src: '/assets/cgs/ch1/cg_ch1_montage_17_truck_hit.webp', fadeIn: 0, hold: 0.5, hideYear: true, flash: true },
+  { id: '32', src: '/assets/cgs/ch1/cg_ch1_montage_16_crosswalk.webp', fadeIn: 0.3, hold: 1.45, hideYear: true, flash: true },
+  { id: '33', src: '/assets/cgs/ch1/cg_ch1_montage_17_truck_hit.webp', fadeIn: 0, hold: 0.45, hideYear: true, flash: true },
   
   // BLACK SCREEN
   { id: '34', src: 'black', fadeIn: 0, hold: 1, hideYear: true, flash: true }
