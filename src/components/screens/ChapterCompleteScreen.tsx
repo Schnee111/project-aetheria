@@ -63,6 +63,7 @@ export function ChapterCompleteScreen() {
   const goToMenu = () => {
     stopBgm();
     stopVoice();
+    document.exitFullscreen?.().catch(() => {});
     setScreen('landing');
   };
 

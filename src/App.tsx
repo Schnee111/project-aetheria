@@ -355,6 +355,7 @@ function App() {
         setShowSettings(false);
         stopBgm();
         stopVoice();
+        document.exitFullscreen?.().catch(() => {});
         setScreen('landing');
       }} />
     </div>
