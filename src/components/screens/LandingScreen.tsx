@@ -161,7 +161,7 @@ export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenPro
           </p>
 
           <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#8D84B8]">
-            <span>Cozy Fantasy</span>
+            <span>Fantasy</span>
             <span className="text-[#F5A400]/70">/</span>
             <span>Magitech</span>
             <span className="text-[#F5A400]/70">/</span>
