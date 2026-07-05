@@ -84,8 +84,9 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
 
   useEffect(() => {
     if (line.audioSrc) {
-      const sfx = playSfx(line.audioSrc);
-      return () => { sfx?.stop(); };
+      playSfx(line.audioSrc);
+      // Don't stop SFX on cleanup — let it play to completion
+      // so ambient SFX (resonance, glass shards) carry across lines
     }
   }, [line.id, line.audioSrc, playSfx]);
 
