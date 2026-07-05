@@ -25,6 +25,8 @@ export interface DialogueLine {
   ignoreVoiceDuration?: boolean;
   backgroundOverride?: string;
   bgmOverride?: string;
+  /** If true, stop BGM when this line starts (e.g., rain ending) */
+  stopBgm?: boolean;
   characterOverrides?: Record<string, string>;
   hideDialogBox?: boolean;
 }

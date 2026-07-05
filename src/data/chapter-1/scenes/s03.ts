@@ -254,6 +254,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
         'With a flat gaze now filled with absolute authority, I stepped past her and raised my hand. "Root Access: Override."',
       voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D011.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_authority.webp",
+      stopBgm: true,
       characterOverrides: {
         abyssal_assassin: "none",
         aeterna: "none",

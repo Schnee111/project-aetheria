@@ -23,12 +23,14 @@ export function StoryScreen({
   isDialogComplete,
 }: StoryScreenProps) {
   const showChoices = isDialogComplete && scene.choices && scene.choices.length > 0;
-  const { play: playBgm } = useBgm();
+  const { play: playBgm, stop: stopBgm } = useBgm();
   const [charStates, setCharStates] = useState<Record<string, string>>({});
 
   useEffect(() => {
     const currentBgm = currentLine?.bgmOverride || scene.bgm;
-    if (currentBgm) {
+    if (currentLine?.stopBgm) {
+      stopBgm();
+    } else if (currentBgm) {
       playBgm(currentBgm);
     }
     const initial: Record<string, string> = {};
