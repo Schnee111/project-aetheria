@@ -40,7 +40,6 @@ function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
   const [cursorVisible, setCursorVisible] = useState(true);
-  const [needsInteraction, setNeedsInteraction] = useState(false);
 
   // Reset settings modal when screen changes
   useEffect(() => {
@@ -106,15 +105,23 @@ function App() {
   const requestFullscreen = useCallback(() => {
     try {
       document.documentElement.requestFullscreen?.();
-      // Lock landscape on mobile
       try {
         const orient = (window as any).screen?.orientation;
-        orient?.lock?.('landscape');
-      } catch { /* orientation lock not supported */ }
-    } catch {
-      // fullscreen not available or blocked
-    }
+        orient?.lock?.('landscape').catch(() => {});
+      } catch {}
+    } catch {}
   }, []);
+
+  // Unlock orientation / Force portrait on landing screen
+  useEffect(() => {
+    if (screen === 'landing') {
+      try {
+        const orient = (window as any).screen?.orientation;
+        orient?.unlock?.();
+        orient?.lock?.('portrait').catch(() => {});
+      } catch {}
+    }
+  }, [screen]);
 
   // Auto-advance when all dialog lines are done (no choices)
   useEffect(() => {
@@ -197,10 +204,7 @@ function App() {
     void loadGame().then((data) => {
       if (data) {
         setProgress(data.progress);
-        if (data.screen !== 'landing' && data.screen !== 'language_select') {
-          setNeedsInteraction(true);
-        }
-        setScreen(data.screen);
+        setScreen('landing');
       }
       setIsInitializing(false);
     });
@@ -214,29 +218,6 @@ function App() {
     activeScreenComponent = (
       <div className="absolute inset-0 bg-[#09090B] flex items-center justify-center">
         <div className="w-8 h-8 border-4 border-[#E11D48] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
-  } else if (needsInteraction) {
-    activeScreenComponent = (
-      <div 
-        className="absolute inset-0 bg-[#06050A]/90 backdrop-blur-sm flex flex-col items-center justify-center cursor-pointer z-50 text-[#F8F4FF]"
-        onClick={() => {
-          requestFullscreen();
-          setNeedsInteraction(false);
-        }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center"
-        >
-          <div className="mb-4">
-            <Play size={48} className="mx-auto text-[#F5A400] opacity-80" />
-          </div>
-          <p className="text-sm md:text-lg font-bold tracking-[0.2em] uppercase text-gray-300">
-            Click to Resume
-          </p>
-        </motion.div>
       </div>
     );
   } else if (screen === 'landing') {
@@ -367,7 +348,7 @@ function App() {
 
   return (
     <div className={`w-full h-full text-[#FAFAFA] overflow-hidden bg-black font-sans selection:bg-[#E11D48]/30 ${cursorVisible ? '' : 'cursor-none'}`}>
-      <RotatePrompt />
+      {screen !== 'landing' && <RotatePrompt />}
       <AnimatePresence mode="wait">
         <motion.div
           key={screen}
