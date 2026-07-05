@@ -190,7 +190,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               transition={{ duration: 0.2, ease: 'easeOut' }}
               className="absolute bottom-4 left-0 right-0 mx-auto w-[92%] max-w-5xl md:bottom-8 md:w-[90%] transform-gpu"
             >
-              <div className="relative w-full bg-black/30 backdrop-blur-md border border-white/5 rounded-xl p-4 pt-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)] min-h-[124px] md:min-h-[160px] md:p-8 md:pt-6">
+              <div className="relative w-full bg-black/30 backdrop-blur-md border border-white/5 rounded-xl p-3 pt-3 shadow-[0_8px_32px_rgba(0,0,0,0.5)] min-h-[80px] md:min-h-[160px] md:p-8 md:pt-6">
                 <AnimatePresence>
                   {speakerName && (
                     <motion.div
@@ -206,7 +206,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
                   )}
                 </AnimatePresence>
                 <div className="relative z-10">
-                  <p className="text-base leading-relaxed font-body font-medium text-gray-100 min-h-[56px] drop-shadow-md md:min-h-[72px] md:text-2xl">
+                  <p className="text-sm leading-relaxed font-body font-medium text-gray-100 min-h-[40px] drop-shadow-md md:min-h-[72px] md:text-2xl">
                     {displayedText}
                     {!isComplete && (
                       <span className="inline-block w-[3px] h-[1em] bg-white/80 ml-2 align-text-bottom animate-pulse-slow shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
