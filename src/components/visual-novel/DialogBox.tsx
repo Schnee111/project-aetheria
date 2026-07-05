@@ -188,9 +188,9 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 10, opacity: 0 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="absolute bottom-1 left-0 right-0 mx-auto w-[85%] max-w-5xl md:bottom-8 md:w-[90%] transform-gpu"
+              className="absolute bottom-2 left-0 right-0 mx-auto w-[96%] max-w-5xl md:bottom-8 md:w-[90%] transform-gpu"
             >
-              <div className="relative w-full bg-black/30 backdrop-blur-md border border-white/5 rounded-lg p-1.5 pt-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] md:min-h-[140px] md:p-8 md:pt-6">
+              <div className="relative w-full bg-black/30 backdrop-blur-md border border-white/5 rounded-lg p-2 shadow-[0_8px_32px_rgba(0,0,0,0.5)] md:min-h-[140px] md:p-8 md:pt-6">
                 <AnimatePresence>
                   {speakerName && (
                     <motion.div
@@ -206,7 +206,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
                   )}
                 </AnimatePresence>
                 <div className="relative z-10">
-                  <p className="text-xs leading-relaxed font-body font-medium text-gray-100 min-h-[36px] drop-shadow-md md:min-h-[60px] md:text-base lg:text-xl">
+                  <p className="text-xs leading-snug font-body font-medium text-gray-100 min-h-[32px] drop-shadow-md md:min-h-[60px] md:text-base lg:text-xl md:leading-relaxed">
                     {displayedText}
                     {!isComplete && (
                       <span className="inline-block w-[3px] h-[1em] bg-white/80 ml-2 align-text-bottom animate-pulse-slow shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
