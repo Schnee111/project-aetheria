@@ -63,6 +63,8 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
     {
       id: "CH1_S02_D003",
       speaker: "lysthea",
+      speakerLabel: "Wanita Berjubah",
+      speakerLabelEn: "Robed Woman",
       expression: "hidden",
       text: "Permisi! Apakah ada mekanik di dalam?! Tolong buka pintunya!",
       autoAdvance: true,
@@ -106,6 +108,8 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
     {
       id: "CH1_S02_D004_C",
       speaker: "lysthea",
+      speakerLabel: "Wanita Berjubah",
+      speakerLabelEn: "Robed Woman",
       expression: "panicked",
       text: "Syukurlah... Maaf mengganggu selarut ini. Tapi bisakah kau melihat benda ini sebentar?!",
       autoAdvance: true,
@@ -153,6 +157,8 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
     {
       id: "CH1_S02_D007",
       speaker: "lysthea",
+      speakerLabel: "Wanita Berjubah",
+      speakerLabelEn: "Robed Woman",
       expression: "panicked",
       text: "Ini kristal core dari Defense Server distrik ketujuh. Pelindung distrik ini akan runtuh kalau sistemnya gagal me-reboot!",
       autoAdvance: true,
@@ -247,12 +253,14 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       autoAdvanceDelay: 4840,
       textEn: "Patched. The barrier system should be back online now.",
       voiceSrc: "/assets/audio/voice/chapter-1/scene-02/CH1_S02_D011.mp3",
-      backgroundOverride: "ch1/cg_ch1_s03_lys_shock.webp",
+      backgroundOverride: "ch1/cg_ch1_s02_normal_repair.webp",
       characterOverrides: { aeterna: "none", lysthea: "none" },
     },
     {
       id: "CH1_S02_D012",
       speaker: "lysthea",
+      speakerLabel: "Wanita Berjubah",
+      speakerLabelEn: "Robed Woman",
       expression: "shocked",
       text: "...Hah?",
       autoAdvance: true,
@@ -268,6 +276,8 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
     {
       id: "CH1_S02_D013",
       speaker: "lysthea",
+      speakerLabel: "Wanita Berjubah",
+      speakerLabelEn: "Robed Woman",
       expression: "shocked",
       text: "(Tidak mungkin... Menulis ulang konfigurasi Origin Rune tanpa merapal mantra?!)",
       autoAdvance: true,
@@ -282,6 +292,8 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
     {
       id: "CH1_S02_D013_B",
       speaker: "lysthea",
+      speakerLabel: "Wanita Berjubah",
+      speakerLabelEn: "Robed Woman",
       expression: "shocked",
       text: "(Bahkan divisi elitku butuh waktu berhari-hari untuk kasus ini!)",
       autoAdvance: true,

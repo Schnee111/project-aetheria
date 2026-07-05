@@ -28,11 +28,13 @@ export const s03: Scene = // SCENE 3: THE REVELATION
     {
       id: "CH1_S03_D001",
       speaker: "lysthea",
+      speakerLabel: "Wanita Berjubah",
+      speakerLabelEn: "Robed Woman",
       expression: "cool",
       text: '"S-Sepuluh silver coins...? Tunggu, bukan itu masalahnya! Bagaimana kau bisa melakukan..."',
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 7400,
+      autoAdvanceDelay: 5000,
       
       textEn:
         '"T-Ten silver coins...? Wait, that\'s not the point! How did you do..."',
@@ -59,7 +61,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 3700,
+      autoAdvanceDelay: 3000,
       audioSrc: "/assets/audio/sfx/broken-glass.mp3",
       textEn: "",
       backgroundOverride: "ch1/cg_ch1_s04_assassin_entry.webp",
@@ -74,11 +76,11 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       id: "CH1_S03_D004",
       speaker: "abyssal_assassin",
       expression: "menacing",
-      text: '"Ketemu kau... Relik itu... Hancurlah bersamanya!"',
+      text: '"Ketemu kau... Core itu... Hancurlah bersamanya!"',
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 5000,
-      textEn: '"Found you... That relic... perish with it!"',
+      textEn: '"Found you... That core... perish with it!"',
       voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D004.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_assassin_entry.webp",
       characterOverrides: {
@@ -108,6 +110,8 @@ export const s03: Scene = // SCENE 3: THE REVELATION
     {
       id: "CH1_S03_D006",
       speaker: "lysthea",
+      speakerLabel: "Wanita Berjubah",
+      speakerLabelEn: "Robed Woman",
       expression: "cool",
       text: '"Abyssal Assassin?! Awas! Mundur, Engineer! Biar aku yang menanganinya!"',
       autoAdvance: true,
@@ -130,13 +134,13 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       id: "CH1_S03_D007",
       speaker: "narrator",
       expression: "neutral",
-      text: "Sang Grand Saintess melompat ke depanku, melepaskan gelombang sihir perlindungan yang begitu murni untuk menahan serangan iblis itu.",
+      text: "Wanita berjubah itu melompat ke depanku, melepaskan gelombang sihir perlindungan yang begitu murni untuk menahan serangan iblis itu.",
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 9900,
       audioSrc: "/assets/audio/sfx/resonance-energy.mp3",
       textEn:
-        "The Grand Saintess jumped in front of me, releasing a wave of incredibly pure protective magic to block the demon's attack.",
+        "The robed woman jumped in front of me, releasing a wave of incredibly pure protective magic to block the demon's attack.",
       voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D007.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_lys_protect.webp",
       characterOverrides: {
@@ -185,14 +189,16 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       id: "CH1_S03_D009",
       speaker: "narrator",
       expression: "neutral",
-      text: "Resonansi energi Lysthea bertindak layaknya kunci dekripsi.",
+      text: "Resonansi energi sihir wanita itu bertindak layaknya kunci dekripsi.",
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 4200,
       ignoreVoiceDuration: true,
       audioSrc: "/assets/audio/sfx/data-processing.mp3",
       textEn:
-        "Lysthea's energy resonance acted like a decryption key.",
+        "The woman's magical energy resonance acted like a decryption key.",
+      voiceTextEn:
+        "The woman's magical energy resonance acted like a decryption key. Strands of golden code, memories from ten thousand years ago, flooded in, shattering the seal within my mind.",
       voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D009.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_memories_awaken.webp",
       characterOverrides: {
@@ -240,12 +246,12 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       id: "CH1_S03_D011",
       speaker: "narrator",
       expression: "neutral",
-      text: 'Dengan tatapan datar yang kini dipenuhi otoritas mutlak, aku melangkah melewati Lysthea dan mengangkat tangan. "Root Access: Override."',
+      text: 'Dengan tatapan datar yang kini dipenuhi otoritas mutlak, aku melangkah melewati wanita itu dan mengangkat tangan. "Root Access: Override."',
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 10100,
       textEn:
-        'With a flat gaze now filled with absolute authority, I stepped past Lysthea and raised my hand. "Root Access: Override."',
+        'With a flat gaze now filled with absolute authority, I stepped past her and raised my hand. "Root Access: Override."',
       voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D011.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_authority.webp",
       characterOverrides: {
@@ -279,13 +285,13 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       id: "CH1_S03_D013",
       speaker: "narrator",
       expression: "neutral",
-      text: "Sebuah jentikan jari memecah keheningan. Tubuh iblis itu seketika terurai menjadi debu merah. Terkejut oleh luapan energi mutlak itu, Lysthea jatuh berlutut.",
+      text: "Sebuah jentikan jari memecah keheningan. Tubuh iblis itu seketika terurai menjadi debu merah. Terkejut oleh luapan energi mutlak itu, wanita berjubah itu jatuh berlutut.",
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 11400,
       audioSrc: "/assets/audio/sfx/disintegrate.mp3",
       textEn:
-        "A snap of my fingers shattered the silence. The demon's body instantly unraveled into red dust. Shocked by the surge of absolute energy, Lysthea fell to her knees.",
+        "A snap of my fingers shattered the silence. The demon's body instantly unraveled into red dust. Shocked by the surge of absolute energy, the robed woman fell to her knees.",
       voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D013.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_dust_snap.webp",
       characterOverrides: {
@@ -297,6 +303,8 @@ export const s03: Scene = // SCENE 3: THE REVELATION
     {
       id: "CH1_S03_D014",
       speaker: "lysthea",
+      speakerLabel: "Wanita Berjubah",
+      speakerLabelEn: "Robed Woman",
       expression: "shocked",
       text: '"Hak Akses Mutlak ini... Otoritas dari inti penciptaan... Anda... adalah The Weaver of Fate? Sang Arsitek Utama sepuluh ribu tahun yang lalu?"',
       textEn:
