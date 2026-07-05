@@ -190,7 +190,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               transition={{ duration: 0.2, ease: 'easeOut' }}
               className="absolute bottom-3 left-0 right-0 mx-auto w-[70%] max-w-5xl lg:bottom-8 lg:w-[90%] transform-gpu"
             >
-              <div className="relative w-full bg-black/30 backdrop-blur-md border border-white/5 rounded-2xl p-4 pt-3 shadow-[0_8px_32px_rgba(0,0,0,0.5)] lg:min-h-[140px] lg:p-8 lg:pt-6">
+              <div className="relative w-full bg-black/30 backdrop-blur-md backdrop-saturate-150 border border-white/5 rounded-2xl p-4 pt-3 shadow-[0_8px_32px_rgba(0,0,0,0.5)] lg:min-h-[140px] lg:p-8 lg:pt-6">
                 <AnimatePresence>
                   {speakerName && (
                     <motion.div

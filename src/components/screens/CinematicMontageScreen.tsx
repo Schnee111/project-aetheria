@@ -240,18 +240,18 @@ export function CinematicMontageScreen({ scenes = [], currentSceneId, onSceneJum
             initial={{ opacity: 0, x: frame.earthYear ? 20 : -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0 }}
-            className={`absolute bottom-12 z-50 ${frame.earthYear ? 'right-12' : 'left-12'}`}
+            className={`absolute bottom-6 lg:bottom-12 z-50 ${frame.earthYear ? 'right-6 lg:right-12' : 'left-6 lg:left-12'}`}
           >
             <div className={frame.earthYear ? "text-right" : "text-left"}>
               {frame.earthYear ? (
                 <motion.div
-                  className="font-sans text-[#E11D48] text-5xl md:text-6xl tracking-[0.3em] font-semibold uppercase drop-shadow-[0_4px_15px_rgba(0,0,0,0.8)]"
+                  className="font-sans text-[#E11D48] text-3xl md:text-4xl lg:text-6xl tracking-[0.3em] font-semibold uppercase drop-shadow-[0_4px_15px_rgba(0,0,0,0.8)]"
                 >
                   EARTH: 2026
                 </motion.div>
               ) : (
                 <div 
-                  className="font-sans text-[#FAFAFA] text-5xl md:text-6xl tracking-[0.3em] font-semibold uppercase drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)]"
+                  className="font-sans text-[#FAFAFA] text-3xl md:text-4xl lg:text-6xl tracking-[0.3em] font-semibold uppercase drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)]"
                 >
                   YEAR {String(currentYear).padStart(4, '0')}
                 </div>
