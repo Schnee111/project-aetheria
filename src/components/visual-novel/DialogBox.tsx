@@ -159,7 +159,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               className="max-w-4xl px-8 text-center"
             >
               <p
-                className="text-lg md:text-3xl leading-relaxed font-body font-medium text-white tracking-wide"
+                className="text-base md:text-xl lg:text-3xl leading-relaxed font-body font-medium text-white tracking-wide"
                 style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.9), 0px 8px 24px rgba(0,0,0,1)' }}
               >
                 {displayedText}
@@ -199,14 +199,14 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
                       key={speakerName}
                       className="inline-block mb-2 md:mb-4 relative z-20"
                     >
-                      <span className="text-xs md:text-sm font-semibold tracking-widest text-gray-300 uppercase border-b border-white/20 pb-1">
+                      <span className="text-[10px] md:text-xs font-semibold tracking-widest text-gray-300 uppercase border-b border-white/20 pb-1">
                         {speakerName}
                       </span>
                     </motion.div>
                   )}
                 </AnimatePresence>
                 <div className="relative z-10">
-                  <p className="text-sm leading-relaxed font-body font-medium text-gray-100 min-h-[40px] drop-shadow-md md:min-h-[72px] md:text-2xl">
+                  <p className="text-xs leading-relaxed font-body font-medium text-gray-100 min-h-[36px] drop-shadow-md md:min-h-[60px] md:text-base lg:text-xl">
                     {displayedText}
                     {!isComplete && (
                       <span className="inline-block w-[3px] h-[1em] bg-white/80 ml-2 align-text-bottom animate-pulse-slow shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
