@@ -140,7 +140,7 @@ export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenPro
         >
           <div className="mb-6 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-[#C8BDF0]">
             <BookOpen size={14} className="text-[#F5A400]" />
-            Visual Novel
+            Interactive Novel
           </div>
 
           <h1
@@ -156,8 +156,9 @@ export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenPro
           </h1>
 
           <p className="mt-8 max-w-md text-[15px] font-medium leading-7 text-[#BEB5D7]">
-            A quiet magitech fantasy told through rain-lit rooms, branching choices,
-            and impossible machinery.
+            An ancient promise sealed in circuits and starlight.
+            After ten thousand years of solitude, a forgotten creator
+            awakens to the sound of rain—and a knock at the door.
           </p>
 
           <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] font-black uppercase tracking-[0.22em] text-[#8D84B8]">
@@ -165,7 +166,9 @@ export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenPro
             <span className="text-[#F5A400]/70">/</span>
             <span>Magitech</span>
             <span className="text-[#F5A400]/70">/</span>
-            <span>Slice of Life</span>
+            <span>Melancholy</span>
+            <span className="text-[#F5A400]/70">/</span>
+            <span>Story-Rich</span>
           </div>
 
           <nav className="mt-10 flex w-[300px] max-w-full flex-col gap-3">
