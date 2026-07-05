@@ -289,7 +289,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "Sebuah jentikan jari memecah keheningan. Tubuh iblis itu seketika terurai menjadi debu merah.",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 6000,
+      autoAdvanceDelay: 7000,
       ignoreVoiceDuration: true,
       audioSrc: "/assets/audio/sfx/disintegrate.mp3",
       textEn:
@@ -309,7 +309,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: "Terkejut oleh luapan energi mutlak itu, wanita berjubah itu jatuh berlutut.",
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 5400,
+      autoAdvanceDelay: 6000,
       textEn:
         "Shocked by the surge of absolute energy, the robed woman fell to her knees.",
       backgroundOverride: "ch1/cg_ch1_s04_dust_snap.webp",
