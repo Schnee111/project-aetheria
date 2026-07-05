@@ -148,7 +148,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="absolute inset-0 flex items-end justify-center pb-[4vh] md:pb-[12vh] cursor-pointer bg-gradient-to-t from-black/50 via-black/10 to-transparent"
+            className="absolute inset-0 flex items-end justify-center pb-[8vh] lg:pb-[12vh] cursor-pointer bg-gradient-to-t from-black/50 via-black/10 to-transparent"
             onClick={handleClick}
           >
             <motion.div
@@ -156,10 +156,10 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="max-w-4xl px-2 md:px-8 text-center"
+              className="max-w-4xl px-4 lg:px-8 text-center"
             >
               <p
-                className="text-base md:text-xl lg:text-3xl leading-relaxed font-body font-medium text-white tracking-wide"
+                className="text-[17px] lg:text-2xl xl:text-3xl leading-relaxed font-body font-medium text-white tracking-wide"
                 style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.9), 0px 8px 24px rgba(0,0,0,1)' }}
               >
                 {displayedText}
@@ -170,7 +170,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
               <AnimatePresence>
                 {isComplete && !line.unskippable && !line.autoAdvance && (
                   <motion.div
-                    className="mt-4 md:mt-12 text-xs font-bold text-gray-300 tracking-[0.3em] uppercase drop-shadow-md"
+                    className="mt-6 lg:mt-12 text-[10px] lg:text-xs font-bold text-gray-300 tracking-[0.3em] uppercase drop-shadow-md"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                   >
