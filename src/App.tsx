@@ -305,7 +305,8 @@ function App() {
           </div>
         </div>
         
-        {/* Debug / Testplay Controls */}
+        {/* Debug / Testplay Controls (hidden by default, toggle in Settings) */}
+        {showTimeline && (
         <div className="absolute top-16 left-4 z-50 flex gap-2">
           <button
             onClick={(e) => { e.stopPropagation(); previousLine(); }}
@@ -320,6 +321,7 @@ function App() {
             Next
           </button>
         </div>
+        )}
 
         {/* Timeline Scrubber (hidden by default, toggle in Settings) */}
         {showTimeline && (
