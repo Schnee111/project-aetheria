@@ -16,8 +16,6 @@ function VolumeControls() {
   const setBgmVolume = useSettingsStore((s) => s.setBgmVolume);
   const setSfxVolume = useSettingsStore((s) => s.setSfxVolume);
   const setVoiceVolume = useSettingsStore((s) => s.setVoiceVolume);
-  const showTimeline = useSettingsStore((s) => s.showTimeline);
-  const setShowTimeline = useSettingsStore((s) => s.setShowTimeline);
 
   const sliders = [
     { label: 'BGM', value: bgmVolume, setter: setBgmVolume },

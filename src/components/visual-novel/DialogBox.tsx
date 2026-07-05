@@ -8,6 +8,7 @@ import { useLocalization } from '../../hooks/useLocalization';
 import type { DialogueLine } from '../../types';
 import { Howl } from 'howler';
 import { useMemo, useEffect, useRef } from 'react';
+import { resolvePublicAssetSrc } from '../../utils/assetResolver';
 
 interface DialogBoxProps {
   line: DialogueLine;
@@ -41,7 +42,14 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
         autoTimerRef.current = undefined;
       }
     };
-  }, [line.id, line.autoAdvance, line.unskippable, line.autoAdvanceDelay]);
+  }, [
+    line.id,
+    line.autoAdvance,
+    line.unskippable,
+    line.autoAdvanceDelay,
+    line.voiceSrc,
+    line.ignoreVoiceDuration,
+  ]);
 
   const handleTypewriterComplete = useCallback(() => {
     if (line.autoAdvance && !line.unskippable) {
@@ -61,7 +69,7 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
 
   // ── Audio ──
   const blip = useMemo(() => {
-    let src = '/assets/audio/sfx/blip_mid.ogg';
+    const src = resolvePublicAssetSrc('/assets/audio/sfx/blip_mid.ogg');
     return new Howl({ src: [src], volume: sfxVolume * 0.3 });
   }, [sfxVolume]);
 
@@ -101,7 +109,14 @@ export function DialogBox({ line, onTap }: DialogBoxProps) {
         // useVoice.play() automatically stops the old voice when a new one is played.
       };
     }
-  }, [line.id, line.voiceSrc, line.autoAdvance, line.ignoreVoiceDuration, playVoice]);
+  }, [
+    line.id,
+    line.voiceSrc,
+    line.autoAdvance,
+    line.ignoreVoiceDuration,
+    line.postVoiceDelay,
+    playVoice,
+  ]);
 
   // ── Interaction ──
   const handleClick = useCallback(() => {

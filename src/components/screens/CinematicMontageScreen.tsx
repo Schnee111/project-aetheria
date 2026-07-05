@@ -6,20 +6,8 @@ import { useSettingsStore } from '../../stores/settingsStore';
 import { MontageRegistry } from '../../data/montages';
 import { chapter1 } from '../../data/chapter-1';
 import type { Scene } from '../../types';
-
-
-
-const VOICE_START_MS = 150;
-const DEFAULT_POST_VOICE_MS = 1000;
-
-function estimateLineDuration(line: { autoAdvanceDelay?: number; postVoiceDelay?: number; voiceSrc?: string }): number {
-  const delay = line.autoAdvanceDelay || 1500;
-  const postVoice = line.postVoiceDelay ?? DEFAULT_POST_VOICE_MS;
-  if (line.voiceSrc) {
-    return (VOICE_START_MS + delay + postVoice) / 1000;
-  }
-  return delay / 1000;
-}
+import { getPreloadProfile, schedulePreloadAssets } from '../../hooks/useScenePreloader';
+import { resolvePublicAssetSrc } from '../../utils/assetResolver';
 
 interface MontageScrubberProps {
   scenes?: Scene[];
@@ -35,17 +23,39 @@ export function CinematicMontageScreen({ scenes = [], currentSceneId, onSceneJum
   const [isPaused, setIsPaused] = useState(false);
   const targetYearRef = useRef(0);
   const scrubberRef = useRef<HTMLDivElement>(null);
-  
+
   const currentMontageId = progress.currentSceneId;
-  const MONTAGE_SEQUENCE = MontageRegistry[currentMontageId] || [];
+  const MONTAGE_SEQUENCE = useMemo(
+    () => MontageRegistry[currentMontageId] ?? [],
+    [currentMontageId],
+  );
   
   // Find next scene id
   const currentSceneData = chapter1.scenes.find(s => s.id === currentMontageId);
   const nextSceneId = currentSceneData?.nextSceneId || 'CH1_END';
 
-  
+
   const frame = MONTAGE_SEQUENCE[currentIndex];
-  
+  const frameSrc = frame && frame.src !== 'black' ? resolvePublicAssetSrc(frame.src) : frame?.src;
+
+  useEffect(() => {
+    const preloadProfile = getPreloadProfile();
+    const assets = MONTAGE_SEQUENCE
+      .slice(0, preloadProfile.montageInitialFrames)
+      .filter((montageFrame) => montageFrame.src !== 'black')
+      .map((montageFrame) => resolvePublicAssetSrc(montageFrame.src));
+    schedulePreloadAssets(assets, preloadProfile.staggerMs);
+  }, [MONTAGE_SEQUENCE]);
+
+  useEffect(() => {
+    const preloadProfile = getPreloadProfile();
+    const assets = MONTAGE_SEQUENCE
+      .slice(currentIndex + 1, currentIndex + preloadProfile.montageAheadFrames + 1)
+      .filter((montageFrame) => montageFrame.src !== 'black')
+      .map((montageFrame) => resolvePublicAssetSrc(montageFrame.src));
+    schedulePreloadAssets(assets, preloadProfile.staggerMs);
+  }, [MONTAGE_SEQUENCE, currentIndex]);
+
   // Handle advancing frames
   useEffect(() => {
     if (isPaused) return;
@@ -70,7 +80,7 @@ export function CinematicMontageScreen({ scenes = [], currentSceneId, onSceneJum
     }, durationMs);
     
     return () => clearTimeout(timer);
-  }, [currentIndex, setScreen, setProgress, progress, isPaused]);
+  }, [MONTAGE_SEQUENCE, currentIndex, setScreen, setProgress, progress, isPaused, nextSceneId]);
 
   // Handle year counting animation
   useEffect(() => {
@@ -129,14 +139,15 @@ export function CinematicMontageScreen({ scenes = [], currentSceneId, onSceneJum
     const times: number[] = [0];
     for (let i = 1; i < MONTAGE_SEQUENCE.length; i++) {
       const prev = MONTAGE_SEQUENCE[i - 1];
-      times.push(times[i - 1] + (prev ? prev.fadeIn + prev.hold : 0));
+      const previousTime = times[i - 1] ?? 0;
+      times.push(previousTime + (prev ? prev.fadeIn + prev.hold : 0));
     }
     return times;
   }, [MONTAGE_SEQUENCE]);
 
   const lastFrame = MONTAGE_SEQUENCE[MONTAGE_SEQUENCE.length - 1];
   const totalDuration = cumulativeTimes.length > 0
-    ? cumulativeTimes[cumulativeTimes.length - 1] + (lastFrame ? lastFrame.fadeIn + lastFrame.hold : 0)
+    ? (cumulativeTimes[cumulativeTimes.length - 1] ?? 0) + (lastFrame ? lastFrame.fadeIn + lastFrame.hold : 0)
     : 0;
 
   const handleFrameJump = useCallback((index: number) => {
@@ -193,7 +204,7 @@ export function CinematicMontageScreen({ scenes = [], currentSceneId, onSceneJum
     <div className="absolute inset-0 bg-black overflow-hidden pointer-events-none select-none">
       
       <AnimatePresence mode="popLayout">
-        {!isComplete && frame && frame.src !== 'black' && (
+        {!isComplete && frame && frameSrc && frameSrc !== 'black' && (
           <motion.div
             key={frame.id}
             initial={{ opacity: frame.flash ? 1 : 0 }}
@@ -206,14 +217,14 @@ export function CinematicMontageScreen({ scenes = [], currentSceneId, onSceneJum
             }}
             className="absolute inset-0"
           >
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('${frame.src}')` }}
+              style={{ backgroundImage: `url('${frameSrc}')` }}
             />
             {/* Slow scale effect (Ken Burns) */}
-            <motion.div 
+            <motion.div
               className="absolute inset-0 bg-cover bg-center origin-center"
-              style={{ backgroundImage: `url('${frame.src}')` }}
+              style={{ backgroundImage: `url('${frameSrc}')` }}
               initial={{ scale: 1 }}
               animate={{ scale: frame.flash ? 1 : 1.05 }}
               transition={{ duration: (frame.fadeIn + frame.hold) * 1.5, ease: "linear" }}
@@ -262,7 +273,8 @@ export function CinematicMontageScreen({ scenes = [], currentSceneId, onSceneJum
               <button
                 onClick={() => {
                   const idx = scenes.findIndex(s => s.id === currentSceneId);
-                  if (idx > 0) handleSceneJump(scenes[idx - 1].id);
+                  const previousScene = scenes[idx - 1];
+                  if (previousScene) handleSceneJump(previousScene.id);
                 }}
                 className="text-[10px] text-gray-400 hover:text-white"
               >
@@ -274,7 +286,8 @@ export function CinematicMontageScreen({ scenes = [], currentSceneId, onSceneJum
               <button
                 onClick={() => {
                   const idx = scenes.findIndex(s => s.id === currentSceneId);
-                  if (idx < scenes.length - 1) handleSceneJump(scenes[idx + 1].id);
+                  const nextScene = scenes[idx + 1];
+                  if (nextScene) handleSceneJump(nextScene.id);
                 }}
                 className="text-[10px] text-gray-400 hover:text-white"
               >

@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { isVideoAsset } from '../../utils/assetResolver';
 
 interface BackgroundProps {
   src: string;
@@ -6,7 +7,7 @@ interface BackgroundProps {
 }
 
 export function Background({ src, alt = 'Background' }: BackgroundProps) {
-  const isVideo = src.endsWith('.mp4') || src.endsWith('.webm');
+  const isVideo = isVideoAsset(src);
 
   return (
     <AnimatePresence>

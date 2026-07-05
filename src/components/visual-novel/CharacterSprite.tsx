@@ -3,6 +3,7 @@ import {
   getCharacterImageOffsetClass,
   getCharacterImageSizeClass,
 } from './characterSizing';
+import { resolveCharacterSrc } from '../../utils/assetResolver';
 
 interface CharacterSpriteProps {
   characterId: string;
@@ -21,7 +22,7 @@ export function CharacterSprite({
   expression,
   position,
 }: CharacterSpriteProps) {
-  const src = `/assets/characters/${characterId}/${characterId}_${expression}.webp`;
+  const src = resolveCharacterSrc(characterId, expression);
   const imageSizeClass = getCharacterImageSizeClass(characterId);
   const imageOffsetClass = getCharacterImageOffsetClass(characterId);
 
@@ -53,8 +54,10 @@ export function CharacterSprite({
             draggable={false}
             onError={(e) => {
               const target = e.currentTarget;
-              if (!target.src.endsWith('_neutral.webp')) {
-                target.src = `/assets/characters/${characterId}/${characterId}_neutral.webp`;
+              const fallbackSrc = resolveCharacterSrc(characterId, 'neutral');
+              const fallbackUrl = new URL(fallbackSrc, window.location.href).href;
+              if (target.currentSrc !== fallbackUrl && target.src !== fallbackUrl) {
+                target.src = fallbackSrc;
               } else {
                 target.style.display = 'none';
               }

@@ -52,7 +52,8 @@ export function TimelineScrubber({
     const times: number[] = [0];
     for (let i = 1; i < lines.length; i++) {
       const prev = lines[i - 1];
-      times.push(times[i - 1] + (prev ? estimateLineDuration(prev) : 1.5));
+      const previousTime = times[i - 1] ?? 0;
+      times.push(previousTime + (prev ? estimateLineDuration(prev) : 1.5));
     }
     return times;
   }, [lines]);
@@ -145,7 +146,7 @@ export function TimelineScrubber({
       {/* Scene selector dropdown */}
       {showSceneList && scenes.length > 0 && (
         <div className="absolute bottom-full left-0 right-0 mb-1 mx-2 bg-black/90 backdrop-blur-md border border-white/10 rounded-lg overflow-hidden max-h-64 overflow-y-auto">
-          {scenes.map((scene, i) => (
+          {scenes.map((scene) => (
             <button
               key={scene.id}
               onClick={() => {
@@ -174,7 +175,8 @@ export function TimelineScrubber({
             <div className="flex items-center gap-1">
               <button
                 onClick={() => {
-                  if (currentSceneIndex > 0) handleSceneJump(scenes[currentSceneIndex - 1].id);
+                  const previousScene = scenes[currentSceneIndex - 1];
+                  if (previousScene) handleSceneJump(previousScene.id);
                 }}
                 disabled={currentSceneIndex <= 0}
                 className="text-[10px] text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
@@ -189,7 +191,8 @@ export function TimelineScrubber({
               </button>
               <button
                 onClick={() => {
-                  if (currentSceneIndex < scenes.length - 1) handleSceneJump(scenes[currentSceneIndex + 1].id);
+                  const nextScene = scenes[currentSceneIndex + 1];
+                  if (nextScene) handleSceneJump(nextScene.id);
                 }}
                 disabled={currentSceneIndex >= scenes.length - 1}
                 className="text-[10px] text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"

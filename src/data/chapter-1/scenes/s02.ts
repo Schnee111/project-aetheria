@@ -171,7 +171,7 @@ export const s02: Scene = // SCENE 2: UNINVITED GUEST
       voiceSrc: "/assets/audio/voice/chapter-1/scene-02/CH1_S02_D008.mp3",
       speaker: "narrator",
       expression: "neutral",
-      text: 'Aku mengambil kristal itu. Energinya bocor karena ada beberapa baris \"Rune\" yang mengalami konflik logika.',
+      text: 'Aku mengambil kristal itu. Energinya bocor karena ada beberapa baris "Rune" yang mengalami konflik logika.',
       autoAdvance: true,
       unskippable: true,
 

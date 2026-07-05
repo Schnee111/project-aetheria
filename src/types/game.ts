@@ -7,11 +7,9 @@ export type Screen =
   | 'cinematic_montage'
   | 'chapter_complete';
 
-export interface PlayerState {
-}
+export type PlayerState = Record<string, never>;
 
-export interface RelationshipState {
-}
+export type RelationshipState = Record<string, never>;
 
 export interface GameProgress {
   currentSceneId: string;

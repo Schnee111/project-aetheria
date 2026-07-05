@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings } from 'lucide-react';
 import {
@@ -90,7 +90,7 @@ function App() {
     }, 0);
 
     return () => clearTimeout(timer);
-  }, [isComplete, screen, currentScene, setProgress, navigateFromScene, setScreen]);
+  }, [isComplete, screen, currentScene, setProgress, navigateFromScene, resetDialog]);
 
   // Keyboard shortcuts for timeline scrubbing
   useEffect(() => {
@@ -161,7 +161,7 @@ function App() {
 
   // ---- Render based on screen ----
 
-  let activeScreenComponent = null;
+  let activeScreenComponent: ReactNode;
 
   if (isInitializing) {
     activeScreenComponent = (
@@ -172,7 +172,7 @@ function App() {
   } else if (screen === 'landing') {
     return (
       <LandingScreen
-        hasSave={progress.currentSceneId !== 'CH1_S00'} 
+        hasSave={progress.currentSceneId !== 'CH1_S00'}
         onStart={() => {
           startGame();
         }}
@@ -233,7 +233,7 @@ function App() {
           onTapDialog={handleTap}
           isDialogComplete={isComplete}
         />
-        
+
         {/* Global Settings Button */}
         <div className="absolute top-4 right-4 z-50">
           <button

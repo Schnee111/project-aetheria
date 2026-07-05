@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { Howl } from 'howler';
 import { useSettingsStore } from '../stores';
+import { resolvePublicAssetSrc } from '../utils/assetResolver';
 
 let globalBgm: Howl | null = null;
 let currentBgmSrc: string | null = null;
@@ -10,17 +11,22 @@ export function useBgm() {
   const bgmVolume = useSettingsStore((s) => s.bgmVolume);
 
   const play = useCallback((src: string) => {
-    if (currentBgmSrc === src && globalBgm) return; // Already playing this track
+    const resolvedSrc = resolvePublicAssetSrc(src);
+    if (currentBgmSrc === resolvedSrc && globalBgm) return; // Already playing this track
 
     if (globalBgm) {
       globalBgm.fade(globalBgm.volume(), 0, 500);
       const oldBgm = globalBgm;
-      setTimeout(() => oldBgm.stop(), 500);
+      setTimeout(() => {
+        oldBgm.stop();
+        oldBgm.unload();
+      }, 500);
     }
 
-    currentBgmSrc = src;
+    currentBgmSrc = resolvedSrc;
     globalBgm = new Howl({
-      src: [src],
+      src: [resolvedSrc],
+      html5: true,
       loop: true,
       volume: 0,
     });
@@ -34,6 +40,7 @@ export function useBgm() {
       const oldBgm = globalBgm;
       setTimeout(() => {
         oldBgm.stop();
+        oldBgm.unload();
       }, 500);
       globalBgm = null;
       currentBgmSrc = null;
@@ -73,7 +80,11 @@ export function useSfx() {
   const sfxVolume = useSettingsStore((s) => s.sfxVolume);
 
   const play = useCallback((src: string) => {
-    const sfx = new Howl({ src: [src], volume: sfxVolume * 0.5 });
+    const sfx = new Howl({
+      src: [resolvePublicAssetSrc(src)],
+      volume: sfxVolume * 0.5,
+      onend: () => sfx.unload(),
+    });
     sfx.play();
     return sfx;
   }, [sfxVolume]);
@@ -98,7 +109,7 @@ export function useVoice() {
       setTimeout(() => oldVoice.unload(), 100);
     }
     globalVoice = new Howl({
-      src: [src],
+      src: [resolvePublicAssetSrc(src)],
       volume: voiceVolume,
       onend: onEnd,
     });
