@@ -7,7 +7,7 @@ export const s04: Scene = // SCENE 4: THE GENESIS
   title: "Flashback - The Genesis",
   location: "The Void",
   mode: "visual_novel",
-  bgmVolumeScale: 0.4,
+  bgmVolumeScale: 0.3,
   bgm: "",
   background: "ch1/bg_black",
   characters: [
