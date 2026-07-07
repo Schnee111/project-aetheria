@@ -2,14 +2,15 @@ import { useEffect, useState, useCallback, useMemo, type ReactNode } from 'react
 import { motion, AnimatePresence } from 'framer-motion';
 import { Settings } from 'lucide-react';
 import {
-  LandingScreen,
-  LanguageSelectScreen,
-  StoryScreen,
   SettingsModal,
   ChapterCompleteScreen,
   CinematicMontageScreen,
   DisclaimerScreen,
+  LandingScreen,
+  LanguageSelectScreen,
+  StoryScreen,
 } from './components/screens';
+import { useWakeLock } from './hooks';
 import { TimelineScrubber } from './components/visual-novel/TimelineScrubber';
 import { chapter1 } from './data/chapter-1';
 import { advanceScene } from './engines/storyEngine';
@@ -29,14 +30,18 @@ const MODE_TO_SCREEN: Record<string, Screen> = {
   cinematic_montage: 'cinematic_montage',
 };
 
-function App() {
+export default function App() {
   const {
     screen,
     setScreen,
     progress,
     setProgress,
     startGame,
+    isPlaying,
   } = useGameStore();
+
+  // Keep screen awake while game is playing
+  useWakeLock(isPlaying);
 
   const [showSettings, setShowSettings] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
@@ -381,5 +386,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
