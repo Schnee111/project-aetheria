@@ -138,6 +138,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 9900,
+      stopBgm: true,
       audioSrc: "/assets/audio/sfx/resonance-energy.mp3",
       textEn:
         "The robed woman jumped in front of me, releasing a wave of incredibly pure protective magic to block the demon's attack.",
@@ -158,6 +159,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       unskippable: true,
       autoAdvanceDelay: 6800,
       ignoreVoiceDuration: true,
+      audioSrc: "/assets/audio/sfx/mystic-pulse.mp3",
       textEn:
         "As her magical energy touched me... something within my soul resonated violently.",
       voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D008.mp3",
@@ -232,6 +234,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 9400,
+      audioSrc: "/assets/audio/sfx/magic_unlock.mp3",
       textEn:
         "A pillar of magical light erupted from this mortal body, sweeping away the demon's curse in an instant. I... remembered everything.",
       voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D010.mp3",
@@ -249,9 +252,10 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: 'Dengan tatapan datar yang kini dipenuhi otoritas mutlak, aku melangkah melewati wanita itu dan mengangkat tangan. "Root Access: Override."',
       autoAdvance: true,
       unskippable: true,
-      autoAdvanceDelay: 10100,
+      autoAdvanceDelay: 9800,
+      audioSrc: "/assets/audio/sfx/magic-override.mp3",
       textEn:
-        'With a flat gaze now filled with absolute authority, I stepped past her and raised my hand. "Root Access: Override."',
+        'With a flat gaze now filled with absolute authority, I stepped past the woman and raised my hand. "Root Access: Override."',
       voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D011.mp3",
       backgroundOverride: "ch1/cg_ch1_s04_aeterna_authority.webp",
       stopBgm: true,
@@ -291,7 +295,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       unskippable: true,
       autoAdvanceDelay: 7000,
       ignoreVoiceDuration: true,
-      audioSrc: "/assets/audio/sfx/disintegrate.mp3",
+      audioSrc: "/assets/audio/sfx/disintegrate.wav",
       textEn:
         "A snap of my fingers shattered the silence. The demon's body instantly unraveled into red dust.",
       voiceSrc: "/assets/audio/voice/chapter-1/scene-03/CH1_S03_D013.mp3",
