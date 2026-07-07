@@ -8,6 +8,7 @@ import {
   SettingsModal,
   ChapterCompleteScreen,
   CinematicMontageScreen,
+  DisclaimerScreen,
 } from './components/screens';
 import { TimelineScrubber } from './components/visual-novel/TimelineScrubber';
 import { chapter1 } from './data/chapter-1';
@@ -246,6 +247,15 @@ function App() {
           setLanguage(lang);
           requestFullscreen();
           startGame();
+          setScreen('disclaimer');
+        }}
+      />
+    );
+  } else if (screen === 'disclaimer') {
+    return (
+      <DisclaimerScreen
+        onComplete={() => {
+          setScreen('visual_novel');
         }}
       />
     );

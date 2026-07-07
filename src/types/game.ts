@@ -3,6 +3,7 @@ import type { Scene } from './scene';
 export type Screen =
   | 'landing'
   | 'language_select'
+  | 'disclaimer'
   | 'story'
   | 'visual_novel'
   | 'cinematic_montage'
