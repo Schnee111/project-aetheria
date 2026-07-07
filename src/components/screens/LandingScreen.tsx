@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, ChevronRight, Play } from 'lucide-react';
-import { useSfx } from '../../hooks';
+import { useSfx, useBgm } from '../../hooks';
 
 interface LandingScreenProps {
   hasSave: boolean;
@@ -94,13 +94,14 @@ function AmbientGlow() {
 
 export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenProps) {
   const { play: playSfx } = useSfx();
+  const { play: playBgm } = useBgm();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const preloadInitialAssets = async () => {
     try {
       await Promise.all([
-        fetch('/assets/audio/sfx/rain-no-window.mp3'),
+        // BGM is already triggered synchronously below, so we only fetch bg and voice here
         fetch('/assets/audio/voice/chapter-1/scene-00/CH1_S00_D001.mp3'),
         fetch('/assets/backgrounds/ch1/bg_ch1_s00_aetheria_street.webp')
       ]);
@@ -111,6 +112,7 @@ export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenPro
 
   const handleStart = async () => {
     playSfx('/assets/audio/sfx/sfx_click.ogg');
+    playBgm('/assets/audio/sfx/rain-no-window.mp3'); // Play synchronously to unlock mobile AudioContext
     setIsLoading(true);
     await preloadInitialAssets();
     setIsLoading(false);
@@ -119,6 +121,7 @@ export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenPro
 
   const handleContinue = async () => {
     playSfx('/assets/audio/sfx/sfx_click.ogg');
+    playBgm('/assets/audio/sfx/rain-no-window.mp3'); // Play synchronously to unlock mobile AudioContext
     setIsLoading(true);
     await preloadInitialAssets();
     setIsLoading(false);
