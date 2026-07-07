@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, ChevronRight, Play } from 'lucide-react';
 import { useSfx } from '../../hooks';
@@ -95,13 +95,33 @@ function AmbientGlow() {
 export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenProps) {
   const { play: playSfx } = useSfx();
 
-  const handleStart = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const preloadInitialAssets = async () => {
+    try {
+      await Promise.all([
+        fetch('/assets/audio/sfx/rain-no-window.mp3'),
+        fetch('/assets/audio/voice/chapter-1/scene-00/CH1_S00_D001.mp3'),
+        fetch('/assets/backgrounds/ch1/bg_ch1_s00_aetheria_street.webp')
+      ]);
+    } catch (e) {
+      console.warn('Initial preload failed', e);
+    }
+  };
+
+  const handleStart = async () => {
     playSfx('/assets/audio/sfx/sfx_click.ogg');
+    setIsLoading(true);
+    await preloadInitialAssets();
+    setIsLoading(false);
     onStart();
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     playSfx('/assets/audio/sfx/sfx_click.ogg');
+    setIsLoading(true);
+    await preloadInitialAssets();
+    setIsLoading(false);
     onContinue();
   };
 
@@ -171,18 +191,18 @@ export function LandingScreen({ hasSave, onStart, onContinue }: LandingScreenPro
           </div>
 
           <nav className="mt-10 flex w-[300px] max-w-full flex-col gap-3">
-            <TitleButton primary onClick={handleStart}>
+            <TitleButton primary onClick={handleStart} disabled={isLoading}>
               <span className="flex items-center gap-3">
                 <Play size={17} fill="currentColor" />
-                Start
+                {isLoading ? 'Loading...' : 'Start'}
               </span>
             </TitleButton>
 
             {hasSave && (
-              <TitleButton onClick={handleContinue}>
+              <TitleButton onClick={handleContinue} disabled={isLoading}>
                 <span className="flex items-center gap-3">
                   <BookOpen size={17} />
-                  Continue
+                  {isLoading ? 'Loading...' : 'Continue'}
                 </span>
               </TitleButton>
             )}
@@ -197,16 +217,18 @@ interface TitleButtonProps {
   children: ReactNode;
   onClick: () => void;
   primary?: boolean;
+  disabled?: boolean;
 }
 
-function TitleButton({ children, onClick, primary = false }: TitleButtonProps) {
+function TitleButton({ children, onClick, primary = false, disabled = false }: TitleButtonProps) {
   if (primary) {
     return (
       <motion.button
         onClick={onClick}
-        className="flex h-12 w-full items-center justify-between rounded-md bg-[#F5A400] px-5 text-sm font-black uppercase tracking-[0.14em] text-[#08070D] shadow-[0_14px_34px_rgba(245,164,0,0.25)] transition-colors hover:bg-[#FFC247]"
-        whileHover={{ x: 3 }}
-        whileTap={{ scale: 0.98 }}
+        disabled={disabled}
+        className={`flex h-12 w-full items-center justify-between rounded-md bg-[#F5A400] px-5 text-sm font-black uppercase tracking-[0.14em] text-[#08070D] shadow-[0_14px_34px_rgba(245,164,0,0.25)] transition-colors hover:bg-[#FFC247] ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+        whileHover={disabled ? {} : { x: 3 }}
+        whileTap={disabled ? {} : { scale: 0.98 }}
       >
         {children}
         <ChevronRight size={18} />
@@ -217,9 +239,10 @@ function TitleButton({ children, onClick, primary = false }: TitleButtonProps) {
   return (
     <motion.button
       onClick={onClick}
-      className="flex h-12 w-full items-center justify-between rounded-md bg-white/[0.08] px-5 text-sm font-black uppercase tracking-[0.14em] text-[#F8F4FF] backdrop-blur-sm transition-colors hover:bg-white/[0.13]"
-      whileHover={{ x: 3 }}
-      whileTap={{ scale: 0.98 }}
+      disabled={disabled}
+      className={`flex h-12 w-full items-center justify-between rounded-md bg-white/[0.08] px-5 text-sm font-black uppercase tracking-[0.14em] text-[#F8F4FF] backdrop-blur-sm transition-colors hover:bg-white/[0.13] ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+      whileHover={disabled ? {} : { x: 3 }}
+      whileTap={disabled ? {} : { scale: 0.98 }}
     >
       {children}
       <ChevronRight size={18} className="text-[#A78BFA]" />

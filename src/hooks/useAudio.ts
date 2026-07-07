@@ -26,7 +26,6 @@ export function useBgm() {
     currentBgmSrc = resolvedSrc;
     globalBgm = new Howl({
       src: [resolvedSrc],
-      html5: true,
       loop: true,
       volume: 0,
     });
