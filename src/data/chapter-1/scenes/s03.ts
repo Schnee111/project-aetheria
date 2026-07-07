@@ -116,6 +116,7 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       text: '"Abyssal Assassin?! Awas! Mundur, Engineer! Biar aku yang menanganinya!"',
       autoAdvance: true,
       unskippable: true,
+      stopBgm: true,
       autoAdvanceDelay: 6300,
       audioSrc: "/assets/audio/sfx/magic-spell.mp3",
       textEn:
@@ -138,7 +139,6 @@ export const s03: Scene = // SCENE 3: THE REVELATION
       autoAdvance: true,
       unskippable: true,
       autoAdvanceDelay: 9900,
-      stopBgm: true,
       audioSrc: "/assets/audio/sfx/resonance-energy.mp3",
       textEn:
         "The robed woman jumped in front of me, releasing a wave of incredibly pure protective magic to block the demon's attack.",
