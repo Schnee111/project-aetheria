@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { preloadHowlAudio } from './useAudio';
 import type { ChapterData, DialogueLine, Scene } from '../types';
 import { useDialogStore } from '../stores/dialogStore';
 import {
@@ -92,14 +93,7 @@ function preloadImage(src: string): void {
 }
 
 function preloadAudio(src: string): void {
-  rememberPreload(src, () => new Promise((resolve, reject) => {
-    const audio = new Audio();
-    audio.preload = 'auto';
-    audio.oncanplaythrough = () => resolve();
-    audio.onerror = reject;
-    audio.src = src;
-    audio.load();
-  }));
+  rememberPreload(src, () => preloadHowlAudio(src));
 }
 
 function preloadVideo(src: string): void {
