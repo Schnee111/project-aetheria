@@ -91,6 +91,18 @@ export function useSfx() {
   return { play };
 }
 
+export function preloadHowlAudio(src: string): Promise<void> {
+  return new Promise((resolve) => {
+    const howl = new Howl({
+      src: [resolvePublicAssetSrc(src)],
+      preload: true,
+      volume: 0,
+    });
+    howl.once('load', () => resolve());
+    howl.once('loaderror', () => resolve());
+  });
+}
+
 let globalVoice: Howl | null = null;
 
 export function useVoice() {
