@@ -1,0 +1,37 @@
+name: Auto-Sync Lockfile on Release PR
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [master]
+
+permissions:
+  contents: write
+
+jobs:
+  sync-lockfile:
+    name: Sync package-lock.json with package.json
+    if: startsWith(github.head_ref, 'release-please')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Regenerate and Commit package-lock.json
+        run: |
+          npm install --package-lock-only
+          if [ -n "$(git status --porcelain package-lock.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add package-lock.json
+            git commit -m "chore(deps): auto-sync package-lock.json for release version [skip ci]"
+            git push
+          fi
