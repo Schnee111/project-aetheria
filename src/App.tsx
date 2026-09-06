@@ -110,22 +110,32 @@ export default function App() {
   // Request fullscreen + landscape lock on mobile
   const requestFullscreen = useCallback(() => {
     try {
-      document.documentElement.requestFullscreen?.();
+      void document.documentElement.requestFullscreen?.();
       try {
-        const orient = (window as any).screen?.orientation;
-        orient?.lock?.('landscape').catch(() => {});
-      } catch {}
-    } catch {}
+        const orientation = window.screen.orientation as ScreenOrientation & {
+          lock?: (orientation: 'landscape' | 'portrait' | 'any') => Promise<void>;
+        };
+        void orientation?.lock?.('landscape')?.catch(() => {});
+      } catch {
+        // Ignore orientation lock rejection on unsupported browsers
+      }
+    } catch {
+      // Ignore fullscreen failure
+    }
   }, []);
 
   // Unlock orientation / Force portrait on landing screen
   useEffect(() => {
     if (screen === 'landing') {
       try {
-        const orient = (window as any).screen?.orientation;
-        orient?.unlock?.();
-        orient?.lock?.('portrait').catch(() => {});
-      } catch {}
+        const orientation = window.screen.orientation as ScreenOrientation & {
+          lock?: (orientation: 'landscape' | 'portrait' | 'any') => Promise<void>;
+        };
+        orientation?.unlock?.();
+        void orientation?.lock?.('portrait')?.catch(() => {});
+      } catch {
+        // Ignore orientation lock rejection on unsupported browsers
+      }
     }
   }, [screen]);
 

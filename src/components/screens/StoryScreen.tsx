@@ -38,7 +38,7 @@ export function StoryScreen({
       initial[c.characterId] = c.initialExpression;
     });
     setCharStates(initial);
-  }, [scene.id, scene.bgm, currentLine?.bgmOverride, currentLine?.stopBgm, scene.characters, playBgm]);
+  }, [scene.id, scene.bgm, currentLine?.bgmOverride, currentLine?.stopBgm, scene.characters, playBgm, stopBgm]);
 
   useEffect(() => {
     if (currentLine) {
