@@ -1,212 +1,164 @@
+<div align="center">
+
 # Project Aetheria
 
-> A browser-based visual novel set in a cozy magitech fantasy world.
+**A high-performance browser-based magitech visual novel engine built on modern web primitives.**
 
-**Genre:** Isekai, urban fantasy, cozy fantasy, slice of life, comedy, light romance  
-**Platform:** Web browser
+[![CI Quality Gate](https://github.com/Schnee111/project-aetheria/actions/workflows/ci.yml/badge.svg)](https://github.com/Schnee111/project-aetheria/actions/workflows/ci.yml)
+[![Live Demo](https://img.shields.io/badge/Demo-aeteria.biz.id-8b5cf6.svg?style=flat&logo=vercel)](https://aeteria.biz.id/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7_Strict-3178C6.svg?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![React 18](https://img.shields.io/badge/React-18.3-61DAFB.svg?style=flat&logo=react)](https://react.dev/)
+[![Vite 6](https://img.shields.io/badge/Vite-6.0-646CFF.svg?style=flat&logo=vite)](https://vitejs.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+[**Explore Live Demo**](https://aeteria.biz.id/) • [**Game Design Document**](docs/GDD_Project_Aetheria.md) • [**Style Guide**](docs/STYLE_GUIDE.md) • [**Architecture**](#system-architecture)
+
+</div>
 
 ---
 
 ## Overview
 
-Project Aetheria is a React-powered visual novel prototype with branching dialogue, scene-based progression, exploration screens, evidence-style information tracking, autosave, audio playback, and cinematic transitions.
+**Project Aetheria** is a cinematic, web-native visual novel and narrative investigation engine. Set in an ethereal magitech world, it combines rich multi-screen branching narrative with an interactive **Evidence & Deduction Board**, high-fidelity typewriter dialog, dynamic BGM/SFX audio cross-fading, and intelligent connection-aware asset preloading.
 
-This repository contains the game implementation, Chapter 1 content data, visual/audio assets, worldbuilding notes, character references, style documentation, and helper scripts for asset production.
-
-The README is intentionally spoiler-safe. Story-specific reveals and character details live in the internal documents under `docs/`.
+Built with a modular frontend architecture, Aetheria guarantees zero-latency scene transitions, automatic state persistence, and responsive mobile/desktop visual immersion without bulky third-party game runtimes.
 
 ---
 
-## Current Features
+## Key Features
 
-- Visual novel flow with typewriter dialogue, choices, character sprites, backgrounds, BGM, and SFX.
-- Multi-screen game loop covering landing, story, visual novel, hub, exploration, board, inspection, confrontation, decision, reflection, and transition screens.
-- Chapter content stored as TypeScript data for scenes, evidence entries, board rules, and outcomes.
-- Zustand stores for game progress, dialogue state, evidence state, board state, and settings.
-- Autosave/load through localforage, including current scene and board state.
-- Evidence inventory, unlock notifications, and a board interface for connecting collected information.
-- Unit tests for core engines and data validation.
+- **Decoupled Screen State Machine:** Full lifecycle state flow across Landing, Story, Visual Novel, Smartphone/Social Overlay, Investigation Board, Confrontation, and Reflection screens.
+- **Evidence & Deduction System:** Collect documents, testimonies, and magitech artifacts. Form logical graph links between disparate clues to unlock narrative confrontations.
+- **Connection-Aware Asset Preloader:** Adaptive multi-tier preloading (`4G` vs `2G` / `Save-Data`) to pre-fetch upcoming character expressions, backgrounds, and audio clips seamlessly.
+- **Dual-Engine Audio Pipeline:** Powered by Howler.js with dedicated BGM ducking, position loops, line-level voice triggers, and auto-cleanup.
+- **Zero-Loss Game State Persistence:** Asynchronous serialization with `localforage` preserving scene position, collected clues, board graph edges, and player choices.
+- **Strict Schema Enforcement:** All scenes, dialogues, clues, and deduction rules are validated at compile and runtime using `Zod` schemas.
+
+---
+
+## System Architecture
+
+```text
++-------------------------------------------------------------------------+
+|                              Browser DOM                                |
+|  [ LandingScreen ]  [ StoryScreen ]  [ BoardScreen ]  [ SmartphoneUI ]  |
++------------------------------------+------------------------------------+
+                                     |
+               +---------------------v---------------------+
+               |              Game Loop Router             |
+               |                 (App.tsx)                 |
+               +----------+---------------------+----------+
+                          |                     |
+        +-----------------v---+             +---v-----------------+
+        |    Story Engine     |             |   Preload Engine    |
+        |  (advanceScene.ts)  |             | (useScenePreloader) |
+        +---------+-----------+             +----------+----------+
+                  |                                    |
++-----------------v-----------------+      +-----------v------------------+
+|          Zustand Stores           |      |        Audio Engine          |
+|  - useGameStore (scene, progress) |      |          (Howler.js)         |
+|  - useEvidenceStore (clues, board)|      | - Spatial BGM & Crossfade    |
+|  - useSettingsStore (vol, speed)  |      | - Line-Synced Voice & SFX    |
++-----------------+-----------------+      +------------------------------+
+                  |
+        +---------v-----------+
+        | Persistence Layer   |
+        |  (saveEngine.ts)    |
+        |  - IndexedDB        |
+        |  - LocalStorage     |
+        +---------------------+
+```
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-| --- | --- |
-| Build tool | Vite 6 |
-| UI | React 18 + TypeScript 5 |
-| Styling | Tailwind CSS 3 |
-| State | Zustand 5 |
-| Animation | Framer Motion 11 |
-| Icons | Lucide React |
-| Audio | Howler.js |
-| Persistence | localforage |
-| Validation | Zod |
-| Test runner | Vitest + Testing Library |
+- **Framework & Build:** React 18, Vite 6, TypeScript 5 (Strict Mode)
+- **State Management:** Zustand 5 (Atomic selectors, zero unnecessary re-renders)
+- **Animation & Motion:** Framer Motion 11
+- **Styling:** Tailwind CSS 3 with custom magitech typography and color tokens
+- **Audio Engine:** Howler.js (Spatial audio, web audio fallback, preloading pool)
+- **Data Validation:** Zod 3 (Contract-driven narrative schemas)
+- **Testing & Quality:** Vitest 4, Testing Library, ESLint 9 (Flat Config), Prettier
+- **CI/CD & SemVer:** GitHub Actions, Google Release Please
 
 ---
 
-## Getting Started
+## Quickstart
 
 ### Prerequisites
 
-- Node.js 20+ recommended
-- npm
+- **Node.js:** v20.x or v22.x LTS
+- **Package Manager:** npm (v10+)
 
-### Install and Run
+### Local Development
 
 ```bash
-npm install
+# Clone the repository
+git clone https://github.com/Schnee111/project-aetheria.git
+cd project-aetheria
+
+# Install dependencies cleanly
+npm ci
+
+# Start the local development server (with host exposure for mobile testing)
 npm run dev
 ```
 
-Vite runs with `--host`, so the development server can be opened from the local machine or a LAN address printed in the terminal.
-
-### Build
-
-```bash
-npm run build
-npm run preview
-```
-
-### Test
-
-```bash
-npm test
-```
-
-Use watch mode while iterating:
-
-```bash
-npm run test:watch
-```
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## Scripts
+## Scripts & Quality Commands
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start the Vite development server |
-| `npm run build` | Type-check with `tsc -b` and build production assets |
-| `npm run preview` | Preview the production build |
-| `npm test` | Run Vitest once |
-| `npm run test:watch` | Run Vitest in watch mode |
-| `npm run lint` | Run ESLint |
-| `npm run format` | Format the repository with Prettier |
+| Command | Description |
+|---|---|
+| `npm run dev` | Start the local Vite development server with HMR |
+| `npm run build` | Verify types (`tsc -b`) and compile optimized production bundle |
+| `npm run preview` | Spin up a local server previewing the `dist/` production output |
+| `npm test` | Execute the Vitest test suite once |
+| `npm run test:watch`| Run Vitest in interactive watch mode for TDD |
+| `npm run lint` | Run ESLint across the codebase |
+| `npm run format` | Enforce repository formatting rules using Prettier |
 
 ---
 
 ## Project Structure
 
 ```text
-aetheria/
-|-- docs/                         Internal design docs, style guide, references
-|-- public/
-|   `-- assets/
-|       |-- backgrounds/           Scene backgrounds and CG images
-|       |-- characters/            Character sprites by character/expression
-|       `-- audio/                 BGM, SFX, and dialogue voice files
-|-- scripts/                       Asset generation and image/audio helpers
+project-aetheria/
+|-- .github/workflows/          # GitHub Actions CI & Release Please workflows
+|-- docs/                       # GDD, Narrative Script, Character Persona specs
+|-- public/assets/
+|   |-- backgrounds/            # Story backgrounds (WebP)
+|   |-- cgs/                    # High-res CG illustrations and WebM/MP4 loops
+|   |-- characters/             # Layered character sprite sheets by emotion
+|   `-- audio/                  # BGM tracks, SFX, and dialogue voice lines
 |-- src/
-|   |-- App.tsx                    Main screen router and game loop
 |   |-- components/
-|   |   |-- screens/               Full-screen game states
-|   |   |-- visual-novel/          Dialogue, background, sprite, choices
-|   |   |-- evidence/              Evidence inventory/card UI
-|   |   |-- board/                 Information board nodes and edges
-|   |   `-- smartphone/            In-game phone/social overlay
-|   |-- data/chapter-1/            Chapter 1 scenes, evidence, rules, outcomes
-|   |-- engines/                   Pure game logic and persistence helpers
-|   |-- hooks/                     Dialogue, audio, and typewriter hooks
-|   |-- schemas/                   Zod schemas for content validation
-|   |-- stores/                    Zustand stores
-|   |-- tests/                     Engine tests and test setup
-|   |-- types/                     Shared TypeScript contracts
-|   `-- utils/                     Small helpers
-`-- dist/                         Production build output
+|   |   |-- screens/            # Screen views (Landing, Story, Board, Disclaimer)
+|   |   |-- visual-novel/       # Sprite rendering, Dialog box, Choice panels
+|   |   `-- evidence/           # Clue inspection cards and relationship connectors
+|   |-- data/chapter-1/         # Structured scene graphs, clues, and rules
+|   |-- engines/                # Pure deterministic game logic (Story, Save)
+|   |-- hooks/                  # Audio hooks, typewriter effect, scene preloader
+|   |-- schemas/                # Zod contracts for runtime validation
+|   |-- stores/                 # Zustand state stores
+|   `-- types/                  # Shared TypeScript interfaces
+`-- vitest.config.ts            # Test runner configuration
 ```
 
 ---
 
-## Runtime Flow
+## Continuous Integration & Release Strategy
 
-1. `src/App.tsx` loads `chapter1` from `src/data/chapter-1`.
-2. `useGameStore`, `useEvidenceStore`, and `useDialogStore` hold current screen, scene progress, collected evidence, board edges, and dialogue index.
-3. `advanceScene()` in `src/engines/storyEngine.ts` applies scene unlocks, choices, ticker changes, visited scenes, and next-scene routing.
-4. The active scene mode maps to a screen component, such as `visual_novel`, `hub`, `exploration`, `board`, or `reflection`.
-5. `saveGame()` in `src/engines/saveEngine.ts` persists progress to localforage after gameplay changes.
-
----
-
-## Content Workflow
-
-Most story changes happen in `src/data/chapter-1/`.
-
-| File | Use |
-| --- | --- |
-| `scenes.ts` | Scene order, dialogue lines, choices, backgrounds, characters, unlocks |
-| `evidences.ts` | Collectible information metadata and learning points |
-| `rules.ts` | Relationship rules for board connections |
-| `editorials.ts` | Final decisions and reflection outcomes |
-| `index.ts` | Chapter manifest exported to the app |
-
-When adding a new scene:
-
-1. Add the scene object to `scenes.ts`.
-2. Set `id`, `mode`, `background`, `characters`, `dialogues`, and `nextSceneId`.
-3. Add any new collectible information to `evidences.ts`.
-4. Place required assets under `public/assets`.
-5. Run `npm test` and `npm run build`.
-
----
-
-## Assets
-
-Asset conventions are documented in [docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md).
-
-Common paths:
-
-| Asset Type | Path |
-| --- | --- |
-| Backgrounds | `public/assets/backgrounds/` |
-| Character sprites | `public/assets/characters/{character_id}/` |
-| BGM | `public/assets/audio/bgm/` |
-| SFX | `public/assets/audio/sfx/` |
-| Dialogue voice | `public/assets/audio/dialog/` |
-
-Character sprites are referenced by character id and expression, for example `aeterna_lazy.png` or `lysthea_shocked.png`.
-
----
-
-## Documentation
-
-Some documents may contain story spoilers. Open them only if you are working on narrative, content, or asset production.
-
-| Document | Description |
-| --- | --- |
-| [docs/GDD_Project_Aetheria.md](docs/GDD_Project_Aetheria.md) | Internal game design reference |
-| [docs/Chapter_1_Outline.md](docs/Chapter_1_Outline.md) | Chapter 1 planning outline |
-| [docs/Script_Chapter_1.md](docs/Script_Chapter_1.md) | Chapter 1 script draft |
-| [docs/Worldbuilding_Aetheria.md](docs/Worldbuilding_Aetheria.md) | Worldbuilding notes |
-| [docs/Persona_Aeterna.md](docs/Persona_Aeterna.md) | Character reference |
-| [docs/Persona_Lysthea.md](docs/Persona_Lysthea.md) | Character reference |
-| [docs/Character_Visuals.md](docs/Character_Visuals.md) | Character visual direction |
-| [docs/Character_Voices.md](docs/Character_Voices.md) | Voice direction |
-| [docs/ASSET_CHECKLIST.md](docs/ASSET_CHECKLIST.md) | Asset production checklist |
-| [docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md) | Visual style guide and Tailwind tokens |
-
----
-
-## Maintenance Notes
-
-- Some legacy identifiers still use `sebelum-viral`, including the npm package name and localforage save key.
-- Several type fields still reflect an earlier investigation prototype. They are still used by the engine/UI and can be renamed later in a focused refactor.
-- `claimRules` is currently empty in Chapter 1, so the inspection flow exists but has limited active content.
-- `dist/` and `node_modules/` may exist locally but are ignored by Git and should not be edited by hand.
+- **Automated Verification:** Every Pull Request and commit to `master` triggers `.github/workflows/ci.yml` across multiple Node.js environments (linting, typechecking, full Vitest suite, and production build).
+- **Semantic Versioning:** Versioning and changelog generation are governed by **Google Release Please** following the [Conventional Commits](https://www.conventionalcommits.org/) specification (`feat:`, `fix:`, `perf:`).
 
 ---
 
 ## License
 
-TBD.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+Developed with care by [Muhammad Daffa Ma'arif (Schnee111)](https://github.com/Schnee111).
