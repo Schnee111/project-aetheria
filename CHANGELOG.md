@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/Schnee111/project-aetheria/compare/v1.0.0...v1.0.1) (2026-09-07)
+
+
+### Performance Improvements
+
+* **assets:** optimize thumbnail to WebP (281KB) and compress PNG fallback ([0d7184d](https://github.com/Schnee111/project-aetheria/commit/0d7184d54ba43e4de563f3a245b1be3bf5b63f6c))
+
 ## 1.0.0 (2026-09-06)
 
 
