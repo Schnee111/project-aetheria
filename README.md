@@ -14,7 +14,7 @@
 <br />
 
 <a href="https://aeteria.biz.id/">
-  <img src="public/thumbnail.png" alt="Project Aetheria Preview" width="100%" style="border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.4);" />
+  <img src="public/thumbnail.webp" alt="Project Aetheria Preview" width="100%" style="border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.4);" />
 </a>
 
 <br />
