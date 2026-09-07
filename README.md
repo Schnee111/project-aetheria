@@ -11,6 +11,14 @@
 [![Vite 6](https://img.shields.io/badge/Vite-6.0-646CFF.svg?style=flat&logo=vite)](https://vitejs.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+<br />
+
+<a href="https://aeteria.biz.id/">
+  <img src="public/assets/backgrounds/ch1/bg_landing_aetheria_workshop.webp" alt="Project Aetheria Preview" width="100%" style="border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.4);" />
+</a>
+
+<br />
+
 [**Explore Live Demo**](https://aeteria.biz.id/) • [**Game Design Document**](docs/GDD_Project_Aetheria.md) • [**Style Guide**](docs/STYLE_GUIDE.md) • [**Architecture**](#system-architecture)
 
 </div>
